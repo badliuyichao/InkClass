@@ -5,6 +5,28 @@
    口语交际：我最喜欢的人物形象 / 习作：推荐一本书 / 园地：观书有感（其一）
    ============================================================ */
 window.UNIT58 = window.UNIT58 || {};
+/* —— 第八单元过关自测题库（每课 5 题，a 为正确选项索引）—— */
+var QUIZ_GUREN=[
+ {q:"1. “敏而好学，不耻下问”中“耻”的意思是？",opts:["羞耻","以……为耻","耻辱的事"],a:1},
+ {q:"2. “知之为知之，不知为不知，是知也”最后一个“知”通什么字？",opts:["智","志","蜘"],a:0},
+ {q:"3. “默而识之”的“识”读什么？",opts:["shí","zhì","sì"],a:1},
+ {q:"4. 朱熹说的“三到”之中，哪个最要紧？",opts:["眼到","口到","心到"],a:2},
+ {q:"5. “三到之中，心到最急”的“急”是什么意思？",opts:["着急","最重要、最要紧","急忙"],a:1}
+];
+var QUIZ_YIDUSHU=[
+ {q:"1. 《忆读书》的作者是？",opts:["冰心","叶文玲","尤安·艾肯"],a:0},
+ {q:"2. 课文按什么顺序回忆自己的读书经历？",opts:["地点变化的顺序","时间顺序","逻辑顺序"],a:1},
+ {q:"3. 冰心七岁时读的第一部长篇小说是？",opts:["《水浒传》","《红楼梦》","《三国演义》"],a:2},
+ {q:"4. 为什么同一本《红楼梦》，冰心前后感受不同？",opts:["书的内容变了","翻译的版本不同","年龄阅历不同，中年才读出兴亡滋味"],a:2},
+ {q:"5. 冰心一生读书心得凝成的九个字是？",opts:["读书好，多读书，读好书","读好书，好读书，常读书","多读书，读好书，爱读书"],a:0}
+];
+var QUIZ_SHUWEI=[
+ {q:"1. 如果只能带一样东西供自己娱乐，作者选择什么？",opts:["一幅美丽的图画","一本书","一只口琴"],a:1},
+ {q:"2. “一本你喜爱的书就是一位朋友，也是一处你随时随地想去就去的故地”用了什么修辞？",opts:["拟人","夸张","比喻"],a:2},
+ {q:"3. 下面哪一项不在作者“反复读一本书”的方法里？",opts:["思考故事中的人为什么这样做","在脑子里继续把故事编下去","把书从头到尾抄一遍"],a:2},
+ {q:"4. 作者是怎么引出“我会选择一本书”的？",opts:["讲一个小故事","引用一句名言","连用几个“如果”假设情境"],a:2},
+ {q:"5. 这篇课文告诉我们读书的关键是？",opts:["读得越多越好","把一本好书反复读、常读常新","只读经典名著"],a:1}
+];
 UNIT58.u8 = {
 unit:{
  key:"unit8", num:"第八单元", title:"读书明智，开卷有益", emoji:"📚",
@@ -45,6 +67,14 @@ unit:{
 
 jiangjie:{
  guren:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
+  "<div class='card' style='background:linear-gradient(135deg,#F3EAFB,#FBFAFE)'><h3>🚩 本课学习任务流（读书先有态度、再有方法：从五则语录到“三到”）</h3>"+
+  "<div class='taskflow'>"+
+  "<div class='tflow' onclick='showPack(\"guren\")'>📖<br>读前资料包<small>先看 3 张背景卡再读文言文</small></div>"+
+  "<div class='tflow' onclick='document.getElementById(\"guren-src\").scrollIntoView({behavior:\"smooth\"})'>📚<br>读中查资料<small>读原文时点黄色标签</small></div>"+
+  "<div class='tflow' onclick='openXilianbi(\"guren\")'>✍️<br>小练笔<small>用“三到”检查你的读书状态</small></div>"+
+  "<div class='tflow' onclick='switchTab(\"guoguan\")'>🎯<br>过关自测<small>5 道题检验</small></div>"+
+  "</div>"+
+  "<div style='margin-top:10px;text-align:right'><button class='srcbtn' id='jjModeBtn' onclick='toggleJjMode()'>🔄 切换为：复习模式</button></div></div>"+
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🧾 本课必背内容（默写 + 翻译，一个字都不能错）</h3>"+
   "<p style='font-size:15.5px;line-height:2.2;font-family:\"KaiTi\",serif;margin:10px 0'>"+
   "<b>《论语》五则</b><br>"+
@@ -90,9 +120,65 @@ jiangjie:{
   "<div><b>📘 《论语》</b><br>由孔子的弟子及再传弟子编成，记录孔子及其弟子的言行，是儒家经典“四书”之一。课文中的五则分别出自《学而》《为政》《述而》等篇。</div></div>"+
   "<div class='tipbox story'>📖 朱熹是南宋理学家、教育家。他一生致力于读书与讲学，死后谥“文”，后世尊称“朱子”。他的“读书三到”影响中国读书人八百多年。</div>"+
   "<div class='tipbox fun'>🤔 你知道吗？2026年新版教材把《论语》从三则增加到五则，新增的两则（④⑤）都在强调一件事：<b>没有人天生会读书，靠的是勤勉和行动</b>。</div></div>"+
+  "<div class='card'><h3>🎯 考点导航 · 先看考什么，再去深入</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>这张表不再重复讲解——只回答两件事：考试考什么题型？想深入时点右侧按钮直达对应精讲。</p>"+
+  "<table class='ovtable'><thead><tr><th style='width:132px'>重点内容</th><th>常考怎么考</th><th style='width:86px'>直达</th></tr></thead>"+
+  "<tr><td><b>⭐ 不耻下问</b></td><td><b>文言词语 + 态度启示</b>：“耻”是意动用法“以……为耻”；常考整句翻译和“这则语录讲了什么态度”</td><td><button class='srcbtn' onclick='jumpJj(\"guren-tl-1\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 是知也</b></td><td><b>通假字</b>：最后一个“知”通“智”，智慧；常考“知之为知之”的翻译和“实事求是”的启示</td><td><button class='srcbtn' onclick='jumpJj(\"guren-tl-2\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 三到</b></td><td><b>古今异义 + 内容理解</b>：“急”是“最重要”不是“着急”；常考“三到指什么、为什么心到最急”</td><td><button class='srcbtn' onclick='jumpJj(\"guren-tl-3\")'>看精讲</button></td></tr>"+
+  "</table></div>"+
+  "<div class='card' id='guren-src'><h3>📄 课文原文 · 节选（直读版·带注释）</h3>"+
+  "<div class='readtext'>"+
+  "<p style='margin:8px 0;padding:10px 14px;background:rgba(247,242,252,.6);border-radius:12px;line-height:2.1;font-family:\"KaiTi\",serif'>敏而好学，不耻下问。<span style='font-family:inherit;font-size:12.5px;color:var(--muted)'>〔敏：勤勉；耻：以……为耻〕</span></p>"+
+  "<button class='srcbtn' onclick='showCard(\"guren1\")'>📚 查资料 · 什么是“不耻下问”</button>"+
+  "<p style='margin:8px 0;padding:10px 14px;background:rgba(247,242,252,.6);border-radius:12px;line-height:2.1;font-family:\"KaiTi\",serif'>知之为知之，不知为不知，是知也。<span style='font-family:inherit;font-size:12.5px;color:var(--muted)'>〔最后的“知”通“智”，智慧〕</span></p>"+
+  "<button class='srcbtn' onclick='showCard(\"guren2\")'>📚 查资料 · “是知也”的通假字</button>"+
+  "<p style='margin:8px 0;padding:10px 14px;background:rgba(247,242,252,.6);border-radius:12px;line-height:2.1;font-family:\"KaiTi\",serif'>余尝谓读书有三到，谓心到、眼到、口到。心不在此，则眼不看仔细，心眼既不专一，却只漫浪诵读，决不能记，记亦不能久也。三到之中，心到最急。心既到矣，眼口岂不到乎？<span style='font-family:inherit;font-size:12.5px;color:var(--muted)'>〔谓：说；漫浪：随随便便；急：最重要〕</span></p>"+
+  "<button class='srcbtn' onclick='showCard(\"guren3\")'>📚 查资料 · 朱熹与“三到”</button>"+
+  "<p style='margin:10px 0 0;font-size:12.5px;color:var(--muted)'>——课文关键语句节选，顺序与课文一致；完整原文请对照课本朗读。</p>"+
+  "</div></div>"+
+  "<div class='card'><h3>🔍 精读深挖：文言五则与“三到”的读法</h3>"+
+  "<div class='timeline'>"+
+  "<div class='tl' id='guren-tl-1'><b>⭐ 谦虚好问 · 敏而好学，不耻下问</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>敏而好学，不耻下问。〔注：敏，勤勉；耻，以……为耻；下问，向不如自己的人请教〕</div>"+
+  "<div class='jl-ask'>❓ 先想一想：向“不如自己”的人请教，为什么反而不丢脸？</div>"+
+  "<ul class='jl-ju'><li><b>“敏”还要“好学”</b>——天资聪敏仍不肯停下学习，这是把天资用足了。</li>"+
+  "<li><b>“下问”需要底气</b>——敢向不如自己的人请教，说明在意的是“学会”，不是面子。</li>"+
+  "<li><b>怕丢脸才真丢脸</b>——不懂装懂，问题越积越多，吃亏的还是自己。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：真正的聪明，是肯问——面子换不来学问。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>文言词语解释（敏、耻、好、下问）+ 态度启示题</b>。</div></div>"+
+  "<div class='tl' id='guren-tl-2'><b>⭐ 实事求是 · 知之为知之，不知为不知，是知也</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>知之为知之，不知为不知，是知也。〔注：最后的“知”通“智”，智慧〕</div>"+
+  "<div class='jl-ask'>❓ 先想一想：为什么“承认不知道”反而是一种智慧？</div>"+
+  "<ul class='jl-ju'><li><b>学习的第一步是诚实</b>——连“不懂”都不敢承认，就没法开始真正地学。</li>"+
+  "<li><b>不懂装懂最危险</b>——问题蒙混过关，越积越多，考试和做事都会露馅。</li>"+
+  "<li><b>承认不懂才懂</b>——敢于说“我不会”，才能去问、去查、去学会。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：知道就是知道，不知道就是不知道——诚实是智慧的开始。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>通假字（知通智）+ 句子翻译 + “实事求是”的启示</b>。</div></div>"+
+  "<div class='tl' id='guren-tl-3'><b>⭐ 读书方法 · 三到之中，心到最急</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>三到之中，心到最急。心既到矣，眼口岂不到乎？〔注：急，最重要；岂，难道〕</div>"+
+  "<div class='jl-ask'>❓ 先想一想：三到是并列的三条要求吗？</div>"+
+  "<ul class='jl-ju'><li><b>心不在此，眼看不仔细</b>——心思不在书上，眼睛只是“扫过”，不是“看到”。</li>"+
+  "<li><b>漫浪诵读记不住</b>——随随便便地读，当时记不住，记住了也很快忘。</li>"+
+  "<li><b>心到是总开关</b>——心到了，眼和口自然跟着到；心不在，全是空转。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：三到不是并列的，“心到”是总开关——读书先读心。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>古今异义（急＝最重要）+ “为什么心到最急”的内容理解题</b>。</div></div>"+
+  "</div></div>"+
+  "<div class='card'><h3>✍️ 小练笔：用“三到”检查你昨晚的读书状态</h3>"+
+  "<p style='font-size:13.5px;color:var(--muted)'>朱熹说“心到最急”。回想你昨晚（或最近一次）读书的样子：心到了吗？眼到、口到呢？用一两句话给自己写个“三到自评”，再写一句明天怎么改进。</p>"+
+  "<textarea id='xilianbi-guren' class='xltextarea' rows='4' placeholder='写在这里，点保存会自动记住…'></textarea>"+
+  "<div style='margin-top:8px;display:flex;gap:10px;align-items:center'><button class='tflow' style='max-width:180px' onclick='saveXilianbi(\"guren\")'>💾 保存</button><span id='xlsave-guren' style='font-size:12.5px;color:#3C9E5C;font-weight:700'></span></div></div>"+
   "</div>";},
 
  yidushu:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
+  "<div class='card' style='background:linear-gradient(135deg,#FDEDEA,#FFFBFA)'><h3>🚩 本课学习任务流（用时间轴梳理信息：冰心一生的读书经历）</h3>"+
+  "<div class='taskflow'>"+
+  "<div class='tflow' onclick='showPack(\"yidushu\")'>📖<br>读前资料包<small>先看 3 张背景卡再读课文</small></div>"+
+  "<div class='tflow' onclick='document.getElementById(\"yidushu-src\").scrollIntoView({behavior:\"smooth\"})'>📚<br>读中查资料<small>读原文时点黄色标签</small></div>"+
+  "<div class='tflow' onclick='openXilianbi(\"yidushu\")'>✍️<br>小练笔<small>写一句你的读书感受</small></div>"+
+  "<div class='tflow' onclick='switchTab(\"guoguan\")'>🎯<br>过关自测<small>5 道题检验</small></div>"+
+  "</div>"+
+  "<div style='margin-top:10px;text-align:right'><button class='srcbtn' id='jjModeBtn' onclick='toggleJjMode()'>🔄 切换为：复习模式</button></div></div>"+
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🧾 本课必背内容（考试就考这些，先逐项过关）</h3>"+
   "<table class='ovtable'>"+
   "<tr><td><b>✅ 必背九个字</b></td><td><b>读书好，多读书，读好书。</b>——全文的总结，也是冰心一生的读书心得。</td></tr>"+
@@ -137,9 +223,65 @@ jiangjie:{
   "<div><b>🖋️ 背景</b><br>《忆读书》写于晚年，是应《中学生》杂志之约写的回忆文章。她把一生的读书经验，浓缩成给孩子们的九字赠言。</div></div>"+
   "<div class='tipbox story'>📖 冰心说：“读书好，多读书，读好书。”这九个字后来被无数学校印在墙上。她自己一生读了大量中外名著，九十多岁还在读书、写作。</div>"+
   "<div class='tipbox tip'>⚡ <b>本课阅读提醒：</b>读的时候拿一支笔，把表示时间的词圈出来（七岁、十二三岁、中年以后），文章的骨架就出来了。</div></div>"+
+  "<div class='card'><h3>🎯 考点导航 · 先看考什么，再去深入</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>这张表不再重复讲解——只回答两件事：考试考什么题型？想深入时点右侧按钮直达对应精讲。</p>"+
+  "<table class='ovtable'><thead><tr><th style='width:132px'>重点内容</th><th>常考怎么考</th><th style='width:86px'>直达</th></tr></thead>"+
+  "<tr><td><b>⭐ 聊天式开头</b></td><td><b>开头句作用</b>：“一谈到读书，我的话就多了！”——亲切拉近距离，自然引出回忆</td><td><button class='srcbtn' onclick='jumpJj(\"yidushu-tl-1\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 读书之乐</b></td><td><b>时间轴梳理 + 具体事例</b>：七岁读《三国演义》津津有味、哭了一场——例子越具体越可信</td><td><button class='srcbtn' onclick='jumpJj(\"yidushu-tl-2\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 九字总结</b></td><td><b>三层含义 + 递进关系</b>：“读书好”为什么读、“多读书”读多少、“读好书”读什么</td><td><button class='srcbtn' onclick='jumpJj(\"yidushu-tl-3\")'>看精讲</button></td></tr>"+
+  "</table></div>"+
+  "<div class='card' id='yidushu-src'><h3>📄 课文原文 · 节选（直读版）</h3>"+
+  "<div class='readtext'>"+
+  "<p style='margin:8px 0;padding:10px 14px;background:rgba(253,240,238,.6);border-radius:12px;line-height:2'>一谈到读书，我的话就多了！</p>"+
+  "<button class='srcbtn' onclick='showCard(\"yidushu1\")'>📚 查资料 · 聊天式开头</button>"+
+  "<p style='margin:8px 0;padding:10px 14px;background:rgba(253,240,238,.6);border-radius:12px;line-height:2'>我永远感到读书是我生命中最大的快乐！</p>"+
+  "<button class='srcbtn' onclick='showCard(\"yidushu2\")'>📚 查资料 · 快乐从哪里来</button>"+
+  "<p style='margin:8px 0;padding:10px 14px;background:rgba(253,240,238,.6);border-radius:12px;line-height:2'>读书好，多读书，读好书。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"yidushu3\")'>📚 查资料 · 九个字三层意思</button>"+
+  "<p style='margin:10px 0 0;font-size:12.5px;color:var(--muted)'>——课文关键语句节选，顺序与课文一致；完整原文请对照课本朗读。</p>"+
+  "</div></div>"+
+  "<div class='card'><h3>🔍 精读深挖：一条时间轴，一生读书路</h3>"+
+  "<div class='timeline'>"+
+  "<div class='tl' id='yidushu-tl-1'><b>⭐ 开头 · “一谈到读书，我的话就多了！”</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>一谈到读书，我的话就多了！</div>"+
+  "<div class='jl-ask'>❓ 先想一想：为什么不用“读书有许多好处”这样的句子开头？</div>"+
+  "<ul class='jl-ju'><li><b>像聊天，不像上课</b>——不摆架子，读者一下子被拉到她对面坐下。</li>"+
+  "<li><b>透出喜爱</b>——话匣子一开就关不上，说明读书这件事她有太多想说。</li>"+
+  "<li><b>自然引出回忆</b>——一句话打开话匣子，后面几十年的读书经历顺流而出。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：聊天式开头最亲切——写回忆，先让读者坐到你身边。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>开头句作用</b>——亲切自然 + 拉近距离 + 引出下文回忆。</div></div>"+
+  "<div class='tl' id='yidushu-tl-2'><b>⭐ 例子 · “我永远感到读书是我生命中最大的快乐！”</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>我永远感到读书是我生命中最大的快乐！</div>"+
+  "<div class='jl-ask'>❓ 先想一想：这句话是“感受”，作者是用什么把“快乐”写可信的？</div>"+
+  "<ul class='jl-ju'><li><b>七岁读《三国演义》</b>——听得“津津有味”，自己读时字认不全，还是读得“哭了一场”。</li>"+
+  "<li><b>比较着读</b>——“物怕比，人怕比，书也怕比”，越比眼光越高、越读越有味。</li>"+
+  "<li><b>例子越具体越可信</b>——不是空喊“我爱读书”，而是把哭、笑、猜着读都写出来。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：感受要靠事例支撑——把“快乐”写到哭了一场，才叫真快乐。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>时间轴梳理信息 + 具体事例的作用</b>（真实、可信、动人）。</div></div>"+
+  "<div class='tl' id='yidushu-tl-3'><b>⭐ 总结 · “读书好，多读书，读好书。”</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>读书好，多读书，读好书。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：九个字说了几件事？顺序能换吗？</div>"+
+  "<ul class='jl-ju'><li><b>读书好</b>——先讲“为什么读”：读书带来快乐和收获。</li>"+
+  "<li><b>多读书</b>——再讲“读多少”：读得多才能比较、辨别。</li>"+
+  "<li><b>读好书</b>——最后讲“读什么”：在“多”的基础上选出有价值的书，层层递进，不能倒过来。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：先为什么读、再读多少、最后读什么——九个字是一条完整的路。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>三层含义 + 递进关系</b>，常考“这三句话分别是什么意思”。</div></div>"+
+  "</div></div>"+
+  "<div class='card'><h3>✍️ 小练笔：写一句你的读书感受</h3>"+
+  "<p style='font-size:13.5px;color:var(--muted)'>冰心用九个字总结一生。你也可以：写一本书对你的影响，或某一次读书的真实感受——像冰心那样，用一个具体画面（哭、笑、猜着读）支撑你的感受，别只写“我非常喜欢读书”。写 50~100 字。</p>"+
+  "<textarea id='xilianbi-yidushu' class='xltextarea' rows='4' placeholder='写在这里，点保存会自动记住…'></textarea>"+
+  "<div style='margin-top:8px;display:flex;gap:10px;align-items:center'><button class='tflow' style='max-width:180px' onclick='saveXilianbi(\"yidushu\")'>💾 保存</button><span id='xlsave-yidushu' style='font-size:12.5px;color:#3C9E5C;font-weight:700'></span></div></div>"+
   "</div>";},
 
  shuwei:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
+  "<div class='card' style='background:linear-gradient(135deg,#E6F4F2,#F9FDFC)'><h3>🚩 本课学习任务流（略读抓要点：选择、理由、方法，一个都不能少）</h3>"+
+  "<div class='taskflow'>"+
+  "<div class='tflow' onclick='showPack(\"shuwei\")'>📖<br>读前资料包<small>先看 3 张背景卡再读课文</small></div>"+
+  "<div class='tflow' onclick='document.getElementById(\"shuwei-src\").scrollIntoView({behavior:\"smooth\"})'>📚<br>读中查资料<small>读原文时点黄色标签</small></div>"+
+  "<div class='tflow' onclick='openXilianbi(\"shuwei\")'>✍️<br>小练笔<small>写写你反复读一本书的方法</small></div>"+
+  "<div class='tflow' onclick='switchTab(\"guoguan\")'>🎯<br>过关自测<small>5 道题检验</small></div>"+
+  "</div>"+
+  "<div style='margin-top:10px;text-align:right'><button class='srcbtn' id='jjModeBtn' onclick='toggleJjMode()'>🔄 切换为：复习模式</button></div></div>"+
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🧾 本课必背内容（略读课文，抓要点）</h3>"+
   "<table class='ovtable'>"+
   "<tr><td><b>✅ 核心问题</b></td><td>如果你独自驾舟环绕世界旅行，只能带一样东西供自己娱乐，你会选择什么？——作者的选择：<b>一本书</b>。</td></tr>"+
@@ -184,6 +326,54 @@ jiangjie:{
   "<div><b>🖋️ 背景</b><br>这篇文章原为作者应出版社之邀写的“读书随笔”，后被选入多国教材。她用“旅行带什么”这个假设，把“为什么要读书”讲得人人能懂。</div></div>"+
   "<div class='tipbox fun'>🤔 你知道吗？这篇课文在2026年新版教材中替换了《我的“长生果”》。两篇都写读书，但角度不同：一篇写“读得多”，一篇写“读得深”。</div>"+
   "<div class='tipbox tip'>⚡ <b>本课阅读提醒：</b>这是略读课文，重点抓三样：①作者的选择；②理由；③反复读的方法。</div></div>"+
+  "<div class='card'><h3>🎯 考点导航 · 先看考什么，再去深入</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>这张表不再重复讲解——只回答两件事：考试考什么题型？想深入时点右侧按钮直达对应精讲。</p>"+
+  "<table class='ovtable'><thead><tr><th style='width:132px'>重点内容</th><th>常考怎么考</th><th style='width:86px'>直达</th></tr></thead>"+
+  "<tr><td><b>⭐ 假设开篇</b></td><td><b>开头作用</b>：连用几个“如果”创设极端情境，层层缩小范围，自然引出“我会选择一本书”</td><td><button class='srcbtn' onclick='jumpJj(\"shuwei-tl-1\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 朋友与故地</b></td><td><b>比喻赏析</b>：把书比作朋友（反复交谈）、故地（随时重游），写出好书可反复读、常读常新</td><td><button class='srcbtn' onclick='jumpJj(\"shuwei-tl-2\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 反复读的方法</b></td><td><b>内容概括 + 分步说明</b>：首先思考人物 → 然后续编故事 → 最后想象作者，由浅入深</td><td><button class='srcbtn' onclick='jumpJj(\"shuwei-tl-3\")'>看精讲</button></td></tr>"+
+  "</table></div>"+
+  "<div class='card' id='shuwei-src'><h3>📄 课文原文 · 节选（直读版）</h3>"+
+  "<div class='readtext'>"+
+  "<p style='margin:8px 0;padding:10px 14px;background:rgba(236,247,245,.6);border-radius:12px;line-height:2'>如果你独自驾舟环绕世界旅行，如果你只能带一样东西供自己娱乐，你会选择哪一样？一幅美丽的图画，一本有趣的书，一盒扑克牌，一个百音盒，还是一只口琴……</p>"+
+  "<button class='srcbtn' onclick='showCard(\"shuwei1\")'>📚 查资料 · 假设开篇的妙处</button>"+
+  "<p style='margin:8px 0;padding:10px 14px;background:rgba(236,247,245,.6);border-radius:12px;line-height:2'>你总能从一本书中发现新东西，不管你看过多少遍。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"shuwei2\")'>📚 查资料 · 为什么“总”有新东西</button>"+
+  "<p style='margin:8px 0;padding:10px 14px;background:rgba(236,247,245,.6);border-radius:12px;line-height:2'>一本你喜爱的书就是一位朋友，也是一处你随时随地想去就去的故地。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"shuwei3\")'>📚 查资料 · 朋友与故地</button>"+
+  "<p style='margin:10px 0 0;font-size:12.5px;color:var(--muted)'>——课文关键语句节选，顺序与课文一致；完整原文请对照课本朗读。</p>"+
+  "</div></div>"+
+  "<div class='card'><h3>🔍 精读深挖：一本书凭什么读一辈子</h3>"+
+  "<div class='timeline'>"+
+  "<div class='tl' id='shuwei-tl-1'><b>⭐ 假设开篇 · “如果你独自驾舟环绕世界旅行……”</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>如果你独自驾舟环绕世界旅行，如果你只能带一样东西供自己娱乐，你会选择哪一样？</div>"+
+  "<div class='jl-ask'>❓ 先想一想：为什么不直接说“我认为读书最重要”？</div>"+
+  "<ul class='jl-ju'><li><b>极端情境逼人想</b>——“独自驾舟”“只能带一样”，把选择逼到墙角，读者忍不住替自己选。</li>"+
+  "<li><b>层层缩小范围</b>——先“旅行”，再“只能一样”，再“供自己娱乐”，条件越收越紧，答案越来越重。</li>"+
+  "<li><b>先问后答</b>——读者心里刚问完，作者就答“我会选择一本书”，悬念变成惊喜。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：假设开篇，让读者自己走进问题——比直接讲道理高明得多。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>开头作用</b>——创设情境 + 激发思考 + 自然引出下文的选择。</div></div>"+
+  "<div class='tl' id='shuwei-tl-2'><b>⭐ 比喻说理 · 朋友与故地</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>一本你喜爱的书就是一位朋友，也是一处你随时随地想去就去的故地。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：书怎么能同时是“朋友”和“故地”？</div>"+
+  "<ul class='jl-ju'><li><b>朋友可以反复交谈</b>——每次重读，都像老友重聚，总有新话说。</li>"+
+  "<li><b>故地可以随时重游</b>——翻开书就“回到”那个世界，合上书也不会失去它。</li>"+
+  "<li><b>把“反复读”说得温暖</b>——不说“要多读几遍”这样的道理，而说人人都懂的友谊和故乡。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：朋友与故地，写尽“反复读”的温暖——道理被比喻讲活了。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>比喻赏析</b>——本体喻体 + 好处（形象写出可反复读、常读常新）+ 情感。</div></div>"+
+  "<div class='tl' id='shuwei-tl-3'><b>⭐ 方法支撑 · 首先……然后……最后……</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>首先，思考故事中的人为什么这样做；然后，在脑子里继续把故事编下去；最后，想象作者是什么样的人。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：光说“书好、要反复读”，为什么还不够？</div>"+
+  "<ul class='jl-ju'><li><b>观点要方法撑腰</b>——只喊“书值得反复读”是空的，给出怎么读，观点才站得住。</li>"+
+  "<li><b>由浅入深三层</b>——想人物（读懂）→ 续故事（创造）→ 想作者（知人），一遍比一遍深。</li>"+
+  "<li><b>分步说明有条理</b>——“首先、然后、最后”把方法变成可操作的清单。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：观点 + 方法，才是完整的说服——方法具体，别人才学得会。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>概括反复读的方法 + 分步说明（首先/然后/最后）的写法作用</b>。</div></div>"+
+  "</div></div>"+
+  "<div class='card'><h3>✍️ 小练笔：你最想用哪种方法反复读一本书</h3>"+
+  "<p style='font-size:13.5px;color:var(--muted)'>课文给了三种方法：思考人物为什么这样做、续编故事、想象作者是什么样的人。挑一本你读过两遍以上的书，选一种方法试一试，把你试的过程或发现写下来。写 50~100 字。</p>"+
+  "<textarea id='xilianbi-shuwei' class='xltextarea' rows='4' placeholder='写在这里，点保存会自动记住…'></textarea>"+
+  "<div style='margin-top:8px;display:flex;gap:10px;align-items:center'><button class='tflow' style='max-width:180px' onclick='saveXilianbi(\"shuwei\")'>💾 保存</button><span id='xlsave-shuwei' style='font-size:12.5px;color:#3C9E5C;font-weight:700'></span></div></div>"+
   "</div>";},
 
  yuan8Di:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
@@ -431,5 +621,46 @@ ciyu:{
  yidushu:[["津津有味","形容兴味特别浓厚。"],["无病而呻","没有病却呻吟，比喻没有真情实感而故作感慨。"],["索然无味","形容枯燥乏味。"],["心动神移","形容被深深吸引。"],["不能自已","不能控制自己的感情。"],["兴亡盛衰","兴盛与衰亡。"],["真情实感","真实的情感。"]],
  shuwei:[["伴侣","同在一起生活、工作或旅行的人。"],["娱乐","使人快乐；消遣。"],["周游","四处游历。"],["故地","曾经居住过或去过的地方。"],["犹豫","拿不定主意。"],["续编","接着原来的故事继续编写。"]],
  yuan8Di:[["推荐","把好的人或事物介绍给别人。"],["引人入胜","引人进入佳境，多指风景或文章。"],["爱不释手","喜爱得舍不得放下。"],["受益匪浅","得到很多益处。"],["回味无穷","形容事后越想越觉得有意思。"]]
-}
+},
+
+src:{
+ guren_before:[
+  ["🖋️ 卡片一 · 孔子与《论语》","孔子（前551—前479），名丘，字仲尼，春秋时期鲁国人，思想家、教育家，儒家学派创始人。他一生“学而不厌，诲人不倦”，相传有弟子三千。《论语》由他的弟子及再传弟子编成，记录孔子及其弟子的言行，是儒家经典“四书”之一——课文里的五则语录，分别出自《学而》《为政》《述而》等篇。"],
+  ["📜 卡片二 · 朱熹与《训学斋规》","朱熹（1130—1200），南宋理学家、教育家，一生讲学不辍，后世尊称“朱子”。他总结的读书法影响中国读书人八百多年：“读书三到”出自他的《训学斋规》。他还说过“读书之法，在循序而渐进，熟读而精思”——先有孔子的态度，再有朱熹的方法。"],
+  ["🗺️ 卡片三 · 文言文怎么读","文言文要用“四步读法”：一读，读准字音、读通句子，注意停顿（如“敏而好学，不耻下问”读成“敏/而好学”）；二解，借助注释理解关键词；三译，逐句翻译，补出省略的主语；四悟，说出道理再联系自己。翻译口诀：留、换、补、调、删。"]],
+ guren1:["🙇 什么是“不耻下问”","“下问”的“下”，不是指地位低，而是指“不如自己”——学问比你浅、懂得比你少的人。向这样的人请教而不觉得羞耻，才是真本事。孔子认为“三人行，必有我师焉”：每个人都有值得学的地方。怕丢脸而不问，才是真的丢脸。"],
+ guren2:["🧠 “是知也”的通假字","这句话里的“知”字出现了五次，前四个都是“知道”，最后一个“知”通“智”（通假字），意思是智慧。整句翻译：知道就是知道，不知道就是不知道，这才是真正的智慧。通假字是文言文常考知识点——“是知也”的“知”读 zhì。"],
+ guren3:["🍵 朱熹与“三到”","朱熹在《训学斋规》里说：“余尝谓读书有三到，谓心到、眼到、口到。”“三到之中，心到最急”——“急”是“最重要、最要紧”，不是“着急”。三到不是并列的：“心到”是总开关，心到了，眼和口自然跟着到；心不在焉，眼口全是空转。这套方法影响中国读书人八百多年。"],
+ yidushu_before:[
+  ["🖋️ 卡片一 · 冰心其人","冰心（1900—1999），原名谢婉莹，福建长乐人，现代作家、儿童文学家。笔名取自王昌龄诗句“一片冰心在玉壶”。代表作《繁星》《春水》《寄小读者》，作品以“爱”为主题，语言清丽。她活了99岁，读了将近一个世纪的书。"],
+  ["🕰️ 卡片二 · 这篇文章怎么来的","《忆读书》写于冰心晚年，是应《中学生》杂志之约写的回忆文章。她把一生的读书经历——七岁读《三国演义》、十二三岁读《红楼梦》、中年以后再读出滋味——按时间顺序写下来，最后浓缩成给孩子们的九字赠言：“读书好，多读书，读好书。”"],
+  ["📚 卡片三 · 冰心读过的那些书","她七岁读《三国演义》时字还认不全，很多字是“连猜带蒙”读的，越读越上瘾；后来又读了《水浒传》《荡寇志》《茶花女遗事》等，比较着读。她说“物怕比，人怕比，书也怕比”——敢于比较，说明是真读进去了。"]],
+ yidushu1:["💬 聊天式开头","“一谈到读书，我的话就多了！”——不用“读书有许多好处”这样的开头，而是像跟老朋友聊天。好处有三：亲切自然，一下子拉近距离；透出她对读书的喜爱；一句话打开话匣子，引出后面几十年的回忆。写回忆类作文，先让读者坐到你身边。"],
+ yidushu2:["😄 快乐从哪里来","“我永远感到读书是我生命中最大的快乐！”这句是“感受”，支撑它的是具体事例：七岁听舅舅讲《三国演义》听得“津津有味”，自己读时字认不全，还是读得“哭了一场”——投入、着迷、感动，快乐写在动作里。感受要靠事例支撑，例子越具体越可信。"],
+ yidushu3:["🎯 九个字三层意思","“读书好，多读书，读好书。”——①“读书好”讲为什么读：读书带来快乐和收获；②“多读书”讲读多少：读得多才能比较、辨别；③“读好书”讲读什么：在“多”的基础上选出有价值的书。三层由“为什么”到“多少”再到“什么”，层层递进，顺序不能换。"],
+ shuwei_before:[
+  ["🖋️ 卡片一 · 尤安·艾肯","尤安·艾肯（Joan Aiken，1924—2004），英国作家，以儿童文学和奇幻小说闻名，代表作《狼群》。她出身文学世家，父亲是诗人康拉德·艾肯，从小在书堆里长大——她家的房子就叫“书之屋”，楼梯上、厨房里、甚至浴室里到处都是书。"],
+  ["✍️ 卡片二 · 一篇“读书随笔”","这篇文章原是艾肯应出版社之邀写的“读书随笔”，后被选入多国教材。她用“旅行带什么”这个假设，把“为什么要读书”讲得人人能懂——不讲大道理，只讲朋友和故地。"],
+  ["🔄 卡片三 · 新版替换说明","2026年秋季新版教材中，这篇课文替换了旧版的《我的“长生果”》。两篇都写读书，但角度不同：《我的“长生果”》写“读得多、书是源头活水”，这篇写“读得深——把一本好书反复读、常读常新”。"]],
+ shuwei1:["🧳 假设开篇的妙处","连用几个“如果”：独自驾舟、只能带一样、供自己娱乐——条件层层收紧，把问题逼到“必须选择”。极端的情境逼着你认真想：换成你，带什么？先问后答，读者心里刚问完，作者就答“我会选择一本书”——假设开篇比直接说“读书重要”高明得多。"],
+ shuwei2:["🔁 为什么“总”有新东西","“你总能从一本书中发现新东西，不管你看过多少遍。”一个“总”字是全文的关键：人是会长大的，书没变、读的人变了——年龄不同、阅历不同，每次读到的就不一样。这和冰心读《红楼梦》“中年以后才读出滋味”是同一个道理：好书经得起反复读。"],
+ shuwei3:["🏡 朋友与故地","把书比作“朋友”：朋友可以一次次聊天，每次重读都像老友重聚；把书比作“故地”：故地可以随时重游，翻开书就“回到”那个世界。一个“随时随地想去就去”，写出了书对你的“招之即来”。比喻把“反复读”这件抽象的事说得温暖又形象——这是全文最经典的句子。"]
+},
+
+guoguan:{
+ guren:function(L){return "<div class='tabpane' data-tab='guoguan'>"+
+  "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 古人谈读书</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>5 道题检验本课掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
+  "<div id='quizBox'></div></div></div>"}
+ ,yidushu:function(L){return "<div class='tabpane' data-tab='guoguan'>"+
+  "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 忆读书</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>5 道题检验本课掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
+  "<div id='quizBox'></div></div></div>"}
+ ,shuwei:function(L){return "<div class='tabpane' data-tab='guoguan'>"+
+  "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 走遍天下书为侣</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>5 道题检验本课掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
+  "<div id='quizBox'></div></div></div>"}
+},
+
+quizzes:{guren:QUIZ_GUREN,yidushu:QUIZ_YIDUSHU,shuwei:QUIZ_SHUWEI}
 };
