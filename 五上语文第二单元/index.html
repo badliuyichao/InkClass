@@ -259,6 +259,8 @@ footer li{margin-bottom:4px;margin-left:18px}
 .quizq .opt.ok{border-color:#3C9E5C;background:#EFF9F1}
 .quizq .opt.bad{border-color:#C0392B;background:#FBF0EE}
 .xltextarea{width:100%;border:2px solid #E5D9BE;border-radius:12px;padding:10px;font-size:14.5px;font-family:inherit;box-sizing:border-box;resize:vertical;line-height:1.7}
+.tl-flash{animation:tlflash 1.8s ease}
+@keyframes tlflash{0%,55%{background:#FFF3D6;box-shadow:0 0 0 3px #E8C97A;border-radius:8px}100%{background:transparent;box-shadow:none}}
 </style>
 </head>
 <body>
@@ -2355,11 +2357,12 @@ var PANE_JIANGJIE = {
   "<tr><td><b>✅ 必背中心思想</b></td><td>通过昔日辉煌与毁灭命运的对比，表达对祖国灿烂文化的热爱和对侵略者野蛮行径的愤慨，<b>不忘国耻，振兴中华</b></td></tr>"+
   "<tr><td><b>✅ 必会字词</b></td><td>会写：毁、估、拱、辉、煌、殿、陵、览、境、宏、唐、闯、统、销；易错音：剔 tī、烬 jìn；必考词：众星拱月、金碧辉煌、玲珑剔透、奇珍异宝</td></tr>"+
   "</table></div>"+
-  "<div class='card'><h3>🎯 精读段落速查（先抓这几段！）</h3>"+
-  "<table class='ovtable'><thead><tr><th style='width:150px'>精读段落</th><th>重点是什么</th><th style='width:150px'>常考怎么考</th></tr></thead>"+
-  "<tr><td><b>⭐ 第1段 · 开门见山</b></td><td>连用两个“不可估量”，给这场毁灭定性——损失大到无法计算。</td><td>为什么说“不可估量”</td></tr>"+
-  "<tr><td><b>⭐ 第2-4段 · 昔日辉煌</b></td><td>布局如“众星拱月”→建筑“有……也有……”“不仅……还……”→文物上自先秦下至清代。</td><td>概括辉煌体现在哪三方面</td></tr>"+
-  "<tr><td><b>⭐ 第5段 · 毁灭经过</b></td><td>掠走→搬不动→任意破坏→放火，大火连烧三天，烟云笼罩北京城。</td><td>侵略者罪行顺序、作者情感</td></tr>"+
+  "<div class='card'><h3>🎯 考点导航 · 先看考什么，再去深入</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>这张表不再重复讲解——只回答两件事：考试考什么题型？想深入时点右侧按钮直达对应精讲。</p>"+
+  "<table class='ovtable'><thead><tr><th style='width:132px'>重点段落</th><th>常考怎么考</th><th style='width:86px'>直达</th></tr></thead>"+
+  "<tr><td><b>⭐ 第1段 · 开门见山</b></td><td><b>填空/简答</b>：为什么说损失“不可估量”？——祖国文化＋世界文化双重定性</td><td><button class='srcbtn' onclick='jumpJj(\"ym-tl-1\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 第2-4段 · 昔日辉煌</b></td><td><b>概括题</b>：辉煌体现在哪三方面？——布局（众星拱月）、建筑（风格各异）、文物（珍贵稀有）</td><td><button class='srcbtn' onclick='jumpJj(\"ym-tl-34\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 第5段 · 毁灭经过</b></td><td><b>排序＋情感</b>：罪行四步顺序（掠→搬→毁→烧）；从“统统”“任意”里读出愤怒</td><td><button class='srcbtn' onclick='jumpJj(\"ym-tl-5\")'>看精讲</button></td></tr>"+
   "</table></div>"+
   "<div id='jichuAnchor'></div>"+
   "<div class='card'><h3>📖 读懂课文：从“万园之园”到一片灰烬</h3>"+
@@ -2381,10 +2384,10 @@ var PANE_JIANGJIE = {
   "</div></div></div>"+
   "<div class='card'><h3>🔍 精读深挖：辉煌写得越美，毁灭越痛</h3>"+
   "<div class='timeline'>"+
-  "<div class='tl'><b>⭐ 第1段 · 两个“不可估量”</b><br>开篇不加任何铺垫，直接给损失“定性”——祖国文化＋世界文化双重损失。起笔沉重，奠定全文悲愤基调。</div>"+
-  "<div class='tl'><b>第2段 · 众星拱月</b><br>三园为中心，许多小园环绕四周——像星星围着月亮。一个比喻把庞大复杂的布局讲得一清二楚。</div>"+
-  "<div class='tl'><b>⭐ 第3-4段 · 句式铺陈写辉煌</b><br>“有……也有……”“不仅……还……”长短句连用；地域上“天南海北”、时间上“上自先秦、下至明清”——167 年营造的奇迹跃然纸上。</div>"+
-  "<div class='tl'><b>⭐ 第5段 · 三层递进写强盗</b><br>拿得走的统统掠走 → 拿不动的搬运 → 运不走的任意毁掉：贪婪步步升级；“统统、任意”带着作者的愤怒；最后“化为灰烬”与开头呼应。</div>"+
+  "<div class='tl' id='ym-tl-1'><b>⭐ 第1段 · 两个“不可估量”</b><br>开篇不加任何铺垫，直接给损失“定性”——祖国文化＋世界文化双重损失。起笔沉重，奠定全文悲愤基调。</div>"+
+  "<div class='tl' id='ym-tl-2'><b>第2段 · 众星拱月</b><br>三园为中心，许多小园环绕四周——像星星围着月亮。一个比喻把庞大复杂的布局讲得一清二楚。</div>"+
+  "<div class='tl' id='ym-tl-34'><b>⭐ 第3-4段 · 句式铺陈写辉煌</b><br>“有……也有……”“不仅……还……”长短句连用；地域上“天南海北”、时间上“上自先秦、下至明清”——167 年营造的奇迹跃然纸上。</div>"+
+  "<div class='tl' id='ym-tl-5'><b>⭐ 第5段 · 三层递进写强盗</b><br>拿得走的统统掠走 → 拿不动的搬运 → 运不走的任意毁掉：贪婪步步升级；“统统、任意”带着作者的愤怒；最后“化为灰烬”与开头呼应。</div>"+
   "</div></div>"+
   "<div class='card'><h3>✍️ 写法借鉴：课文怎么写，作文怎么用</h3>"+
   "<table class='ovtable'><thead><tr><th style='width:110px'>写法</th><th>课文里怎么用</th><th>你的作文怎么用</th></tr></thead>"+
@@ -3074,7 +3077,7 @@ var PANE_TUOZHAN = {
 /* 学习模式按"链式"认知顺序重排：感知→理解→分析→积累→检验→输出→延伸 */
 var JJ_LEARN_ORDER=[
  [/任务流|资料包/,0],[/课文原文/,1],[/读懂课文/,2],
- [/速查/,7],[/精讲|精读/,3],[/写法/,4],
+ [/速查|考点导航/,7],[/精讲|精读/,3],[/写法/,4],
  [/jichuAnchor|生字词/,5],[/必背/,6],
  [/课后习题/,8],[/小练笔/,9],
  [/作者|背景/,10],[/视频/,11]
@@ -3141,6 +3144,15 @@ function showPack(key){
   cardPop("📖 读前资料包（先看完这 3 张卡，再读课文）",html);
 }
 function closeCard(){var m=document.getElementById("srcMask"); if(m)m.classList.remove("show");}
+
+function jumpJj(id){
+  var el=document.getElementById(id);
+  if(!el) return;
+  el.scrollIntoView({behavior:"smooth",block:"center"});
+  el.classList.remove("tl-flash");
+  void el.offsetWidth;
+  el.classList.add("tl-flash");
+}
 
 function openXilianbi(key){
   switchTab("jiangjie");
