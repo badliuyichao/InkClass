@@ -16,8 +16,6 @@ InkClass/
 │   ├── js/                     # unit5.js ~ unit8.js，各单元逻辑
 │   └── fonts/                  # 自托管字体（kbkai.woff2 楷体）
 ├── 漫画老师写作提纲.html         # 习作单元"漫画老师"写作指导
-├── 五上语文B站视频调研报告.html   # B站配套视频调研（HTML 报告）
-├── bilibili视频嵌入研究.html     # B站 iframe 嵌入技术验证
 ├── README.md
 └── AGENTS.md
 ```
@@ -26,7 +24,7 @@ InkClass/
 
 - **中文文件名是刻意为之**：面向小学生的中文内容，文件名保持中文直读。git 已配置引号转义，操作时直接使用中文路径即可，**不要**重命名为拼音/英文。
 - **无框架、无构建**：修改 `.html` / `.js` 后即为完成，直接提交，不存在编译/打包/测试步骤。
-- **B站视频嵌入**：使用 iframe 方案（`//player.bilibili.com/player.html?bvid=...`），相关参数参考 `bilibili视频嵌入研究.html` 中的验证结论。嵌入时注意 `scrolling`、`sandbox` 与autoplay 策略。
+- **B站视频嵌入**：使用 iframe 方案（`//player.bilibili.com/player.html?bvid=...`），已验证可行；嵌入时注意 `scrolling`、`sandbox` 与 autoplay 策略。
 - **图片资源**：新增课文配图放入对应单元的 `images/` 目录，命名沿用 `u{单元号}_{内容}.jpg` 小写约定。
 
 ## Git 工作流
