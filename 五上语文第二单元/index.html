@@ -1021,7 +1021,7 @@ function buildPanes(L){
   initTableLabels();
   /* 学习/复习双模式排序（第四单元样板） */
   var jmode="learn"; try{ jmode=localStorage.getItem("inkclass_jjmode")||"learn"; }catch(e){}
-  if(L.key==="ymbyh" && jmode==="learn"){
+  if(window.PANE_GUOGUAN && PANE_GUOGUAN[L.key] && jmode==="learn"){
     reorderJj(box.querySelector(".tabpane[data-tab='jiangjie']"));
   }
   var mb=document.getElementById("jjModeBtn");
