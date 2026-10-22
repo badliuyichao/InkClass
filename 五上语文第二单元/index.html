@@ -2530,43 +2530,75 @@ var PANE_JIANGJIE = {
   "<div style='margin-top:8px;display:flex;gap:10px;align-items:center'><button class='tflow' style='max-width:180px' onclick='saveXilianbi(\"ymbyh\")'>💾 保存</button><span id='xlsave-ymbyh' style='font-size:12.5px;color:#3C9E5C;font-weight:700'></span></div></div>"+
   "<div class='tipbox tip'>⚡ <b>本单元方法：</b>结合资料读课文——查一查圆明园的复原图和兽首回归的新闻，再读“化为灰烬”四个字，感受完全不同。</div></div>";}
  ,mlf:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
+  "<div class='card' style='background:linear-gradient(135deg,#FDF3E3,#FFFDF8)'><h3>🚩 本课学习任务流（查人物背景，读懂民族气节）</h3>"+
+  "<div class='taskflow'>"+
+  "<div class='tflow' onclick='showPack(\"mlf\")'>📖<br>读前资料包<small>先看 3 张人物卡再读课文</small></div>"+
+  "<div class='tflow' onclick='document.getElementById(\"ml-src\").scrollIntoView({behavior:\"smooth\"})'>📚<br>读中查资料<small>读原文时点查资料按钮</small></div>"+
+  "<div class='tflow' onclick='openXilianbi(\"mlf\")'>✍️<br>小练笔<small>用一句话说说“气节”</small></div>"+
+  "<div class='tflow' onclick='switchTab(\"guoguan\")'>🎯<br>过关自测<small>5 道题检验</small></div>"+
+  "</div>"+
+  "<div style='margin-top:10px;text-align:right'><button class='srcbtn' id='jjModeBtn' onclick='toggleJjMode()'>🔄 切换为：复习模式</button></div></div>"+
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🧾 本课必背内容（考试就考这些，先逐项过关）</h3>"+
   "<p style='font-size:13px;color:var(--muted)'>本课是略读课文，没有背诵要求——但故事和人物必须过关。</p>"+
   "<table class='ovtable'>"+
   "<tr><td><b>✅ 必会概括</b></td><td>拒演四步：<b>避居香港 → 蓄须明志 → 卖房度日 → 打针装病</b>（课后题直接考）</td></tr>"+
   "<tr><td><b>✅ 必背人物评价</b></td><td>梅兰芳是技艺高超的艺术家，更是<b>有着高尚民族气节</b>的爱国者——宁可卖房度日、差点丢掉性命，也决不给侵略者登台演出</td></tr>"+
-  "<tr><td><b>✅ 必会词语</b></td><td>蓄须、纠缠、深居简出、斩钉截铁、；必考词：蓄须明志、斩钉截铁、毫不犹豫、民族气节</td></tr>"+
+  "<tr><td><b>✅ 必会词语</b></td><td>蓄须、纠缠、深居简出、斩钉截铁；必考词：蓄须明志、斩钉截铁、毫不犹豫、民族气节</td></tr>"+
   "<tr><td><b>✅ 必读</b></td><td>正确流利地朗读课文，能把“一次次拒演”讲给别人听</td></tr>"+
   "</table></div>"+
-  "<div class='card'><h3>🎯 精读段落速查（先抓这几段！）</h3>"+
-  "<table class='ovtable'><thead><tr><th style='width:150px'>精读段落</th><th>重点是什么</th><th style='width:150px'>常考怎么考</th></tr></thead>"+
-  "<tr><td><b>⭐ 蓄须明志</b></td><td>拒绝的借口都用尽了，梅兰芳只能蓄起胡须——对旦角演员来说，蓄须就是“不能登台”的宣言。</td><td>“明志”立的什么志</td></tr>"+
-  "<tr><td><b>⭐ 卖房度日</b></td><td>老板们用二十两黄金利诱，他全部拒绝：“宁可卖房度日，也决不在日本侵略者的统治下登台演出。”</td><td>“宁可……也决不……”体现什么品质</td></tr>"+
-  "<tr><td><b>⭐ 打针装病</b></td><td>为拒绝“大东亚圣战”庆祝会，请医生打伤寒预防针发高烧，差点丢了性命。</td><td>最危险的一次拒演</td></tr>"+
+  "<div class='card'><h3>🎯 考点导航 · 先看考什么，再去深入</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>这张表不再重复讲解——只回答两件事：考试考什么题型？想深入时点右侧按钮直达对应精讲。</p>"+
+  "<table class='ovtable'><thead><tr><th style='width:132px'>重点段落</th><th>常考怎么考</th><th style='width:86px'>直达</th></tr></thead>"+
+  "<tr><td><b>⭐ 第1-3段 · 避居香港与蓄须</b></td><td><b>“明志”立的什么志</b>：蓄须=公开宣告不再登台；按顺序说拒演办法（课后题高频）</td><td><button class='srcbtn' onclick='jumpJj(\"ml-tl-1\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 第4-6段 · 困顿与装病</b></td><td><b>句式与品质</b>：“宁可……也决不……”体现民族气节高于一切；细节“滚烫滚烫的额头”写凶险</td><td><button class='srcbtn' onclick='jumpJj(\"ml-tl-2\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 第7-9段 · 胜利复台</b></td><td><b>“更”字含义</b>：民族气节在艺术成就之上；站着看演出表达敬意的原因</td><td><button class='srcbtn' onclick='jumpJj(\"ml-tl-3\")'>看精讲</button></td></tr>"+
   "</table></div>"+
   "<div id='jichuAnchor'></div>"+
   "<div class='card'><h3>📖 读懂课文：一场持续八年的“拒演”</h3>"+
   "<div class='kv'><div><b>🧭 拒演情节链</b><br>日军占领上海，避居香港 → 香港沦陷，司令官逼演 → 拒绝借口用尽，<b>蓄须明志</b> → 回上海，卖掉北京的房子 → 侵略者以军法相逼“庆功会” → 打伤寒预防针装病 → 胜利当天剃须登台。</div>"+
   "<div><b>🧠 一课一背（主要内容＋中心思想）</b><br>主要内容：抗日战争时期，梅兰芳用避居、蓄须、卖房、装病等办法一次次拒绝为侵略者演出，直到抗战胜利才重新登台。<br>中心思想：赞颂梅兰芳<b>坚贞不屈的民族气节</b>和深沉的爱国情怀。</div></div></div>"+
-  "<div class='card'><h3>📄 课文原文（点击展开，全文 9 个自然段）</h3>"+
-  "<div class='acc' onclick='this.classList.toggle(\"open\")'><button class='head'><span class='idx'>📄</span>《梅兰芳蓄须明志》全文<span class='arrow'>▸</span></button><div class='body'>"+
+  "<div class='card' id='ml-src'><h3>📄 课文原文 · 全文 9 个自然段（直读版）</h3>"+
+  "<div class='readtext'>"+
   "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>1</span>梅兰芳先生是闻名世界的京剧表演艺术家。他在舞台上唱旦角，为了演出的需要，总是把胡须剃得干干净净的。但他的一生中，有几年却是留着胡须的。</p>"+
   "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>2</span>1937 年，日军占领上海，梅兰芳被迫藏身租界，以躲避日本人的纠缠。1938 年底，有人邀请他去香港演戏。演出结束后，梅兰芳在香港住了下来，深居简出，不再登台。对于一个视舞台为生活、视艺术为生命的人来说，不能演出，不能创作，无异于虚度生命。到了深夜，梅兰芳关紧门窗，拉上特制的厚窗帘，才能在寓所悄悄地细声吟唱，这对他来说已经很知足了。一个艺术大师就用这种方式坚持着对艺术的追求。</p>"+
   "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>3</span>1941 年 12 月香港沦陷。日本驻港司令官亲自出马，多次逼迫梅兰芳演戏。梅兰芳可以忍受生活的困顿，直面战争的危险，但他难以抵抗来自侵略者随时随地的骚扰。拒绝的借口都用尽了，梅兰芳最后只能蓄须明志，表示对日本帝国主义的抗议，表明不给侵略者演戏的决心。后来，梅兰芳不堪其扰，只好又回到了上海。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"ml1\")'>📚 查资料 · 蓄须的分量</button>"+
   "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>4</span>长期不演戏，没有了经济来源，又要养家，梅兰芳准备卖掉北京的房子。听说梅兰芳要卖房子，很多戏园子老板找上门来说：“梅先生，您何必卖房子，只要您把胡子一剃，一登台，还愁没钱花？”有的甚至说，只要签订演出合同，就预支二十两黄金给梅兰芳。但是，无论戏园子老板开出的条件多么优厚，梅兰芳都拒绝了。他宁可卖房度日，也决不在日本侵略者的统治下登台演出。</p>"+
   "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>5</span>一次，日本侵略军要庆祝“大东亚圣战”，要求他必须上台演出。梅兰芳斩钉截铁地说：“普通的演出我都不参加，这样的庆祝会当然更不会去了。”但是，拒绝演出总得要想出个办法啊。</p>"+
   "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>6</span>梅兰芳找到一位当医生的好朋友，说明了自己的危险处境，请朋友设法让他生一场“大病”，以摆脱日本人。这个朋友被他的爱国精神感动了，决心帮助他渡过难关，于是给他打了伤寒预防针，人打了这种针就会连日发高烧。</p>"+
   "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>7</span>日本人不相信梅兰芳病了，专门派了一个军医来检查。日本军医闯进梅兰芳的家，看见他盖着棉被躺在床上，床边桌子上放着很多药。军医用手摸了摸梅兰芳的额头，滚烫滚烫的，看不出破绽，只好认定梅兰芳得了重病，不能登台演出了。日本侵略者的妄想最终没有实现，梅兰芳为此差点儿丢了性命。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"ml2\")'>📚 查资料 · 打针装病的凶险</button>"+
   "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>8</span>当抗日战争取得胜利的消息传来时，梅兰芳当即剃了胡须，高兴地向大家宣布：“胜利了，我该登台演出了！”前来看他演出的人太多了，很多人没有座位就站着看。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"ml3\")'>📚 查资料 · 复台那一刻</button>"+
   "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>9</span>作为艺术家，梅兰芳先生高超的表演艺术让人喜爱，他的民族气节更令人敬佩！</p>"+
   "<p style='margin:10px 0 0;font-size:12.5px;color:var(--muted)'>——本文作者李大同，选作课文时有改动。新版课题为《梅兰芳蓄须明志》，文字以课本为准。段落序号为便于对照所加。</p>"+
-  "</div></div></div>"+
+  "</div></div>"+
   "<div class='card'><h3>🔍 精读深挖：一次比一次“狠”的考验</h3>"+
   "<div class='timeline'>"+
-  "<div class='tl'><b>⭐ 考验升级线</b><br>藏身租界躲避纠缠 → 驻港司令官亲自出马 → 二十两黄金利诱 → 以军法论处相逼——侵略者的手段一次比一次强硬，梅兰芳的拒绝一次比一次坚定。</div>"+
-  "<div class='tl'><b>⭐ “蓄须”的分量</b><br>对唱旦角的梅兰芳来说，胡须本是“必须剃干净”的东西。蓄须，就是用整个职业形象宣告：我不演了。这是他能想到的、最能坚持的“拒绝”。</div>"+
-  "<div class='tl'><b>“斩钉截铁”品词</b><br>面对“以军法论处”的威胁，他“斩钉截铁”地回答——四个字写出毫无犹豫。前后照应：正是这份斩钉截铁，才有后面的打针装病。</div>"+
-  "<div class='tl'><b>结尾的双重敬佩</b><br>“高超的表演艺术让人喜爱，他的民族气节更令人敬佩”——一个“更”字，把人格放到了艺术之上。</div>"+
+  "<div class='tl' id='ml-tl-1'><b>⭐ 第1-3段 · 避居香港与蓄须</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>1941 年 12 月香港沦陷。日本驻港司令官亲自出马，多次逼迫梅兰芳演戏。……拒绝的借口都用尽了，梅兰芳最后只能蓄须明志，表示对日本帝国主义的抗议，表明不给侵略者演戏的决心。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：梅兰芳为什么要选“蓄须”这个方式拒绝，而不是直接说“不”？</div>"+
+  "<ul class='jl-ju'><li><b>旦角身份决定的</b>——京剧旦角扮演女性，登台必须剃净胡须；留起胡子，就再也扮不成旦角。</li>"+
+  "<li><b>这是行当里最彻底的停演宣言</b>——直接说“不”，对方还能逼、还能哄；胡子长在脸上，一天不剃，一天就不能登台，谁也替不了他剃。</li>"+
+  "<li><b>无声胜有声</b>——他不喊口号、不发声明，用职业形象本身宣告：我不演了。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：“蓄须”不是留胡子，是把自己的饭碗和名声一起押上去的抗议——读懂旦角，才读懂这个决定有多重。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>“明志”立的什么志</b>——答“抗议日本帝国主义、坚决不给侵略者演戏的决心”；按顺序说拒演办法是课后题高频。<br>🎤 朗读指导：读第 3 段“最后只能蓄须明志”时放慢加重——“只能”二字里有被逼到墙角的无奈，更有不肯低头的坚决。</div></div>"+
+  "<div class='tl' id='ml-tl-2'><b>⭐ 第4-6段 · 困顿与装病</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>但是，无论戏园子老板开出的条件多么优厚，梅兰芳都拒绝了。他宁可卖房度日，也决不在日本侵略者的统治下登台演出。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：“宁可……也决不……”这个句式好在哪？</div>"+
+  "<ul class='jl-ju'><li><b>取舍之间见气节</b>——句式前半给出“愿意付出的代价”（卖房度日），后半给出“绝不突破的底线”（不给侵略者演出）：一舍一守，态度斩钉截铁。</li>"+
+  "<li><b>代价是真实的</b>——二十两黄金、优厚合同都摆在眼前，他选了最穷的一条路；“宁可”不是随口一说，是真卖掉了北京的房子。</li>"+
+  "<li><b>细节写凶险</b>——打伤寒预防针可能致命；“滚烫滚烫的额头”这个细节，是拿命换来的“看不出破绽”。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：钱能买的他不要，命换的他敢给——句式的取舍之间，站着一位把气节看得比命重的艺术家。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>“宁可……也决不……”体现什么品质</b>——答“把民族尊严看得高于一切，宁可舍弃财产、安危也不向侵略者低头”；排序题“避居香港→蓄须明志→卖房度日→打针装病”不能错。<br>🎤 朗读指导：这个句式要读得一字一顿——重音落在“宁可”和“决不”上，读出毫不犹豫。</div></div>"+
+  "<div class='tl' id='ml-tl-3'><b>⭐ 第7-9段 · 胜利复台</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>当抗日战争取得胜利的消息传来时，梅兰芳当即剃了胡须，高兴地向大家宣布：“胜利了，我该登台演出了！”……作为艺术家，梅兰芳先生高超的表演艺术让人喜爱，他的民族气节更令人敬佩！</div>"+
+  "<div class='jl-ask'>❓ 先想一想：课文结尾说“更令人敬佩”，“更”字把什么放在了什么之上？</div>"+
+  "<ul class='jl-ju'><li><b>“更”字一比见高下</b>——把民族气节放在艺术成就之上：演技高超让人喜爱，气节凛然才真正令人敬佩。</li>"+
+  "<li><b>八年“荒废”换气节</b>——对一个视舞台为生命的艺术家，八年不登台是最重的代价；胜利当天当即剃须复台，半分不耽搁。</li>"+
+  "<li><b>站着看演出</b>——观众站着的不仅是没座位，更是对一位爱国艺术家的敬意。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：艺术让他成为大师，气节让他成为伟人——“更”字是全文的落脚点。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>“更令人敬佩”的含义</b>——答“民族气节在艺术成就之上”；问“大家为什么愿意站着看”要答出两层：演技高超＋敬佩民族气节。<br>🎤 朗读指导：末段是全文的点睛句，前半句平缓，读到“更令人敬佩”时加重放慢，读出敬意。</div></div>"+
   "</div></div>"+
   "<div class='card'><h3>✍️ 写法借鉴：课文怎么写，作文怎么用</h3>"+
   "<table class='ovtable'><thead><tr><th style='width:110px'>写法</th><th>课文里怎么用</th><th>你的作文怎么用</th></tr></thead>"+
@@ -2587,6 +2619,10 @@ var PANE_JIANGJIE = {
   "<div class='bili-frame'><iframe src='https://player.bilibili.com/player.html?bvid=BV1HH4y1B72r&page=1&danmaku=0&autoplay=0&high_quality=1' scrolling='no' frameborder='no' allowfullscreen='true' loading='lazy'></iframe></div>"+
   "<p class='vnote'>📺 《梅兰芳蓄须》内容详解 · UP主：zhang老师语文小课堂 · 时长 13分08秒 · <a class='blink' href='https://www.bilibili.com/video/BV1HH4y1B72r' target='_blank' rel='noopener'>在B站打开 ↗</a> · <a class='blink landlink'>⛶ 横屏看</a></p>"+
   "<div class='tipbox tip'>⚡ 这篇课文的五年级专属视频较少，讲解用的是四年级同文版本，内容一样。重点看梅兰芳四次“拒绝”，体会他“民族气节高于一切”。</div></div>" +
+  "<div class='card'><h3>✍️ 小练笔：气节是什么</h3>"+
+  "<p style='font-size:13.5px;color:var(--muted)'>梅兰芳用八年不登台告诉我们：有些东西比钱、比命还重要。学完课文，用一句话说说你理解的“气节”——可以借用课文里的词，比如“蓄须明志”“斩钉截铁”“宁可……也决不……”。写一段 50~100 字的话，这是你从这篇课文真正带走的东西。</p>"+
+  "<textarea id='xilianbi-mlf' class='xltextarea' rows='4' placeholder='写在这里，点保存会自动记住…'></textarea>"+
+  "<div style='margin-top:8px;display:flex;gap:10px;align-items:center'><button class='tflow' style='max-width:180px' onclick='saveXilianbi(\"mlf\")'>💾 保存</button><span id='xlsave-mlf' style='font-size:12.5px;color:#3C9E5C;font-weight:700'></span></div></div>"+
   "<div class='tipbox tip'>⚡ <b>本单元方法：</b>结合资料读——先了解“旦角”和梅兰芳的地位，再读他蓄须的决定，你才知道这个决定有多重。</div></div>";}
  ,yuan4Di:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
   "<div class='card'><h3>📋 教材写作要求·逐句拆解</h3>"+
@@ -3234,6 +3270,10 @@ var PANE_GUOGUAN={
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 少年中国说（节选）</h3>"+
   "<p style='font-size:13px;color:var(--muted)'>5 道题检验本课掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
   "<div id='quizBox'></div></div></div>"}
+ ,mlf:function(L){return "<div class='tabpane' data-tab='guoguan'>"+
+  "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 梅兰芳蓄须明志</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>5 道题检验本课掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
+  "<div id='quizBox'></div></div></div>"}
 };
 
 var SRC={
@@ -3259,6 +3299,13 @@ var SRC={
  ,sn1:["🧑‍🤝‍🧑 “少年中国”与“中国少年”的区别","“少年中国”是理想——梁启超心目中那个朝气蓬勃、与天不老的新中国；“中国少年”是力量——创造这个新中国的千千万万中国少年。一个是蓝图，一个是建设者：少年奋发图强，少年中国才能站起来；国有希望，少年更有奔头——二者互为因果、互相成就。"],
  sn2:["⚔️ “干将发硎”的典故（吴国名剑）","干将（gān jiāng）是古代吴国铸剑名师，与妻子莫邪一起铸成一对名剑，雄剑就叫“干将”。硎（xíng）是磨刀石。“干将发硎，有作其芒”是说：宝剑刚在磨刀石上磨出锋刃，寒光四射——比喻少年中国的才干与锋芒刚刚显露，来日不可限量。"],
  sn3:["📣 “美哉壮哉”的感叹层次","这两句感叹不是简单重复，而是层层递进：第一句“美哉我少年中国”赞国家——赞美理想中的新中国与天地共存；第二句“壮哉我中国少年”赞人——赞美创造它的少年与祖国同在、力量无穷。先国后人、由理想到力量，情感步步推高，最后喷薄而出。"]
+ ,mlf_before:[
+  ["🎭 卡片一 · 京剧与旦角","京剧是中国的“国粹”，至今两百多年历史。戏里的女性角色叫“旦角”——早期舞台上不许女性演戏，旦角全由男演员扮演。梅兰芳是男旦大师：台上扮女子，台下是男子，所以登台必须把胡须剃得干干净净——这是理解“蓄须”分量的前提：蓄了须，就再也演不了旦角。"],
+  ["🖋️ 卡片二 · 梅兰芳其人","梅兰芳（1894—1961），京剧表演艺术大师，“四大名旦”之首，开创“梅派”艺术，代表作《贵妃醉酒》《霸王别姬》。他曾访美、访苏演出，轰动世界，让京剧第一次走向国际舞台。就是这样一位世界级艺术家，抗战期间日本人多次威逼利诱请他演出——他一次都没有答应。"],
+  ["⏳ 卡片三 · 八年拒演时间线","1937 年抗战爆发，梅兰芳避居香港，深居简出不再登台；1941 年香港沦陷，他返回上海，蓄起胡须明志；没有了经济来源，他卖掉北京的房子度日；日本人以军法相逼，他请医生打伤寒预防针装病，险些丧命；1945 年抗战胜利，他当即剃须复台——整整八年，一场戏都没有为侵略者演过。"]]
+ ,ml1:["🧔 蓄须的分量","京剧旦角扮演女性，登台必须剃净胡须——这是行规，也是梅兰芳几十年的职业习惯。所以“蓄须”对他说，就等于公开宣告：我不能、也不愿再登台。直接说“不”，对方还能逼还能哄；胡子长在脸上，一天不剃就一天演不了——这是他能坚持的、最彻底的拒绝方式。"],
+ ml2:["💉 打针装病的凶险","日本人要庆祝“大东亚圣战”，逼梅兰芳登台。他请医生朋友给他打伤寒预防针——这种针会让人连日发高烧，本身就有致命风险。日本军医摸到他“滚烫滚烫的额头”，才看不出破绽。一个“滚烫滚烫”，写的是装病成功，也是拿性命做赌注的代价——梅兰芳为此差点儿丢了性命。"],
+ ml3:["🎉 复台那一刻","1945 年抗战胜利的消息一传来，梅兰芳当即剃了胡须：“胜利了，我该登台演出了！”没有犹豫、没有讨价还价。对一个视舞台为生命的艺术家，八年不登台是最重的代价——但他用这八年“荒废”的艺术生命，换来了民族气节。所以课文说：高超的表演艺术让人喜爱，民族气节更令人敬佩。"]
 };
 
 function cardPop(title,html){
@@ -3331,7 +3378,14 @@ var QUIZ_SNZGS=[
  {q:"4. “少年中国”与“中国少年”的关系是？",opts:["互为因果、互相成就","没有直接关系","两个词意思完全相同"],a:0},
  {q:"5. 朗读“美哉我少年中国，与天不老！壮哉我中国少年，与国无疆！”应用怎样的语气？",opts:["低沉悲伤","豪迈","平淡随意"],a:1}
 ];
-var QUIZ_MAP={ymbyh:QUIZ_YMBYH,gushisan:QUIZ_GUSHISAN,snzgs:QUIZ_SNZGS};
+var QUIZ_MLF=[
+ {q:"1. 梅兰芳在舞台上唱什么角？",opts:["生角","旦角","净角"],a:1},
+ {q:"2. 梅兰芳拒演的正确顺序是？",opts:["避居香港 → 蓄须明志 → 卖房度日 → 打针装病","蓄须明志 → 避居香港 → 打针装病 → 卖房度日","卖房度日 → 蓄须明志 → 避居香港 → 打针装病"],a:0},
+ {q:"3. 对旦角演员来说，“蓄须”意味着什么？",opts:["换了新造型","公开宣告不再登台","准备演老生角色"],a:1},
+ {q:"4. “宁可卖房度日，也决不在日本侵略者的统治下登台演出。”这句话表现了什么？",opts:["梅兰芳很穷","梅兰芳不喜欢演戏","民族气节高于一切"],a:2},
+ {q:"5. 课文结尾说他的民族气节“更令人敬佩”，“更”字的含义是？",opts:["气节在艺术成就之上","表演艺术不重要","敬佩的人更多了"],a:0}
+];
+var QUIZ_MAP={ymbyh:QUIZ_YMBYH,gushisan:QUIZ_GUSHISAN,snzgs:QUIZ_SNZGS,mlf:QUIZ_MLF};
 var quizState={};
 function quizBank(){
   var key=currentLesson&&currentLesson.key;
