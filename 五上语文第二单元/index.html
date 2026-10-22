@@ -1590,6 +1590,14 @@ var PANE_JIANGJIE = {
   "</div>"+
   "<div class='tipbox tip'>⚡ <b>本课速读方法：</b>带着问题读——先提问“地道口藏在哪？敌人破坏怎么办？”，边读边找答案。</div></div>";},
  yuanDi:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
+  "<div class='card' style='background:linear-gradient(135deg,#FDF3E3,#FFFDF8)'><h3>🚩 本课任务流（用具体事例“漫画”老师）</h3>"+
+  "<div class='taskflow'>"+
+  "<div class='tflow' onclick='showPack(\"yuanDi\")'>📋<br>审题资料包<small>先看 3 张卡再动笔</small></div>"+
+  "<div class='tflow' onclick='document.getElementById(\"yuanDi-src\").scrollIntoView({behavior:\"smooth\"})'>📚<br>范文技法卡<small>三篇范文怎么写出“漫画感”</small></div>"+
+  "<div class='tflow' onclick='openXilianbi(\"yuanDi\")'>✍️<br>写个开头<small>用画面感的句子引出老师</small></div>"+
+  "<div class='tflow' onclick='switchTab(\"guoguan\")'>🎯<br>过关自测<small>5 道题检验</small></div>"+
+  "</div>"+
+  "<div style='margin-top:10px;text-align:right'><button class='srcbtn' id='jjModeBtn' onclick='toggleJjMode()'>🔄 切换为：复习模式</button></div></div>"+
   "<div class='card'><h3>📋 教材写作要求·逐句拆解</h3>"+
   "<p>本次习作是<b>写人的记叙文</b>，对象是<b>一位老师</b>。“漫画”不是画图，而是一种<b>写法</b>：像漫画家画画一样——<b>抓住最突出的特点，用夸张有趣的方式</b>把它表现出来。</p>"+
   "<div class='kv'><div><b>✍️ 写谁</b><br>一位让你印象深刻的老师（现在的或以前的都可以）。</div>"+
@@ -1607,6 +1615,19 @@ var PANE_JIANGJIE = {
   "<tr><td><b>事例</b></td><td>至少一件典型事例，有动作、语言、神态等细节</td></tr>"+
   "<tr><td><b>语言</b></td><td>夸张有趣不失真，读着让人想笑或想点头</td></tr>"+
   "<tr><td><b>感情</b></td><td>喜爱或敬佩之情自然流露，不说空话</td></tr></table></div>"+
+  "<div class='card' id='yuanDi-src'><h3>📚 范文技法卡：三招写出“漫画感”</h3>"+
+  "<div class='readtext'>"+
+  "<div style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:1.9'><b>第一招 · 特点切入，两三笔立起人</b><br>外貌只挑最突出的一处：“王老师的眼睛会‘说话’：一瞪，吵闹的教室立刻安静；一弯，我们又敢举手了。”再配一句“头发硬得像刷子”——人就站出来了。</div>"+
+  "<button class='srcbtn' onclick='showCard(\"yuanDi1\")'>📖 拆范文 · 《我的“段子手”老师》怎么写幽默</button>"+
+  "<div style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:1.9'><b>第二招 · 典型事例撑特点</b><br>详写一件：起因→经过→结果，穿插动作、语言、神态；可再配一件略写的小事例，一严一暖、对比生情。</div>"+
+  "<button class='srcbtn' onclick='showCard(\"yuanDi2\")'>📖 拆范文 · 《“三不”李老师》一严一暖</button>"+
+  "<div style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:1.9'><b>第三招 · 夸张幽默不失真，感情藏结尾</b><br>“三不”排比、错题“通缉令”都是放大的特点——事实必须真实；结尾点情：“严厉也是爱”，漫画的背后藏着喜爱。</div>"+
+  "<button class='srcbtn' onclick='showCard(\"yuanDi3\")'>📖 拆范文 · 《温柔的“大朋友”》温柔的力量</button>"+
+  "</div></div>"+
+  "<div class='card'><h3>✍️ 写个开头：用一个画面感的句子引出你的老师</h3>"+
+  "<p style='font-size:13.5px;color:var(--muted)'>想一想：老师最突出的特点是什么？从外貌、口头禅或一个场景切入，一句话把读者“画”进去（30~50 字即可）。</p>"+
+  "<textarea id='xilianbi-yuanDi' class='xltextarea' rows='4' placeholder='写在这里，点保存会自动记住…'></textarea>"+
+  "<div style='margin-top:8px;display:flex;gap:10px;align-items:center'><button class='tflow' style='max-width:180px' onclick='saveXilianbi(\"yuanDi\")'>💾 保存</button><span id='xlsave-yuanDi' style='font-size:12.5px;color:#3C9E5C;font-weight:700'></span></div></div>"+
   "<div class='tipbox tip'>📌 本页要点：审题三问——写谁、写什么特点、凭什么。点“🖋️ 写作支架”，手把手教你搭结构、升格语言。</div></div>";}
  ,bailu:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🧾 本课必背内容（考试就考这些，先逐项过关）</h3>"+
@@ -2045,6 +2066,14 @@ var PANE_JIANGJIE = {
   "<div style='margin-top:8px;display:flex;gap:10px;align-items:center'><button class='tflow' style='max-width:180px' onclick='saveXilianbi(\"zhenzhuniao\")'>💾 保存</button><span id='xlsave-zhenzhuniao' style='font-size:12.5px;color:#3C9E5C;font-weight:700'></span></div></div>"+
   "<div class='tipbox tip'>⚡ <b>本单元方法：</b>借物抒情——借小鸟的“信赖”，写人与自然和谐相处的美好。</div></div></div>";}
 ,yuan1Di:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
+  "<div class='card' style='background:linear-gradient(135deg,#FDF3E3,#FFFDF8)'><h3>🚩 本课任务流（写清心爱之物的样子与缘由）</h3>"+
+  "<div class='taskflow'>"+
+  "<div class='tflow' onclick='showPack(\"yuan1Di\")'>📋<br>审题资料包<small>先看 3 张卡再动笔</small></div>"+
+  "<div class='tflow' onclick='document.getElementById(\"yuan1Di-src\").scrollIntoView({behavior:\"smooth\"})'>📚<br>范文技法卡<small>三篇范文怎么写“心爱”</small></div>"+
+  "<div class='tflow' onclick='openXilianbi(\"yuan1Di\")'>✍️<br>写个开头<small>第一眼就让人知道你爱什么</small></div>"+
+  "<div class='tflow' onclick='switchTab(\"guoguan\")'>🎯<br>过关自测<small>5 道题检验</small></div>"+
+  "</div>"+
+  "<div style='margin-top:10px;text-align:right'><button class='srcbtn' id='jjModeBtn' onclick='toggleJjMode()'>🔄 切换为：复习模式</button></div></div>"+
   "<div class='card'><h3>📋 教材写作要求·逐句拆解</h3>"+
   "<p>本次习作是<b>写物的记叙文</b>，要写一件<b>自己心爱的东西</b>。“心爱”是题眼——不是随便一件物品，而是你一想到它、心里就发热的那一件。</p>"+
   "<div class='kv'><div><b>✍️ 写什么物</b><br>身边真实、有故事的物件：玩具、文具、自行车、风铃……最好是自己用久了、有感情的。</div>"+
@@ -2066,6 +2095,19 @@ var PANE_JIANGJIE = {
   "<div class='bili-frame'><iframe src='https://player.bilibili.com/player.html?bvid=BV1yZ421T7Fy&page=1&danmaku=0&autoplay=0&high_quality=1' scrolling='no' frameborder='no' allowfullscreen='true' loading='lazy'></iframe></div>"+
   "<p class='vnote'>📺 《我的心爱之物》作文公开课【新课标·一等奖】 · UP主：陈辰老师优质课 · 时长 43分25秒 · <a class='blink' href='https://www.bilibili.com/video/BV1yZ421T7Fy' target='_blank' rel='noopener'>在B站打开 ↗</a> · <a class='blink landlink'>⛶ 横屏看</a></p>"+
   "<div class='tipbox tip'>⚡ 公开课较长，可以重点看两处：老师怎么带大家审题，以及范文是怎么把“来历+样子+喜爱”讲清楚的。</div></div>" +
+  "<div class='card' id='yuan1Di-src'><h3>📚 范文技法卡：三招写好“心爱之物”</h3>"+
+  "<div class='readtext'>"+
+  "<div style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:1.9'><b>第一招 · 开头点“最爱”</b><br>开门见山或设个小悬念：“我的宝贝谁也不许碰——连妈妈大扫除，都要先问过我。”或“有人爱遥控赛车，有人爱瓷猫，而我最爱的，是那串会唱歌的风铃。”</div>"+
+  "<button class='srcbtn' onclick='showCard(\"yuan1Di1\")'>📖 拆范文 · 《缺耳朵的小熊》怎么写纪念型</button>"+
+  "<div style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:1.9'><b>第二招 · 样子抓特点，来历一笔带过</b><br>像《珍珠鸟》那样细致写样子：“棕色的毛软软的，左耳朵被我摇掉了，绒毛也磨得发亮”；来历一两句就够，别写成流水账。</div>"+
+  "<button class='srcbtn' onclick='showCard(\"yuan1Di2\")'>📖 拆范文 · 《我的“战功”钢笔》怎么写奖励型</button>"+
+  "<div style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:1.9'><b>第三招 · 心爱藏进事例里，结尾点情</b><br>像《桂花雨》那样把感情藏进事里——写你和它之间发生的事，感情自然流露；结尾升华意义：“它更是我的‘勇气勋章’”。</div>"+
+  "<button class='srcbtn' onclick='showCard(\"yuan1Di3\")'>📖 拆范文 · 《那辆蓝色自行车》怎么写陪伴型</button>"+
+  "</div></div>"+
+  "<div class='card'><h3>✍️ 写个开头：第一眼就让人知道你心爱的是什么、为什么爱</h3>"+
+  "<p style='font-size:13.5px;color:var(--muted)'>可以开门见山，也可以设个小悬念；点出“最爱”，再用一个细节让人眼前有画面（30~50 字即可）。</p>"+
+  "<textarea id='xilianbi-yuan1Di' class='xltextarea' rows='4' placeholder='写在这里，点保存会自动记住…'></textarea>"+
+  "<div style='margin-top:8px;display:flex;gap:10px;align-items:center'><button class='tflow' style='max-width:180px' onclick='saveXilianbi(\"yuan1Di\")'>💾 保存</button><span id='xlsave-yuan1Di' style='font-size:12.5px;color:#3C9E5C;font-weight:700'></span></div></div>"+
   "<div class='tipbox tip'>📌 本页要点：心爱之物三件事——样子、来历、为什么心爱。点“🖋️ 写作支架”，手把手教你搭结构、升格语言。</div></div></div>";}
   ,hailibu:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🧾 本课必背内容（考试就考这些，先逐项过关）</h3>"+
@@ -3421,6 +3463,14 @@ var PANE_GUOGUAN={
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 珍珠鸟</h3>"+
   "<p style='font-size:13px;color:var(--muted)'>5 道题检验本课掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
   "<div id='quizBox'></div></div></div>"}
+ ,yuan1Di:function(L){return "<div class='tabpane' data-tab='guoguan'>"+
+  "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 我的心爱之物</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>5 道题检验本次习作要求掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
+  "<div id='quizBox'></div></div></div>"}
+ ,yuanDi:function(L){return "<div class='tabpane' data-tab='guoguan'>"+
+  "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · “漫画”老师</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>5 道题检验本次习作要求掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
+  "<div id='quizBox'></div></div></div>"}
 };
 
 var SRC={
@@ -3474,6 +3524,20 @@ var SRC={
  ,zz1:["🌿 为什么要用垂蔓蒙盖鸟笼","珍珠鸟天生怕人，最需要的是安全感。“我”用吊兰长长的、串生着小绿叶的垂蔓蒙盖在鸟笼上，它们“就像躲进深幽的丛林一样安全”——叫声也就“格外轻松自在”了。这盆吊兰是信赖的起点：先给鸟一个不被打扰的家，才有后面一步步的靠近。"]
  ,zz2:["🐦 珍珠鸟小档案（它凭什么“怕人”）","珍珠鸟学名斑胸草雀，原产澳大利亚，天生胆小怕人。雏鸟的样子课文写得像画一样：“红嘴红脚，灰蓝色的毛，只是后背还没生出珍珠似的圆圆的白点。它好肥，整个身子好像一个蓬松的球儿。”——颜色一个不落，“珍珠”白点还没长齐，说明它还是个雏儿。"]
  ,zz3:["😴 肩头入睡：信赖画成的一幅画","“这小家伙竟趴在我的肩头睡着了，银灰色的眼睑盖住眸子，小红脚刚好被胸脯上长长的绒毛盖住。”连睡姿都写得这么细——因为“我”看得既近又久，一动不敢动。小鸟能在人的肩头睡熟，说明它对“我”完全信赖、毫无戒备。“我轻轻抬一抬肩，它没醒，睡得好熟！还咂咂嘴，难道在做梦？”——这就是课文说的“美好的境界”。"]
+ ,yuan1Di_before:[
+  ["🔍 卡片一 · 审题要点逐句清","“心爱”是题眼——不是随便一件物品，而是你一想到它、心里就发热的那一件。要写清三件事：①它是什么样子（抓特点）；②它怎么来的（来历，一笔带过）；③你为什么喜欢它（重点！要有具体事例）。学本单元课文：像《珍珠鸟》那样细致写样子，像《桂花雨》那样把感情藏进事例里——这就是借物抒情。"],
+  ["🧲 卡片二 · 选材方向清单","陪伴型：毛绒玩具、小台灯、自行车——天天陪着你，故事最多；纪念型：奶奶织的围巾、比赛赢来的奖牌、朋友送的礼物——藏着一个人、一件事；观赏型：风铃、贝壳、水晶球——看到它就开心；照料型：一盆多肉、蚕宝宝——你付出过辛苦，感情最深。选物秘诀：不选最贵的，选最有故事的——“来历+经历”才是“心爱”的底气。"],
+  ["⚠️ 卡片三 · 常见失误警示","①写成“物品说明书”——只有样子没有事例；②来历写三行流水账，重点事例没地方了；③感情全靠喊“我好喜欢它”——要把喜欢藏进具体的事里；④事例和“心爱”对不上。换位检验：如果换一个同学也能原样写出来，说明这件物还不够“专属”。"]]
+ ,yuan1Di1:["🧸 《缺耳朵的小熊》：纪念型怎么写","开头开门见山又带悬念：“每个人都有自己的心爱之物：有人爱威风的遥控赛车，有人爱漂亮的瓷猫，而我最宝贝的，是书桌上那只缺了左耳朵的小熊。”样子抓细节：“棕色的毛软软的，肚子圆滚滚”；缺耳朵和磨亮的绒毛写成“战友勋章”，童趣十足。感情全藏在事里：发烧时搂着它，仿佛软毛里藏着奶奶的味道；妈妈大扫除差点收走，我冲过去一把抱住。结尾借物抒情：“它不会说话，可它什么都记得。”"],
+ yuan1Di2:["🖊️ 《我的“战功”钢笔》：奖励型怎么写","开头设悬念：“它不是买的，是‘赢’来的。”来历一段讲清：书法比赛一等奖，李老师亲手递上：“奖励给未来的小书法家。”两个事例串起成长：平时用它一笔一画不敢马虎；考场上笔写不出字，看见笔帽上的星星“好像在说：别慌，一笔一画来”——拟人细节传神。结尾由物及理：“好成绩不是等来的，是一笔一画写出来的。”"],
+ yuan1Di3:["🚲 《那辆蓝色自行车》：陪伴型怎么写","开头设悬念：“我心里最亮的一抹蓝色，不是天空，也不是大海，而是爸爸送我的那辆自行车。”学车事例一波三折：摔进草丛→膝盖磕破想放弃→爸爸扶起车示范→终于骑稳，风从耳边呼呼吹过。细节动人：“回头一看，爸爸在后面跑得满头大汗，笑得比我还开心。”结尾点题升华：“它不只是我的心爱之物，更是我的‘勇气勋章’。”"]
+ ,yuanDi_before:[
+  ["🔍 卡片一 · 审题要点逐句清","写谁：一位让你印象深刻的老师（现在的或以前的都可以）。写什么：只选一个最突出的特点——外貌、口头禅、习惯动作或性格，贪多嚼不烂。怎么写：用一两件具体事例把特点撑起来；语言可以夸张、幽默，但事实必须真实。“漫画”不是画图，是一种写法：像漫画家画画一样——抓住最突出的特点，用夸张有趣的方式把它表现出来。"],
+  ["🧲 卡片二 · 选材方向清单","口头禅型：“再讲两分钟就下课”“这道题我讲过八百遍了”——一句台词立起一个人；习惯动作型：推眼镜、拍讲台、粉笔头百发百中、抱着保温杯踱步——动作是人物的指纹；性格型：刀子嘴豆腐心、幽默段子手、外冷内热。动笔前做“猜人测试”：同学能不能一听就猜出是哪位老师？猜得出，特点才算抓准。"],
+  ["⚠️ 卡片三 · 常见失误警示","①只罗列特点没有事例；②事例和特点对不上（写“幽默”却举严厉的例子＝跑题）；③夸张过度变失真；④写成“批评大会”——“漫画”是善意的幽默，不是丑化取笑，漫画的背后，藏着你对老师的喜爱。"]]
+ ,yuanDi1:["😆 《我的“段子手”老师》：幽默型怎么写","开头外貌＋特点一起切：“他四十来岁，头发硬得像刷子，鼻梁上架一副黑框眼镜，可你千万别被这副‘正经面孔’骗了——他一开口，教室准能笑翻。”核心细节是“错题通缉令”：把错题投上大屏，打一个硕大的问号：“通缉这道题的‘凶手’，有谁见过它？”夸张＋幽默，特点立刻立起来。考砸的事一波三折：不敢抬头→老师没点名字，只把错题编成“新题”→一句“下次，让它从通缉令上消失”→心里暖暖的。批评藏进笑话里，喜爱自然流露。"],
+ yuanDi2:["📋 《“三不”李老师》：严厉型怎么写","用排比开篇立特点：“作业不工整，不收；背书不过关，不放；写字不认真，不批。”三句话像三道“军令”。事例一详一略：退作业详写——摊开本子问“你自己读得清吗？”，批语一行小字“字如其人，今天的你特别精神”；发烧披外套略写——一严一暖，对比中生情。结尾点题：“严厉也是爱——这就是我们的李老师。”"],
+ yuanDi3:["🌸 《温柔的“大朋友”》：温柔型怎么写","用叠词立特点：“说话轻轻的，走路轻轻的，连批评人都带着笑。”补课事例有画面：“下雨天，她的裤脚全湿了，甩甩伞上的水珠，就笑眯眯地翻开课本：‘咱们接着讲。’”互助小组一句“轻描淡写”，把“我”的“特别”变成全班的“平常”。传神细节收尾：“她只是笑得比谁都开心，眼睛弯成了两个月牙。”结尾升华：“温柔，也是一种了不起的力量。”"]
 };
 
 function cardPop(title,html){
@@ -3664,7 +3728,21 @@ var QUIZ_ZHENZHNIAO=[
  {q:"4. 小鸟啄“我”的笔尖时，“我”是怎么做的？",opts:["把它赶回笼子","不动声色地写，还用手抚一抚它细腻的绒毛","大声喊叫吓唬它"],a:1},
  {q:"5. 课文最后一句点题的话是？",opts:["真好，朋友送我一对珍珠鸟","信赖，往往创造出美好的境界","它好肥，整个身子好像一个蓬松的球儿"],a:1}
 ];
-var QUIZ_MAP={ymbyh:QUIZ_YMBYH,gushisan:QUIZ_GUSHISAN,snzgs:QUIZ_SNZGS,mlf:QUIZ_MLF,guihuayu:QUIZ_GUIHUAYU,luohuasheng:QUIZ_LUOHUASHENG,zhenzhuniao:QUIZ_ZHENZHNIAO};
+var QUIZ_YUAN1DI=[
+ {q:"1. 《我的心爱之物》这次习作要写什么？",opts:["一件自己真实拥有的心爱物品，写出你为什么爱它","一种喜欢的动物","一个让你难忘的人"],a:0},
+ {q:"2. 这次习作要写清哪几个方面？",opts:["只写样子，写得越美越好","样子和缘由：它什么样、怎么来的、为什么心爱（缘由要有具体事例）","只写来历，交代它是什么时候买的"],a:1},
+ {q:"3. 关于“心爱”的感情，下面哪种写法是对的？",opts:["反复喊“我好喜欢它，特别喜欢它”","把感情藏进你和它之间发生的具体事例里，自然流露","不用写感情，把物品介绍清楚就行"],a:1},
+ {q:"4. 下面哪种是本课提示的常见失误？",opts:["来历写成三行流水账，重点事例反而没地方写","抓特点细致写样子","用一两件具体事例写出感情"],a:0},
+ {q:"5. 这次习作拿高分的关键是？",opts:["物品越贵重越容易得高分","样子和事例都写具体、细节传神，感情藏在字里行间","字数越多越好，凑够三页"],a:1}
+];
+var QUIZ_YUANDI=[
+ {q:"1. 题目里“漫画”的意思是？",opts:["真的给老师画一幅漫画像","像漫画家画画一样——抓住最突出的特点，用夸张有趣的方式表现出来","把老师写成卡通人物"],a:1},
+ {q:"2. 中间部分应该怎么写？",opts:["把老师所有的特点都罗列一遍","选一两件典型事例，详写一件，用动作、语言、神态把特点撑起来","像记日记一样把一天的事记下来"],a:1},
+ {q:"3. 写老师的外貌，正确的方法是？",opts:["从头发写到鞋子，面面俱到","抓最突出的特点写，可以适度夸张，比如“眼睛会说话”","只夸老师漂亮就行"],a:1},
+ {q:"4. 下面哪种是本课提示的常见失误？",opts:["记流水账——没有重点事例，想到哪写到哪","结尾点出对老师的感情","事例里写动作、语言、神态"],a:0},
+ {q:"5. 这次习作拿高分的关键是？",opts:["词汇越华丽越好","事例具体＋情感真实——善意的幽默里藏着对老师的喜爱","把老师写得越严厉越好"],a:1}
+];
+var QUIZ_MAP={ymbyh:QUIZ_YMBYH,gushisan:QUIZ_GUSHISAN,snzgs:QUIZ_SNZGS,mlf:QUIZ_MLF,guihuayu:QUIZ_GUIHUAYU,luohuasheng:QUIZ_LUOHUASHENG,zhenzhuniao:QUIZ_ZHENZHNIAO,yuan1Di:QUIZ_YUAN1DI,yuanDi:QUIZ_YUANDI};
 var quizState={};
 function quizBank(){
   var key=currentLesson&&currentLesson.key;
