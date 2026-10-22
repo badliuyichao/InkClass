@@ -1349,6 +1349,14 @@ var PANE_JIANGJIE = {
   "</div></div></div>"+
   "<div class='tipbox tip'>⚡ <b>本课速读方法：</b>集中注意力，不回读——眼睛不倒退，遇到没懂的词先记下来继续往前读。</div></div></div>";},
  jiangxianghe:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
+  "<div class='card' style='background:linear-gradient(135deg,#FDEEEC,#FFFFFF)'><h3>🚩 本课学习任务流（连词成句地读）</h3>"+
+  "<div class='taskflow'>"+
+  "<div class='tflow' onclick='showPack(\"jiangxianghe\")'>📖<br>读前资料包<small>先看 3 张历史卡再读故事</small></div>"+
+  "<div class='tflow' onclick='document.getElementById(\"jxh-src\").scrollIntoView({behavior:\"smooth\"})'>📚<br>读中查资料<small>读原文时点黄色标签</small></div>"+
+  "<div class='tflow' onclick='openXilianbi(\"jiangxianghe\")'>✍️<br>小练笔<small>蔺相如/廉颇你更佩服谁</small></div>"+
+  "<div class='tflow' onclick='switchTab(\"guoguan\")'>🎯<br>过关自测<small>5 道题检验</small></div>"+
+  "</div>"+
+  "<div style='margin-top:10px;text-align:right'><button class='srcbtn' id='jjModeBtn' onclick='toggleJjMode()'>🔄 切换为：复习模式</button></div></div>"+
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🧾 本课必背内容（考试就考这些，先逐项过关）</h3>"+
   "<p style='font-size:13px;color:var(--muted)'>这篇课文必须背诵的内容都在这一页——一项一项过关，考试填空题就不丢分。</p>"+
   "<table class='ovtable'>"+
@@ -1360,12 +1368,13 @@ var PANE_JIANGJIE = {
   ""+
   ""+
   "</table></div>"+
-  "<div class='card'><h3>🎯 精读段落速查（先抓这几段！）</h3>"+
-  "<table class='ovtable'><thead><tr><th style='width:150px'>精读段落</th><th>重点是什么</th><th style='width:150px'>常考怎么考</th></tr></thead>"+
-  "<tr><td><b>⭐ 完璧归赵</b><br>（第8-10段）</td><td>蔺相如的三步妙棋：①借口璧有小毛病拿回宝璧；②靠柱而立“我的脑袋和璧就一块儿撞碎在这柱子上”；③要求举行典礼拖延时间，暗中把璧送回赵国。</td><td>故事概括、人物品质</td></tr>"+
-  "<tr><td><b>⭐ 渑池会面</b><br>（第11-14段）</td><td>秦王让赵王鼓瑟羞辱赵国，蔺相如逼前一步：“您现在离我只有五步远，您不答应，我就跟您拼了！”逼秦王击缶——针锋相对，挽回国威。</td><td>语言描写作用</td></tr>"+
-  "<tr><td><b>⭐ 负荆请罪</b><br>（第15-17段）</td><td>廉颇不服，蔺相如“请病假不上朝”处处避让——避的不是人，是秦国的可乘之机；廉颇醒悟后脱下战袍、背上荆条登门请罪。</td><td>避让原因（必考）、人物评价</td></tr></table>"+
-  "</div>"+
+  "<div class='card'><h3>🎯 考点导航 · 先看考什么，再去深入</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>这张表不再重复讲解——只回答两件事：考试考什么题型？想深入时点右侧按钮直达对应精讲。</p>"+
+  "<table class='ovtable'><thead><tr><th style='width:132px'>重点段落</th><th>常考怎么考</th><th style='width:86px'>直达</th></tr></thead>"+
+  "<tr><td><b>⭐ 第8-10段 · 完璧归赵</b></td><td><b>人物品质＋故事概括</b>：“理直气壮”地说、靠柱而立——机智勇敢、不畏强暴，要带上事例作答</td><td><button class='srcbtn' onclick='jumpJj(\"jiangxianghe-tl-1\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 第11-14段 · 渑池会面</b></td><td><b>语言描写作用</b>：“您现在离我只有五步远，您不答应，我就跟您拼了！”——不畏强权，维护赵国尊严</td><td><button class='srcbtn' onclick='jumpJj(\"jiangxianghe-tl-2\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 第15-17段 · 负荆请罪</b></td><td><b>避让原因（必考）</b>：“我所以避着廉将军，为的是我们赵国啊！”——顾全大局；廉颇知错就改</td><td><button class='srcbtn' onclick='jumpJj(\"jiangxianghe-tl-3\")'>看精讲</button></td></tr>"+
+  "</table></div>"+
   "<div id='jichuAnchor'></div>"+
   "<div class='card'><h3>🌏 历史大舞台：战国时代</h3>"+
   "<p>这个故事发生在<b>两千两百多年前</b>的战国时期（公元前475—前221年）。当时天下分裂成七个大国，史称<b>“战国七雄”</b>：齐、楚、燕、韩、赵、魏、秦。各国今天结盟、明天开战，都想吞并别人、壮大自己。</p>"+
@@ -1399,34 +1408,63 @@ var PANE_JIANGJIE = {
   "<div class='flip'><div class='inner'><div class='face front'>无价之宝<small>点我翻看 →</small></div><div class='face back'>用多少钱都买不到的宝物，指和氏璧。</div></div></div>"+
   "<div class='flip'><div class='inner'><div class='face front'>同心协力<small>点我翻看 →</small></div><div class='face back'>思想一致，共同努力。将相和好后，两人同心协力保卫赵国。</div></div></div>"+
   "</div></div>"+
-  "<div class='card'><h3>📄 课文原文（对照精讲用）</h3>"+
-  "<p style='font-size:13px;color:var(--muted)'>依据统编教材，共 17 个自然段，根据《史记·廉颇蔺相如列传》相关内容改写。点击展开。</p>"+
-  "<div class='acc' onclick='this.classList.toggle(\"open\")'><button class='head'><span class='idx'>原</span>展开课文全文（约1300字）<span class='arrow'>▸</span></button><div class='body'>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>1</span>战国时候，秦国最强，常常进攻别的国家。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>2</span>有一回，赵王得了一件无价之宝，叫和氏璧。秦王知道了，就写一封信给赵王，说愿意拿十五座城换这块璧。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>3</span>赵王接到信后非常着急，立即召集大臣来商议。大家说秦王不过想把和氏璧骗到手罢了，不能上他的当；可是不答应，又怕他派兵来进攻。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>4</span>正在为难的时候，有人说有个叫蔺相如的人，勇敢机智，也许他能解决这个难题。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>5</span>赵王把蔺相如找来，问他该怎么办。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>6</span>蔺相如想了一会儿，说：“我愿意带着和氏璧到秦国去。如果秦王真的拿十五座城来换，我就把璧交给他；如果他不肯交出十五座城，我一定把璧送回来。那时候秦国理屈，就没有动兵的理由。”</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>7</span>赵王和大臣们没有别的办法，只好派蔺相如带着和氏璧到秦国去。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>8</span>蔺相如到了秦国，进宫见了秦王，献上和氏璧。秦王双手捧住璧，一边看一边称赞，绝口不提十五座城的事。蔺相如看这情形，知道秦王没有拿城换璧的诚意，就上前一步，说：“这块璧有点儿小毛病，让我指给您看。”秦王听他这么一说，就把和氏璧交给蔺相如。蔺相如捧着璧，往后退了几步，靠着柱子站定。他理直气壮地说：“我看您并不想交付十五座城。现在璧在我手里，您要是强逼我，我的脑袋和璧就一块儿撞碎在这柱子上！”说着，他举起和氏璧就要向柱子上撞。秦王怕他把璧真的撞碎了，连忙说一切都好商量，就叫人拿出地图，把允诺划归赵国的十五座城指给他看。蔺相如说和氏璧是无价之宝，要举行个隆重的典礼，他才肯交出来。秦王只好跟他约定了举行典礼的日期。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>9</span>蔺相如知道秦王丝毫没有拿城换璧的诚意，一回到客舍，就叫手下人化了装，带着和氏璧抄小路先回赵国去了。到了举行典礼那一天，蔺相如进宫见了秦王，大大方方地说：“和氏璧已经送回赵国了。您如果有诚意的话，先把十五座城交给我国，我国马上派人把璧送来，决不失信。不然，您杀了我也没有用，天下的人都知道秦国是从来不讲信用的！”秦王没有办法，只得客客气气地把蔺相如送回赵国。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>10</span>这就是“完璧归赵”的故事。蔺相如立了功，赵王封他做上大夫。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>11</span>过了几年，秦王约赵王在渑池会见。赵王和大臣们商议说：“去吧，怕有危险；不去吧，又显得太胆怯。”蔺相如认为对秦王不能示弱，还是去的好，赵王才决定动身，让蔺相如随行。大将军廉颇带着军队送他们到边界上，做好了抵御秦兵的准备。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>12</span>赵王到渑池与秦王会见。秦王要赵王鼓瑟。赵王不好推辞，鼓了一段。秦王就叫人记录下来，说在渑池会上，赵王为秦王鼓瑟。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>13</span>蔺相如看秦王这样侮辱赵王，生气极了。他走到秦王面前，说：“请您为赵王击缶。”秦王拒绝了。蔺相如再要求，秦王还是拒绝。蔺相如说：“您现在离我只有五步远。您不答应，我就跟您拼了！”秦王被逼得没法，只好敲了一下缶。蔺相如也叫人记录下来，说在渑池会上，秦王为赵王击缶。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>14</span>秦王没占到便宜。他知道廉颇已经在边境上做好了准备，不敢拿赵王怎么样，只好让赵王回去。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>15</span>蔺相如在渑池会上又立了功。赵王封蔺相如为上卿，职位比廉颇高。廉颇很不服气，他对别人说：“我廉颇攻无不克，战无不胜，立下许多大功。他蔺相如有什么能耐，就靠一张嘴，反而爬到我头上去了。我碰见他，得给他个下不了台！”这话传到了蔺相如耳朵里，蔺相如就请病假不上朝，免得跟廉颇见面。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>16</span>有一天，蔺相如坐车出去，远远看见廉颇骑着高头大马过来了，他赶紧叫车夫把车往回赶。蔺相如手下的人可看不顺眼了。他们说，蔺相如见了廉颇像老鼠见了猫似的，为什么要怕他呢！蔺相如对他们说：“诸位请想一想，廉将军和秦王比，谁厉害？”他们说：“当然秦王厉害！”蔺相如说：“秦王我都不怕，会怕廉将军吗？大家知道，秦王不敢进攻我们赵国，就因为武有廉颇，文有蔺相如。如果我们俩闹不和，就会削弱赵国的力量，秦国必然乘机来打我们。我所以避着廉将军，为的是我们赵国啊！”</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>17</span>蔺相如的话传到了廉颇的耳朵里。廉颇静下心来想了想，觉得自己为了争一口气，就不顾国家的利益，真不应该。于是，他脱下战袍，背上缚着荆条，到蔺相如门上请罪。蔺相如见廉颇来负荆请罪，连忙热情地出来迎接。从此以后，他们俩成了好朋友，同心协力保卫赵国。</div>"+
+  "<div class='card' id='jxh-src'><h3>📄 课文原文 · 全文（直读版）</h3>"+
+  "<div class='readtext'>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>1</span>战国时候，秦国最强，常常进攻别的国家。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>2</span>有一回，赵王得了一件无价之宝，叫和氏璧。秦王知道了，就写一封信给赵王，说愿意拿十五座城换这块璧。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>3</span>赵王接到信后非常着急，立即召集大臣来商议。大家说秦王不过想把和氏璧骗到手罢了，不能上他的当；可是不答应，又怕他派兵来进攻。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>4</span>正在为难的时候，有人说有个叫蔺相如的人，勇敢机智，也许他能解决这个难题。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>5</span>赵王把蔺相如找来，问他该怎么办。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>6</span>蔺相如想了一会儿，说：“我愿意带着和氏璧到秦国去。如果秦王真的拿十五座城来换，我就把璧交给他；如果他不肯交出十五座城，我一定把璧送回来。那时候秦国理屈，就没有动兵的理由。”</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>7</span>赵王和大臣们没有别的办法，只好派蔺相如带着和氏璧到秦国去。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>8</span>蔺相如到了秦国，进宫见了秦王，献上和氏璧。秦王双手捧住璧，一边看一边称赞，绝口不提十五座城的事。蔺相如看这情形，知道秦王没有拿城换璧的诚意，就上前一步，说：“这块璧有点儿小毛病，让我指给您看。”秦王听他这么一说，就把和氏璧交给蔺相如。蔺相如捧着璧，往后退了几步，靠着柱子站定。他理直气壮地说：“我看您并不想交付十五座城。现在璧在我手里，您要是强逼我，我的脑袋和璧就一块儿撞碎在这柱子上！”说着，他举起和氏璧就要向柱子上撞。秦王怕他把璧真的撞碎了，连忙说一切都好商量，就叫人拿出地图，把允诺划归赵国的十五座城指给他看。蔺相如说和氏璧是无价之宝，要举行个隆重的典礼，他才肯交出来。秦王只好跟他约定了举行典礼的日期。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>9</span>蔺相如知道秦王丝毫没有拿城换璧的诚意，一回到客舍，就叫手下人化了装，带着和氏璧抄小路先回赵国去了。到了举行典礼那一天，蔺相如进宫见了秦王，大大方方地说：“和氏璧已经送回赵国了。您如果有诚意的话，先把十五座城交给我国，我国马上派人把璧送来，决不失信。不然，您杀了我也没有用，天下的人都知道秦国是从来不讲信用的！”秦王没有办法，只得客客气气地把蔺相如送回赵国。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>10</span>这就是“完璧归赵”的故事。蔺相如立了功，赵王封他做上大夫。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"jxh1\")'>📚 查资料 · 完璧归赵：一场以死护璧的谈判</button>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>11</span>过了几年，秦王约赵王在渑池会见。赵王和大臣们商议说：“去吧，怕有危险；不去吧，又显得太胆怯。”蔺相如认为对秦王不能示弱，还是去的好，赵王才决定动身，让蔺相如随行。大将军廉颇带着军队送他们到边界上，做好了抵御秦兵的准备。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>12</span>赵王到渑池与秦王会见。秦王要赵王鼓瑟。赵王不好推辞，鼓了一段。秦王就叫人记录下来，说在渑池会上，赵王为秦王鼓瑟。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>13</span>蔺相如看秦王这样侮辱赵王，生气极了。他走到秦王面前，说：“请您为赵王击缶。”秦王拒绝了。蔺相如再要求，秦王还是拒绝。蔺相如说：“您现在离我只有五步远。您不答应，我就跟您拼了！”秦王被逼得没法，只好敲了一下缶。蔺相如也叫人记录下来，说在渑池会上，秦王为赵王击缶。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>14</span>秦王没占到便宜。他知道廉颇已经在边境上做好了准备，不敢拿赵王怎么样，只好让赵王回去。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"jxh2\")'>📚 查资料 · 鼓瑟与击缶：一场“脸面”的较量</button>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>15</span>蔺相如在渑池会上又立了功。赵王封蔺相如为上卿，职位比廉颇高。廉颇很不服气，他对别人说：“我廉颇攻无不克，战无不胜，立下许多大功。他蔺相如有什么能耐，就靠一张嘴，反而爬到我头上去了。我碰见他，得给他个下不了台！”这话传到了蔺相如耳朵里，蔺相如就请病假不上朝，免得跟廉颇见面。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>16</span>有一天，蔺相如坐车出去，远远看见廉颇骑着高头大马过来了，他赶紧叫车夫把车往回赶。蔺相如手下的人可看不顺眼了。他们说，蔺相如见了廉颇像老鼠见了猫似的，为什么要怕他呢！蔺相如对他们说：“诸位请想一想，廉将军和秦王比，谁厉害？”他们说：“当然秦王厉害！”蔺相如说：“秦王我都不怕，会怕廉将军吗？大家知道，秦王不敢进攻我们赵国，就因为武有廉颇，文有蔺相如。如果我们俩闹不和，就会削弱赵国的力量，秦国必然乘机来打我们。我所以避着廉将军，为的是我们赵国啊！”</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>17</span>蔺相如的话传到了廉颇的耳朵里。廉颇静下心来想了想，觉得自己为了争一口气，就不顾国家的利益，真不应该。于是，他脱下战袍，背上缚着荆条，到蔺相如门上请罪。蔺相如见廉颇来负荆请罪，连忙热情地出来迎接。从此以后，他们俩成了好朋友，同心协力保卫赵国。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"jxh3\")'>📚 查资料 · 负荆请罪：成语的出处</button>"+
+  "<p style='margin:10px 0 0;font-size:12.5px;color:var(--muted)'>——依据统编教材，共 17 个自然段，根据《史记·廉颇蔺相如列传》相关内容改写。段落序号为便于对照所加，以课本为准。</p>"+
   "</div></div>"+
-  "</div>"+
   "<div class='card'><h3>📖 逐幕精读：三个故事里的人物细节</h3>"+
   "<div class='timeline'>"+
   "<div class='tl'><b>⭐ 第一幕 · 完璧归赵（第8-10段）</b><br>秦王说用15座城换璧——蔺相如看穿“给不给都吃亏”的死局。他的三步妙棋：①说璧有点小毛病，拿回宝璧；②靠柱而立，“我的脑袋和璧就一块儿撞碎在这柱子上”；③要求秦王举行典礼拖延时间，暗中派人把璧送回。<b>关键词：理直气壮、不畏强暴。</b></div>"+
   "<div class='tl'><b>⭐ 第二幕 · 渑池会面（第11-14段）</b><br>秦王让赵王鼓瑟并叫人记录，想占上风；蔺相如逼前一步：“您现在离我只有五步远”，逼秦王击缶。<b>关键词：针锋相对、不畏牺牲。</b></div>"+
   "<div class='tl'><b>⭐ 第三幕 · 负荆请罪（第15-17段）</b><br>廉颇扬言“见面给他个下不了台”；蔺相如“请病假不上朝”，处处避让——避的不是人，是秦国的可乘之机。话传到廉颇耳中，他脱下战袍、背上荆条登门请罪。<b>关键词：顾全大局、知错就改。</b></div>"+
   "<div class='tl'><b>写法小结</b><br>①三个故事因果相连，缺一不可；②人物的语言、动作描写特别传神——“我就跟他拼了”一句见胆识；③通过冲突塑造人物。</div>"+
+  "</div></div>"+
+  "<div class='card'><h3>🔍 精读深挖：三个故事，三层人物光亮</h3>"+
+  "<div class='timeline'>"+
+  "<div class='tl' id='jiangxianghe-tl-1'><b>⭐ 第一幕 · 完璧归赵：蔺相如的“理直气壮”与勇敢</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>蔺相如捧着璧，往后退了几步，靠着柱子站定。他理直气壮地说：“我看您并不想交付十五座城。现在璧在我手里，您要是强逼我，我的脑袋和璧就一块儿撞碎在这柱子上！”</div>"+
+  "<div class='jl-ask'>❓ 先想一想：蔺相如为什么敢拿着脑袋跟秦王拼？他是莽撞，还是勇敢？</div>"+
+  "<ul class='jl-ju'><li><b>“理直”才“气壮”</b>——理在璧已到手、秦王先失信，说话才有底气：占理的人，声音自然是稳的。</li>"+
+  "<li><b>靠柱而立</b>——退几步、靠着柱子，是给自己留出“拼”的位置，看似吓唬，实有后手：机智不鲁莽。</li>"+
+  "<li><b>还有下一步棋</b>——要求举行隆重典礼拖延时间，暗中把璧送回赵国：有胆更有谋，勇而不险。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：理直气壮＝占理＋有胆＋有谋，三样凑齐，才敢在强秦面前寸步不让。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>人物评价题</b>——答“机智勇敢、不畏强暴”，必须带上完璧归赵的事例；<b>故事概括</b>按“要璧→护璧→送璧”三步说。🎤 朗读指导：“理直气壮地说”要读得坚定响亮，读出不慌不忙的底气。</div></div>"+
+  "<div class='tl' id='jiangxianghe-tl-2'><b>⭐ 第二幕 · 渑池会面：不畏强权，维护尊严</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>蔺相如看秦王这样侮辱赵王，生气极了。他走到秦王面前，说：“请您为赵王击缶。”秦王拒绝了。蔺相如再要求，秦王还是拒绝。蔺相如说：“您现在离我只有五步远。您不答应，我就跟您拼了！”</div>"+
+  "<div class='jl-ask'>❓ 先想一想：秦王让赵王鼓瑟，蔺相如为什么非让秦王击缶不可？</div>"+
+  "<ul class='jl-ju'><li><b>鼓瑟是羞辱</b>——史官记下“赵王为秦王鼓瑟”，等于把赵国的难堪写进了历史。</li>"+
+  "<li><b>五步之内</b>——不是蛮干，是用命换尊严的博弈：离得这么近，一拼真有可能，秦王不敢赌。</li>"+
+  "<li><b>针锋相对</b>——你记一笔我的羞辱，我也记一笔你的击缶：用一样的方式，把面子扳回来。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：渑池会上蔺相如护的不是自己，是赵国的尊严——不畏强权，寸步不让。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>语言描写作用</b>——“我就跟您拼了”一句见胆识，表现蔺相如不畏强暴、勇敢无畏；常考“从哪里看出蔺相如的勇敢”。🎤 朗读指导：“请您为赵王击缶”读出恭敬中的坚持，最后一句要斩钉截铁，一字一顿。</div></div>"+
+  "<div class='tl' id='jiangxianghe-tl-3'><b>⭐ 第三幕 · 负荆请罪：廉颇知错就改与“和”的意义</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>蔺相如说：“秦王我都不怕，会怕廉将军吗？大家知道，秦王不敢进攻我们赵国，就因为武有廉颇，文有蔺相如。如果我们俩闹不和，就会削弱赵国的力量，秦国必然乘机来打我们。我所以避着廉将军，为的是我们赵国啊！”……于是，他脱下战袍，背上缚着荆条，到蔺相如门上请罪。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：一个“避着走”，一个“背着荆条上门”——“和”是靠一个人，还是两个人？</div>"+
+  "<ul class='jl-ju'><li><b>蔺相如的避让</b>——避的不是廉颇这个人，是秦国的可乘之机：把国家利益放在个人面子前面，这是<b>顾全大局</b>。</li>"+
+  "<li><b>廉颇的醒悟</b>——“静下心来想了想”，觉得自己不顾国家利益真不应该；脱袍负荆登门，这是<b>知错就改</b>。</li>"+
+  "<li><b>“和”的意义</b>——将相同心协力保卫赵国，秦国多年不敢来犯：“和”是两个人各让一步、又各进一步换来的。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：“和”＝蔺相如的顾全大局＋廉颇的知错就改——国家利益面前，个人面子不算什么。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>避让原因（必考）</b>——引“我所以避着廉将军，为的是我们赵国啊！”作答；<b>人物评价</b>——廉颇英勇善战、知错就改，蔺相如顾全大局。🎤 朗读指导：蔺相如的话读得恳切从容，负荆请罪一段读出郑重认错的语气。</div></div>"+
   "</div></div>"+
   "<div class='card'><h3>✍️ 写法借鉴：课文怎么写，作文怎么用</h3>"+
   "<table class='ovtable'><thead><tr><th style='width:110px'>写法</th><th>课文里怎么用</th><th style='width:190px'>你的作文怎么用</th></tr></thead>"+
@@ -1450,6 +1488,10 @@ var PANE_JIANGJIE = {
   "<div class='tl'><b>约公元前91年（与课文相关）</b><br>终于完成52万多字的《史记》——我国第一部纪传体通史，《将相和》的故事就出自这里。</div>"+
   "<div class='tl'><b>约公元前86年</b><br>司马迁去世，《史记》流传千古。</div>"+
   "</div></div></div>"+
+  "<div class='card'><h3>✍️ 小练笔：蔺相如/廉颇你更佩服谁？用一件事说理由</h3>"+
+  "<p style='font-size:13.5px;color:var(--muted)'>完璧归赵、渑池会面、负荆请罪——三个故事里，蔺相如机智勇敢、顾全大局，廉颇英勇善战、知错就改。你更佩服谁？选一个人物，用<b>一件事</b>当理由（比如蔺相如“五步之内逼秦王击缶”，或廉颇“脱袍负荆登门请罪”），写一段 50~100 字的话——先亮观点，再用事例说话，别空喊“他真厉害”。这是你从这篇课文真正带走的东西。</p>"+
+  "<textarea id='xilianbi-jiangxianghe' class='xltextarea' rows='4' placeholder='写在这里，点保存会自动记住…'></textarea>"+
+  "<div style='margin-top:8px;display:flex;gap:10px;align-items:center'><button class='tflow' style='max-width:180px' onclick='saveXilianbi(\"jiangxianghe\")'>💾 保存</button><span id='xlsave-jiangxianghe' style='font-size:12.5px;color:#3C9E5C;font-weight:700'></span></div></div>"+
   "<div class='tipbox tip'>⚡ <b>本课速读方法：</b>连词成句地读——课文很长，一眼看一组词，不要一字一顿，尽量不回读。</div></div></div>";},
  speed:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🧾 本课必背内容（考试就考这些，先逐项过关）</h3>"+
@@ -1514,6 +1556,14 @@ var PANE_JIANGJIE = {
   "<div class='tipbox story'>📖 小秘密：这篇课文的标题是一个问句！用问题当标题，就是为了勾起你的好奇心，让你忍不住一口气读下去找答案——这正是“带着问题读”的最好示范。</div></div>"+
   "<div class='tipbox tip'>⚡ <b>本课速读方法：</b>借助关键词句读——抓住每段第一句（中心句），快速获取主要信息。</div></div>";},
  didaozhan:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
+  "<div class='card' style='background:linear-gradient(135deg,#EAF6EC,#FFFFFF)'><h3>🚩 本课学习任务流（集中注意力，不回读）</h3>"+
+  "<div class='taskflow'>"+
+  "<div class='tflow' onclick='showPack(\"didaozhan\")'>📖<br>读前资料包<small>先看 3 张背景卡再读课文</small></div>"+
+  "<div class='tflow' onclick='document.getElementById(\"didaozhan-src\").scrollIntoView({behavior:\"smooth\"})'>📚<br>读中查资料<small>读原文时点黄色标签</small></div>"+
+  "<div class='tflow' onclick='openXilianbi(\"didaozhan\")'>✍️<br>小练笔<small>写一句“人民的智慧”体会</small></div>"+
+  "<div class='tflow' onclick='switchTab(\"guoguan\")'>🎯<br>过关自测<small>5 道题检验</small></div>"+
+  "</div>"+
+  "<div style='margin-top:10px;text-align:right'><button class='srcbtn' id='jjModeBtn' onclick='toggleJjMode()'>🔄 切换为：复习模式</button></div></div>"+
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🧾 本课必背内容（考试就考这些，先逐项过关）</h3>"+
   "<p style='font-size:13px;color:var(--muted)'>这篇课文必须背诵的内容都在这一页——一项一项过关，考试填空题就不丢分。</p>"+
   "<table class='ovtable'>"+
@@ -1525,12 +1575,13 @@ var PANE_JIANGJIE = {
   ""+
   ""+
   "</table></div>"+
-  "<div class='card'><h3>🎯 精读段落速查（先抓这几段！）</h3>"+
-  "<table class='ovtable'><thead><tr><th style='width:150px'>精读段落</th><th>重点是什么</th><th style='width:150px'>常考怎么考</th></tr></thead>"+
-  "<tr><td><b>⭐ 第3段 · 总写“奇迹”</b></td><td>横的竖的直的弯的，不计其数，家家相连、村村相通；敌人来扑空、走了照常种地，有时还打击敌人——先总写“奇”。</td><td>概括“奇”在哪</td></tr>"+
-  "<tr><td><b>⭐ 第5-6段 · 机关与防破坏</b></td><td>出口隐蔽堆荆棘、陷坑埋地雷；“迷惑洞”分不清死道活道；“孑口”一夫当关万夫莫开；火攻→土沙、毒气→吊板、水攻→枯井暗沟。</td><td>三攻三防列表题（必考）</td></tr>"+
-  "<tr><td><b>⭐ 第7-9段 · 联络与评价</b></td><td>地面吆喝＝“无线电”，铁丝铜铃＝“有线电”；结尾“人民的智慧是无穷无尽的”“留下了惊人的奇迹”。</td><td>引号作用、中心思想</td></tr></table>"+
-  "</div>"+
+  "<div class='card'><h3>🎯 考点导航 · 先看考什么，再去深入</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>这张表不再重复讲解——只回答两件事：考试考什么题型？想深入时点右侧按钮直达对应精讲。</p>"+
+  "<table class='ovtable'><thead><tr><th style='width:132px'>重点段落</th><th>常考怎么考</th><th style='width:86px'>直达</th></tr></thead>"+
+  "<tr><td><b>⭐ 第4段 · 式样与结构</b></td><td><b>作用题（概括）</b>：地道的式样结构有哪些特点？——式样一百多种、位置巧、洞有分工、气孔隐蔽，分点作答不遗漏</td><td><button class='srcbtn' onclick='jumpJj(\"didaozhan-tl-1\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 第6段 · 防破坏妙法</b></td><td><b>三攻三防列表题（必考）</b>：火攻→土沙、毒气→吊板、水攻→枯井暗沟——一一对应，不能张冠李戴</td><td><button class='srcbtn' onclick='jumpJj(\"didaozhan-tl-2\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 全文 · 阅读方法题</b></td><td><b>本单元特有题型</b>：“你用了什么方法读这篇课文？”——只答对内容不给分，必须写出“集中注意力，不回读”</td><td><button class='srcbtn' onclick='jumpJj(\"didaozhan-tl-3\")'>看精讲</button></td></tr>"+
+  "</table></div>"+
   "<div id='jichuAnchor'></div>"+
   "<div class='card'><figure class='pic'><img src='images/ditao_neijing.jpg' alt='冉庄地道内景'><figcaption>今天还能走进去的冉庄地道遗址（实拍）。<span class='picsrc'>图源：新华网 孙丽颖 摄</span></figcaption></figure>"+
   "<h3>🕳️ 读懂课文：平原上的“地下长城”</h3>"+
@@ -1554,20 +1605,22 @@ var PANE_JIANGJIE = {
   "<div class='timeline'><div class='tl'><b>第一步 · 交通沟</b><br>抗战初期，村与村之间挖“道沟”，方便军民隐蔽转移，也限制日军的汽车横冲直撞。</div>"+
   "<div class='tl'><b>第二步 · “蛤蟆蹲”</b><br>1940年前后，人们挖出能藏一两个人的小洞，敌人来了可以暂时藏身——像青蛙蹲的小坑，所以起了这个形象的名字。</div>"+
   "<div class='tl'><b>第三步 · 战斗地道</b><br>1943年起，地道升级成户户相通、村村相连的地下网络，能藏、能走、能打——课文里介绍的，就是这种“最终形态”。</div></div></div>"+
-  "<div class='card'><h3>📄 课文原文（对照精讲用）</h3>"+
-  "<p style='font-size:13px;color:var(--muted)'>依据统编教材，共 9 个自然段。点击展开。</p>"+
-  "<div class='acc' onclick='this.classList.toggle(\"open\")'><button class='head'><span class='idx'>原</span>展开课文全文（约1200字）<span class='arrow'>▸</span></button><div class='body'>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>1</span>1942到1944那几年，日本侵略军在冀中平原上“大扫荡”，还修筑了封锁沟和封锁墙，十里一碉，八里一堡，想搞垮我们的人民武装。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>2</span>为了粉碎敌人的“扫荡”，冀中人民在中国共产党的领导下，创造了新的斗争方式，这就是地道战。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>3</span>说起地道战，简直是个奇迹。在广阔平原的地底下，挖了不计其数的地道，横的，竖的，直的，弯的，家家相连，村村相通。敌人来了，我们就钻到地道里去，让他们扑个空；敌人走了，我们就从地道里出来，照常种地过日子，有时候还要打击敌人。靠着地道这种坚强的堡垒，冀中平原上的人民坚持了敌后游击战争。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>4</span>地道的式样有一百多种。就拿任丘的来说吧，村里的地道挖在街道下面，跟别村相通的地道挖在庄稼地下面。地道有四尺多高，个儿高的人弯着腰可以通过；地道的顶离地面三四尺，不妨碍上面种庄稼。地道里每隔一段距离就有一个大洞，洞顶用木料撑住，很牢靠。大洞四壁又挖了许多小洞，有的住人，有的拴牲口，有的搁东西，有的做厕所。一个大洞容得下一百来人，最大的能容二百多人。洞里经常准备着开水、干粮、被子、灯火，在里面住上个三五天，不成问题。洞里有通到地面的气孔，从气孔里还能漏下光线来。气孔的口子都开在隐蔽的地方，敌人很难发现。人藏在洞里，既不气闷，又不嫌暗。有的老太太把纺车也搬进来，还嗡嗡嗡地纺线呢。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>5</span>地道的出口也开在隐蔽的地方，外面堆满荆棘。有的还在旁边挖一个陷坑，坑里插上尖刀或者埋上地雷，上面用木板虚盖着，板上铺些草，敌人一踏上去就翻下坑里送了命。在地道里，离出口不远的地方挖几个特别坚固的洞，民兵拿着武器在洞里警戒；拐弯的地方挖一些岔道，叫“迷惑洞”，敌人万一进来了，分不清哪条是死道，哪条是活道。进了死道，就有地雷埋在那儿等着他们；就算进了活道，他们也过不了“孑口”。原来地道里每隔一段就有个很窄的“孑口”，只能容一个人爬过去。只要一个人拿一根木棒，就可以把“孑口”守住，真是“一夫当关，万夫莫开”。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>6</span>敌人尝到了地道的厉害，想方设法来破坏，什么火攻呀，水攻呀，毒气攻呀，都用遍了。大家又想出了许多妙法来防备。洞口准备着土和沙，可以用来灭火。“孑口”上装着吊板，如果敌人放毒气，就把吊板放下来挡住，不让毒气往里透。对付水攻的法子更妙了，把地道跟枯井暗沟连接起来，敌人放水的时候，水从洞口进来，就流到枯井暗沟里去了。任敌人想出什么毒辣的法子也不怕，因为各个村子的地道是相通的，大不了转移到旁的村子去。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>7</span>人在地道里怎么能了解地面上的情况呢？民兵指挥部派出一些人分布在各处，发现了敌情就吆喝起来，一个接一个，一直传到指挥部里。老百姓管这种吆喝叫“无线电”。地道里面可就用“有线电”了，一根铁丝牵住一个小铜铃，这儿一拉，那儿就响，拉几下表示什么意思是早就约好了的。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>8</span>为了打击敌人，什么办法都想出来了，人民的智慧是无穷无尽的。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>9</span>有了地道战这个斗争方式，敌人毒辣透顶的“扫荡”被粉碎了。冀中平原上的人民不但坚持了生产，还有力地打击了敌人，在我国抗日战争史上留下了惊人的奇迹。</div>"+
+  "<div class='card' id='didaozhan-src'><h3>📄 课文原文 · 全文（直读版）</h3>"+
+  "<div class='readtext'>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>1</span>1942到1944那几年，日本侵略军在冀中平原上“大扫荡”，还修筑了封锁沟和封锁墙，十里一碉，八里一堡，想搞垮我们的人民武装。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>2</span>为了粉碎敌人的“扫荡”，冀中人民在中国共产党的领导下，创造了新的斗争方式，这就是地道战。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>3</span>说起地道战，简直是个奇迹。在广阔平原的地底下，挖了不计其数的地道，横的，竖的，直的，弯的，家家相连，村村相通。敌人来了，我们就钻到地道里去，让他们扑个空；敌人走了，我们就从地道里出来，照常种地过日子，有时候还要打击敌人。靠着地道这种坚强的堡垒，冀中平原上的人民坚持了敌后游击战争。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"dz1\")'>📚 查资料 · 地道到底有多大</button>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>4</span>地道的式样有一百多种。就拿任丘的来说吧，村里的地道挖在街道下面，跟别村相通的地道挖在庄稼地下面。地道有四尺多高，个儿高的人弯着腰可以通过；地道的顶离地面三四尺，不妨碍上面种庄稼。地道里每隔一段距离就有一个大洞，洞顶用木料撑住，很牢靠。大洞四壁又挖了许多小洞，有的住人，有的拴牲口，有的搁东西，有的做厕所。一个大洞容得下一百来人，最大的能容二百多人。洞里经常准备着开水、干粮、被子、灯火，在里面住上个三五天，不成问题。洞里有通到地面的气孔，从气孔里还能漏下光线来。气孔的口子都开在隐蔽的地方，敌人很难发现。人藏在洞里，既不气闷，又不嫌暗。有的老太太把纺车也搬进来，还嗡嗡嗡地纺线呢。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>5</span>地道的出口也开在隐蔽的地方，外面堆满荆棘。有的还在旁边挖一个陷坑，坑里插上尖刀或者埋上地雷，上面用木板虚盖着，板上铺些草，敌人一踏上去就翻下坑里送了命。在地道里，离出口不远的地方挖几个特别坚固的洞，民兵拿着武器在洞里警戒；拐弯的地方挖一些岔道，叫“迷惑洞”，敌人万一进来了，分不清哪条是死道，哪条是活道。进了死道，就有地雷埋在那儿等着他们；就算进了活道，他们也过不了“孑口”。原来地道里每隔一段就有个很窄的“孑口”，只能容一个人爬过去。只要一个人拿一根木棒，就可以把“孑口”守住，真是“一夫当关，万夫莫开”。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"dz2\")'>📚 查资料 · 地道口藏在哪儿</button>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>6</span>敌人尝到了地道的厉害，想方设法来破坏，什么火攻呀，水攻呀，毒气攻呀，都用遍了。大家又想出了许多妙法来防备。洞口准备着土和沙，可以用来灭火。“孑口”上装着吊板，如果敌人放毒气，就把吊板放下来挡住，不让毒气往里透。对付水攻的法子更妙了，把地道跟枯井暗沟连接起来，敌人放水的时候，水从洞口进来，就流到枯井暗沟里去了。任敌人想出什么毒辣的法子也不怕，因为各个村子的地道是相通的，大不了转移到旁的村子去。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"dz3\")'>📚 查资料 · 防水防毒防火的巧招</button>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>7</span>人在地道里怎么能了解地面上的情况呢？民兵指挥部派出一些人分布在各处，发现了敌情就吆喝起来，一个接一个，一直传到指挥部里。老百姓管这种吆喝叫“无线电”。地道里面可就用“有线电”了，一根铁丝牵住一个小铜铃，这儿一拉，那儿就响，拉几下表示什么意思是早就约好了的。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>8</span>为了打击敌人，什么办法都想出来了，人民的智慧是无穷无尽的。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>9</span>有了地道战这个斗争方式，敌人毒辣透顶的“扫荡”被粉碎了。冀中平原上的人民不但坚持了生产，还有力地打击了敌人，在我国抗日战争史上留下了惊人的奇迹。</p>"+
+  "<p style='margin:10px 0 0;font-size:12.5px;color:var(--muted)'>——依据统编教材，共 9 个自然段。段落序号为便于对照所加，以课本为准。</p>"+
   "</div></div>"+
-  "</div>"+
   "<div class='card'><h3>📖 逐段精讲：读懂这座“地下长城”</h3>"+
   "<div class='timeline'>"+
   "<div class='tl'><b>第1-2段 · 为什么会有地道战</b><br>1942到1944那几年，日军在冀中平原“大扫荡”，还修起封锁沟墙、“十里一碉，八里一堡”；为了粉碎“扫荡”，冀中人民在党的领导下创造了新的斗争方式——地道战。读到这里要记住：地道战是被“逼”出来的智慧。</div>"+
@@ -1577,6 +1630,35 @@ var PANE_JIANGJIE = {
   "<div class='tl'><b>⭐ 第6段 · 防破坏的妙法</b><br>敌人火攻、水攻、毒气攻都用遍：洞口备土沙灭火；“孑口”装吊板挡毒气；地道连枯井暗沟排水——任敌人想出什么毒辣法子也不怕。</div>"+
   "<div class='tl'><b>⭐ 第7-8段 · 地上的“无线电”</b><br>民兵分片瞭望，发现敌情一声吆喝一个接一个传到指挥部（“无线电”）；地道里拉铁丝铜铃（“有线电”）——人民智慧无穷无尽。</div>"+
   "<div class='tl'><b>⭐ 第9段 · 高度评价（首尾呼应）</b><br>敌人“扫荡”被粉碎；冀中人民坚持了生产，还有力地打击了敌人——在我国抗日战争史上留下惊人的奇迹。与开头“简直是个奇迹”遥相呼应。</div>"+
+  "</div></div>"+
+  "<div class='card'><h3>🔍 精读深挖：地道里的“奇迹”与“智慧”</h3>"+
+  "<div class='timeline'>"+
+  "<div class='tl' id='didaozhan-tl-1'><b>⭐ 第4段 · 地道的式样特点与结构（作用题）</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>地道的式样有一百多种。就拿任丘的来说吧，村里的地道挖在街道下面，跟别村相通的地道挖在庄稼地下面。地道有四尺多高，个儿高的人弯着腰可以通过；地道的顶离地面三四尺，不妨碍上面种庄稼。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：如果让你用一句话夸夸地道，你会夸它哪几点？</div>"+
+  "<ul class='jl-ju'><li><b>式样多</b>——一百多种，各有各的设计，敌人摸不清底细。</li>"+
+  "<li><b>位置巧</b>——挖在街道下、庄稼地下，地面上照样种庄稼、过日子，藏身和生活两不误。</li>"+
+  "<li><b>功能全</b>——大洞容百人、小洞分工：住人、拴牲口、搁东西、做厕所，开水干粮备足，住三五天不成问题。</li>"+
+  "<li><b>气孔妙</b>——口子开在隐蔽的地方，既不气闷又不嫌暗，连老太太都能在里面纺线。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：式样多＋位置巧＋功能全＝能藏、能住、能打——地道是“坚强的堡垒”。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>作用题（概括）</b>——问“地道的式样结构有哪些特点”，要分点作答（式样、位置、洞的分工、气孔），漏点就丢分。🎤 速读指导：第4段最长，先记住“式样、位置、大洞、气孔”四个路牌，一段一段往下扫，不回读。</div></div>"+
+  "<div class='tl' id='didaozhan-tl-2'><b>⭐ 第6段 · “防水防毒防火”的智慧（分点概括）</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>洞口准备着土和沙，可以用来灭火。“孑口”上装着吊板，如果敌人放毒气，就把吊板放下来挡住，不让毒气往里透。对付水攻的法子更妙了，把地道跟枯井暗沟连接起来，敌人放水的时候，水从洞口进来，就流到枯井暗沟里去了。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：敌人有三招（火、毒、水），人民是不是也有三招？能不能一一配上对？</div>"+
+  "<ul class='jl-ju'><li><b>火攻 → 土和沙</b>——洞口备着土和沙，沙土压火，一招制敌。</li>"+
+  "<li><b>毒气攻 → 吊板</b>——“孑口”上装吊板，放下来就把毒气挡在外面。</li>"+
+  "<li><b>水攻 → 枯井暗沟</b>——地道连着枯井暗沟，水从洞口进来就流走了。</li>"+
+  "<li><b>兜底一招</b>——各村地道相通，大不了转移到旁的村子去，任敌人想出什么毒辣的法子也不怕。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：一一对应是这类题的标准答案姿势——敌人一招，人民一招，谁也不落下。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>三攻三防列表题（必考）</b>——常考填表或连线，答案必须一一对应，不能张冠李戴。🎤 速读指导：读到“火攻呀，水攻呀，毒气攻呀”时，心里先摆好三个空，往下读时一一填对策，效率最高。</div></div>"+
+  "<div class='tl' id='didaozhan-tl-3'><b>⭐ 全文 · 速读招式“集中注意力，不回读”怎么用</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>说起地道战，简直是个奇迹。在广阔平原的地底下，挖了不计其数的地道，横的，竖的，直的，弯的，家家相连，村村相通。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：这篇课文生词多、句子长（封锁沟、迷惑洞、孑口……），怎样才能读得又快又懂？</div>"+
+  "<ul class='jl-ju'><li><b>集中注意力</b>——像钻进地道一样一头扎进去，一口气读完一个自然段，中间不东张西望。</li>"+
+  "<li><b>不回读</b>——遇到“封锁沟”“迷惑洞”“孑口”这些新词，眼睛不倒退，先记在心里继续往前读，读完再回头解决。</li>"+
+  "<li><b>带着问题读</b>——读前先问“地道奇在哪里”，每读完一段自问“这段写的是哪一方面的奇”，答案自然串成全文。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：不回读＝眼睛不倒退。注意力集中地读一遍，顶来回读三遍。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>阅读方法题（本单元特有）</b>——“你用什么方法读这篇课文？”只答对内容不给分，必须写出“集中注意力，不回读”，可补一句“遇到不懂的词先记下来，读完再解决”。🎤 朗读指导：第8段“人民的智慧是无穷无尽的”要读得坚定有力，读出赞叹的语气。</div></div>"+
   "</div></div>"+
   "<div class='card'><h3>✍️ 写法借鉴：课文怎么写，作文怎么用</h3>"+
   "<table class='ovtable'><thead><tr><th style='width:110px'>写法</th><th>课文里怎么用</th><th style='width:190px'>你的作文怎么用</th></tr></thead>"+
@@ -1588,7 +1670,11 @@ var PANE_JIANGJIE = {
   "<div class='acc' onclick='this.classList.toggle(\"open\")'><button class='head'><span class='idx'>题2</span>敌人是怎样破坏地道的？冀中人民怎样对付？<span class='arrow'>▸</span></button><div class='body'>📝 <b>答题模板：</b>一一对应列表。<br>✅ <b>参考答案：</b>火攻→洞口备土和沙灭火；毒气攻→“孑口”装吊板挡住；水攻→地道连枯井暗沟，水从洞口进来就流走了；另外各村地道相通，还可以转移到旁的村子去。</div></div>"+
   "<div class='acc' onclick='this.classList.toggle(\"open\")'><button class='head'><span class='idx'>题3</span>“无线电”“有线电”为什么加引号？<span class='arrow'>▸</span></button><div class='body'>✅ <b>参考答案：</b>加引号表示特殊含义——它们并不是真正的无线电和有线电：“无线电”指人们发现敌情一个接一个吆喝传信，“有线电”指地道里用铁丝拉铜铃传信号。这两个词生动表现出人民的智慧。</div></div>"+
   "</div>"+
-  "<div class='tipbox tip'>⚡ <b>本课速读方法：</b>带着问题读——先提问“地道口藏在哪？敌人破坏怎么办？”，边读边找答案。</div></div>";},
+  "<div class='card'><h3>✍️ 小练笔：用地道战的一个智慧，写一句“人民的智慧是无穷的”的具体体会</h3>"+
+  "<p style='font-size:13.5px;color:var(--muted)'>课文里最打动人的，是那些“被逼出来的办法”：备土沙灭火、装吊板挡毒气、连枯井暗沟排水、吆喝当“无线电”……挑一个你觉得最妙的智慧，结合课文里的句子，写一段 50~100 字的体会——别只喊“真聪明”，要写清楚它妙在哪里、解决了什么难题。这是你从这篇课文真正带走的东西。</p>"+
+  "<textarea id='xilianbi-didaozhan' class='xltextarea' rows='4' placeholder='写在这里，点保存会自动记住…'></textarea>"+
+  "<div style='margin-top:8px;display:flex;gap:10px;align-items:center'><button class='tflow' style='max-width:180px' onclick='saveXilianbi(\"didaozhan\")'>💾 保存</button><span id='xlsave-didaozhan' style='font-size:12.5px;color:#3C9E5C;font-weight:700'></span></div></div>"+
+  "<div class='tipbox tip'>⚡ <b>本课速读方法：</b>集中注意力，不回读——生词多、句子长，遇到没懂的词先记下来继续往前读，读完再回头解决。</div></div>";},
  yuanDi:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
   "<div class='card' style='background:linear-gradient(135deg,#FDF3E3,#FFFDF8)'><h3>🚩 本课任务流（用具体事例“漫画”老师）</h3>"+
   "<div class='taskflow'>"+
@@ -3471,6 +3557,14 @@ var PANE_GUOGUAN={
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · “漫画”老师</h3>"+
   "<p style='font-size:13px;color:var(--muted)'>5 道题检验本次习作要求掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
   "<div id='quizBox'></div></div></div>"}
+ ,didaozhan:function(L){return "<div class='tabpane' data-tab='guoguan'>"+
+  "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 冀中的地道战</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>5 道题检验本课掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
+  "<div id='quizBox'></div></div></div>"}
+ ,jiangxianghe:function(L){return "<div class='tabpane' data-tab='guoguan'>"+
+  "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 将相和</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>5 道题检验本课掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
+  "<div id='quizBox'></div></div></div>"}
 };
 
 var SRC={
@@ -3538,6 +3632,20 @@ var SRC={
  ,yuanDi1:["😆 《我的“段子手”老师》：幽默型怎么写","开头外貌＋特点一起切：“他四十来岁，头发硬得像刷子，鼻梁上架一副黑框眼镜，可你千万别被这副‘正经面孔’骗了——他一开口，教室准能笑翻。”核心细节是“错题通缉令”：把错题投上大屏，打一个硕大的问号：“通缉这道题的‘凶手’，有谁见过它？”夸张＋幽默，特点立刻立起来。考砸的事一波三折：不敢抬头→老师没点名字，只把错题编成“新题”→一句“下次，让它从通缉令上消失”→心里暖暖的。批评藏进笑话里，喜爱自然流露。"],
  yuanDi2:["📋 《“三不”李老师》：严厉型怎么写","用排比开篇立特点：“作业不工整，不收；背书不过关，不放；写字不认真，不批。”三句话像三道“军令”。事例一详一略：退作业详写——摊开本子问“你自己读得清吗？”，批语一行小字“字如其人，今天的你特别精神”；发烧披外套略写——一严一暖，对比中生情。结尾点题：“严厉也是爱——这就是我们的李老师。”"],
  yuanDi3:["🌸 《温柔的“大朋友”》：温柔型怎么写","用叠词立特点：“说话轻轻的，走路轻轻的，连批评人都带着笑。”补课事例有画面：“下雨天，她的裤脚全湿了，甩甩伞上的水珠，就笑眯眯地翻开课本：‘咱们接着讲。’”互助小组一句“轻描淡写”，把“我”的“特别”变成全班的“平常”。传神细节收尾：“她只是笑得比谁都开心，眼睛弯成了两个月牙。”结尾升华：“温柔，也是一种了不起的力量。”"]
+ ,didaozhan_before:[
+  ["🚩 卡片一 · 1942：最难的那几年","1942到1944那几年，日本侵略军在冀中平原上“大扫荡”，还修筑了封锁沟和封锁墙，十里一碉，八里一堡。冀中是一马平川的大平原，无山无险可守——为了粉碎“扫荡”，冀中人民在中国共产党的领导下，创造了新的斗争方式：地道战。"],
+  ["🕳️ 卡片二 · 真实的“地下长城”","课文写的不是传说：河北冉庄地道以十字街为中心，总长约16公里；整个冀中平原的地道连起来超过12500公里，比万里长城还长。冉庄民兵依托地道配合八路军作战157次——地道真的是“坚强的堡垒”。"],
+  ["💡 卡片三 · 读前先知道","读这篇课文抓住两个词：一个是“奇迹”——地道式样多、功能全、防得住；一个是“智慧”——为了打击敌人，什么办法都想出来了。读的时候集中注意力，不回读，看看这 9 个自然段你能多快读完、读懂多少。"]]
+ ,dz1:["📏 地道到底有多大","课文说地道的式样有一百多种，家家相连、村村相通。真实数据更惊人：冉庄地道以十字街为中心，4条干线、24条支线，总长约16公里；整个冀中平原的地道连起来超过12500公里——比万里长城还长！地道里大洞容得下一百来人，备着开水、干粮、被子、灯火，住上三五天不成问题——名副其实的“地下长城”。"]
+ ,dz2:["🚪 地道口藏在哪儿","课文里的出口“开在隐蔽的地方，外面堆满荆棘”，旁边还挖陷坑、插尖刀、埋地雷，木板虚盖着铺上草。据冉庄地道战遗址的介绍，真实的地道口常常藏在锅台、水井、牲口槽、炕面、碾盘这些生活场景里——敌人进了村，做梦也想不到脚下全是地道。"]
+ ,dz3:["🛡️ 防水防毒防火的巧招","敌人的三招：火攻、毒气攻、水攻。人民的三个妙招一一对应：洞口备土和沙，灭火；“孑口”上装吊板，放下来挡住毒气；把地道跟枯井暗沟连接起来，水从洞口进来就流走了。还有各村地道相通，大不了转移到旁的村子去——任敌人想出什么毒辣的法子也不怕。"]
+ ,jiangxianghe_before:[
+  ["🖋️ 卡片一 · 作者与出处","课文《将相和》是根据《史记·廉颇蔺相如列传》改写的。《史记》是我国第一部纪传体通史，作者司马迁忍辱负重、用了大约14年写成52万多字，被鲁迅称为“史家之绝唱，无韵之《离骚》”。"],
+  ["⛰️ 卡片二 · 战国：七雄争霸的时代","故事发生在两千两百多年前的战国时期。当时天下分裂成七个大国：齐、楚、燕、韩、赵、魏、秦。秦国最强，一心向东扩张；赵国自“胡服骑射”改革后军力强大，是秦国东进路上最难啃的对手——所以秦国总想找机会羞辱赵王、试探赵国。"],
+  ["💎 卡片三 · 和氏璧与“完璧归赵”","和氏璧相传是楚国人卞和发现的，两次献宝都被误认是石头，第三次才证明是绝世美玉，是名副其实的“无价之宝”。公元前283年，秦王写信说愿用15座城换璧——蔺相如带着璧出使秦国，识破骗局，把璧完好无损地送回赵国，这就是“完璧归赵”。"]]
+ ,jxh1:["💎 完璧归赵：一场以死护璧的谈判","蔺相如识破秦王“给不给都吃亏”的骗局：先说“这块璧有点儿小毛病”把璧要回来，再靠柱而立“我的脑袋和璧就一块儿撞碎在这柱子上”，最后要求举行隆重典礼拖延时间，暗中派人把璧抄小路送回赵国。典礼那天他大大方方地说：璧已经送回赵国，“天下的人都知道秦国是从来不讲信用的”——有理、有据、有胆，秦王只好客客气气送他回去。"]
+ ,jxh2:["🎼 鼓瑟与击缶：一场“脸面”的较量","瑟是有名的乐器，缶只是盛酒的瓦器。秦王让赵王鼓瑟，还叫史官记下来——是想把“赵王臣服”写进历史；蔺相如逼秦王击缶，也叫人记下“秦王为赵王击缶”，用一模一样的方式扳回一局。渑池在今天的河南。这一回合，蔺相如靠的不只是胆子，还有“针锋相对”的智慧。"]
+ ,jxh3:["🤝 负荆请罪：成语的出处","这个成语就出自《史记·廉颇蔺相如列传》：廉颇脱下战袍、背上缚着荆条，到蔺相如门上请罪——荆条是可以用来打人的刑具，背着它上门，意思是“你随便罚”。现在“负荆请罪”用来形容主动向人认错道歉。将相和好后，两人同心协力保卫赵国，秦国多年不敢大规模进攻赵国。"]
 };
 
 function cardPop(title,html){
@@ -3742,7 +3850,21 @@ var QUIZ_YUANDI=[
  {q:"4. 下面哪种是本课提示的常见失误？",opts:["记流水账——没有重点事例，想到哪写到哪","结尾点出对老师的感情","事例里写动作、语言、神态"],a:0},
  {q:"5. 这次习作拿高分的关键是？",opts:["词汇越华丽越好","事例具体＋情感真实——善意的幽默里藏着对老师的喜爱","把老师写得越严厉越好"],a:1}
 ];
-var QUIZ_MAP={ymbyh:QUIZ_YMBYH,gushisan:QUIZ_GUSHISAN,snzgs:QUIZ_SNZGS,mlf:QUIZ_MLF,guihuayu:QUIZ_GUIHUAYU,luohuasheng:QUIZ_LUOHUASHENG,zhenzhuniao:QUIZ_ZHENZHNIAO,yuan1Di:QUIZ_YUAN1DI,yuanDi:QUIZ_YUANDI};
+var QUIZ_DIDAOZHAN=[
+ {q:"1. 冀中人民创造地道战这种斗争方式，是为了什么？",opts:["为了粉碎敌人的“大扫荡”，坚持生产、打击敌人","为了储存粮食和物资","为了村与村之间通行方便"],a:0},
+ {q:"2. 按课文内容，地道的式样有什么特点？",opts:["只有一种统一样式","式样有一百多种，家家相连、村村相通","全挖在高山脚下"],a:1},
+ {q:"3. 地道里的大洞有什么用处？",opts:["有的住人，有的拴牲口，有的搁东西，有的做厕所","专门关押俘虏","存放敌人的武器"],a:0},
+ {q:"4. 敌人火攻、毒气攻、水攻，人们是怎么防备的？",opts:["洞口备土和沙灭火；“孑口”装吊板挡毒气；地道连枯井暗沟排水","把地道口全部封死不动","放烟花把敌人吓跑"],a:0},
+ {q:"5. “为了打击敌人，什么办法都想出来了，人民的智慧是无穷无尽的。”这句话表达了什么？",opts:["担心地道会被破坏","颂扬人民群众无穷无尽的智慧","说明地道工程很辛苦"],a:1}
+];
+var QUIZ_JIANGXIANGHE=[
+ {q:"1. 课文中三个故事的先后顺序是？",opts:["渑池会面 → 完璧归赵 → 负荆请罪","完璧归赵 → 渑池会面 → 负荆请罪","负荆请罪 → 完璧归赵 → 渑池会面"],a:1},
+ {q:"2. “完璧归赵”里，蔺相如是用什么办法拿回和氏璧的？",opts:["说璧有点儿小毛病，把璧要了回来","趁秦王喝醉偷走宝璧","请赵王派人来抢"],a:0},
+ {q:"3. 渑池会上，蔺相如逼秦王做了什么，为赵国挽回面子？",opts:["为赵王鼓瑟","向赵王道歉","为赵王击缶"],a:2},
+ {q:"4. 蔺相如处处避着廉颇，是因为？",opts:["他真的害怕廉颇","为的是我们赵国——将相不和，秦国就会乘机来打","他觉得自己理亏"],a:1},
+ {q:"5. 廉颇负荆请罪，可以看出他怎样的品质？",opts:["英勇善战","知错就改","胆小怕事"],a:1}
+];
+var QUIZ_MAP={ymbyh:QUIZ_YMBYH,gushisan:QUIZ_GUSHISAN,snzgs:QUIZ_SNZGS,mlf:QUIZ_MLF,guihuayu:QUIZ_GUIHUAYU,luohuasheng:QUIZ_LUOHUASHENG,zhenzhuniao:QUIZ_ZHENZHNIAO,yuan1Di:QUIZ_YUAN1DI,yuanDi:QUIZ_YUANDI,didaozhan:QUIZ_DIDAOZHAN,jiangxianghe:QUIZ_JIANGXIANGHE};
 var quizState={};
 function quizBank(){
   var key=currentLesson&&currentLesson.key;
