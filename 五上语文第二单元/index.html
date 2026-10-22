@@ -3244,7 +3244,7 @@ var PANE_TUOZHAN = {
 };
 
 /* ===================== 讲解页 学习/复习 双模式排序（第四单元样板） ===================== */
-/* 学习模式按"链式"认知顺序重排：感知→理解→分析→积累→检验→输出→延伸 */
+/* 学习模式按“链式”认知顺序重排：感知→理解→分析→积累→检验→输出→延伸 */
 var JJ_LEARN_ORDER=[
  [/任务流|资料包/,0],[/课文原文/,1],[/读懂课文/,2],
  [/速查|考点导航/,7],[/精讲|精读/,3],[/写法/,4],
@@ -3563,6 +3563,10 @@ function submitQuiz(){
     if(P.jichu) Object.keys(P.jichu).forEach(function(key){ JICHU[key]=P.jichu[key]; });
     if(P.zige) Object.keys(P.zige).forEach(function(key){ ZIGE[key]=P.zige[key]; });
     if(P.ciyu) Object.keys(P.ciyu).forEach(function(key){ CIYU[key]=P.ciyu[key]; });
+    /* 全单元组合扩展挂载点（task-flow 样板） */
+    if(P.src) Object.keys(P.src).forEach(function(key){ SRC[key]=P.src[key]; });
+    if(P.guoguan) Object.keys(P.guoguan).forEach(function(key){ PANE_GUOGUAN[key]=P.guoguan[key]; });
+    if(P.quizzes) Object.keys(P.quizzes).forEach(function(key){ QUIZ_MAP[key]=P.quizzes[key]; });
   });
 })();
 
