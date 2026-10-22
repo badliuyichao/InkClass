@@ -2248,6 +2248,14 @@ var PANE_JIANGJIE = {
   "<div class='tipbox story'>📖 课文结尾说“没有任何一个海员能与他相提并论”——不是因为他的船最漂亮，而是因为他在最危急的时刻，把职责和他人放在了自己生命的前面。</div></div>"+
   "<div class='tipbox tip'>⚡ <b>本单元方法：</b>带着问题读——读之前先问“船长是怎样组织救援的”，读的时候答案会自己“跳”进眼睛里。</div></div>";}
  ,gushisan:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
+  "<div class='card' style='background:linear-gradient(135deg,#FDF3E3,#FFFDF8)'><h3>🚩 本课学习任务流（结合背景，读懂诗人的爱国心）</h3>"+
+  "<div class='taskflow'>"+
+  "<div class='tflow' onclick='showPack(\"gushisan\")'>📖<br>读前资料包<small>先看 3 张历史卡再读诗</small></div>"+
+  "<div class='tflow' onclick='document.getElementById(\"gs-src\").scrollIntoView({behavior:\"smooth\"})'>📚<br>读中查资料<small>读原文时点黄色标签</small></div>"+
+  "<div class='tflow' onclick='openXilianbi(\"gushisan\")'>✍️<br>小练笔<small>给诗人回一句话</small></div>"+
+  "<div class='tflow' onclick='switchTab(\"guoguan\")'>🎯<br>过关自测<small>5 道题检验</small></div>"+
+  "</div>"+
+  "<div style='margin-top:10px;text-align:right'><button class='srcbtn' id='jjModeBtn' onclick='toggleJjMode()'>🔄 切换为：复习模式</button></div></div>"+
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🧾 本课必背内容（考试就考这些，先逐项过关）</h3>"+
   "<p style='font-size:13px;color:var(--muted)'>这篇课文必须背诵的内容都在这一页——一项一项过关，考试填空题就不丢分。</p>"+
   "<table class='ovtable'>"+
@@ -2256,27 +2264,54 @@ var PANE_JIANGJIE = {
   "<tr><td><b>✅ 必背中心</b></td><td>三首诗同抒爱国情怀：陆游<b>临终盼统一</b>、林升<b>讽刺偏安享乐</b>、龚自珍<b>呼唤变革人才</b></td></tr>"+
   "<tr><td><b>✅ 必会字词</b></td><td>会写：祭、乃、熏、杭、亥、恃、哀、拘；易错音：恃 shì、抖擞 dǒu sǒu、祭 jì；必考词：家祭、乃翁、汴州、抖擞、不拘一格</td></tr>"+
   "</table></div>"+
-  "<div class='card'><h3>🎯 精读段落速查（先抓这几段！）</h3>"+
-  "<table class='ovtable'><thead><tr><th style='width:150px'>精读段落</th><th>重点是什么</th><th style='width:150px'>常考怎么考</th></tr></thead>"+
-  "<tr><td><b>⭐《示儿》· 陆游</b></td><td>一位 85 岁老人的临终遗嘱：万事皆空，唯“悲”不见九州同；唯一嘱托是“家祭无忘告乃翁”。</td><td>默写、诗人情感（悲→盼）</td></tr>"+
-  "<tr><td><b>⭐《题临安邸》· 林升</b></td><td>“暖风熏得游人醉，直把杭州作汴州”——美景歌舞背后，是对权贵忘却国耻的辛辣质问“几时休”。</td><td>“汴州”指什么、讽刺意味</td></tr>"+
-  "<tr><td><b>⭐《己亥杂诗》· 龚自珍</b></td><td>“万马齐喑究可哀”写压抑，“我劝天公重抖擞”是呐喊——盼望社会变革、不拘一格降人才。</td><td>名句理解、表达的情感</td></tr>"+
+  "<div class='card'><h3>🎯 考点导航 · 先看考什么，再去深入</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>这张表不再重复讲解——只回答两件事：考试考什么题型？想深入时点右侧按钮直达对应精讲。</p>"+
+  "<table class='ovtable'><thead><tr><th style='width:132px'>重点内容</th><th>常考怎么考</th><th style='width:86px'>直达</th></tr></thead>"+
+  "<tr><td><b>⭐《示儿》· 陆游</b></td><td><b>默写＋情感题</b>：临终遗嘱——“万事空”却有一“悲”；默写高频“王师北定中原日，家祭无忘告乃翁”（“祭”“乃”易错）</td><td><button class='srcbtn' onclick='jumpJj(\"gs-tl-1\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐《题临安邸》· 林升</b></td><td><b>讽刺诗理解</b>：“直把杭州作汴州”讽刺权贵忘却国耻、沉迷享乐；“汴州”指北宋都城开封（已沦陷）</td><td><button class='srcbtn' onclick='jumpJj(\"gs-tl-2\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐《己亥杂诗》· 龚自珍</b></td><td><b>名句默写＋思想感情</b>：“我劝天公重抖擞，不拘一格降人才”——渴求变革、盼望人才涌现</td><td><button class='srcbtn' onclick='jumpJj(\"gs-tl-3\")'>看精讲</button></td></tr>"+
   "</table></div>"+
   "<div id='jichuAnchor'></div>"+
   "<div class='card'><h3>📖 读懂课文：三首诗，一个“国”字</h3>"+
   "<div class='kv'><div><b>🗺️ 时代背景</b><br>《示儿》《题临安邸》写在南宋——北方国土被金人占领，朝廷却偏安杭州；《己亥杂诗》写在晚清——内忧外患，风气压抑。三位诗人都处在“国家有难”的年代。</div>"+
   "<div><b>🧭 全文结构线</b><br>临终嘱托（示儿）→ 途中题诗讽刺（题临安邸）→ 辞官呐喊（己亥杂诗）——三种身份、三种笔法，一个主题：爱国。</div></div>"+
   "<div class='kv'><div><b>🧠 一课一背（主要内容＋中心思想）</b><br>主要内容：本课三首诗分别写陆游临终盼望国家统一、林升讽刺权贵偏安享乐、龚自珍呼唤变革人才。<br>中心思想：三首诗都表达了诗人<b>深沉的爱国情怀</b>——对国土沦丧的悲痛、对苟且偷安的愤慨、对国家振兴的期盼。</div></div></div>"+
-  "<div class='card'><h3>📄 课文原文（三首诗全文）</h3>"+
+  "<div class='card' id='gs-src'><h3>📄 课文原文 · 三首诗全文</h3>"+
+  "<div class='readtext'>"+
   "<div style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:2'><b>示儿</b> <span style='font-size:13px;color:var(--muted)'>〔宋〕陆游</span><br>死去元知万事空，但悲不见九州同。<br>王师北定中原日，家祭无忘告乃翁。</div>"+
+  "<button class='srcbtn' onclick='showCard(\"gs1\")'>📚 查资料 · 《示儿》写于什么时候</button>"+
   "<div style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:2'><b>题临安邸</b> <span style='font-size:13px;color:var(--muted)'>〔宋〕林升</span><br>山外青山楼外楼，西湖歌舞几时休？<br>暖风熏得游人醉，直把杭州作汴州。</div>"+
+  "<button class='srcbtn' onclick='showCard(\"gs2\")'>📚 查资料 · 杭州与汴州</button>"+
   "<div style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:2'><b>己亥杂诗</b> <span style='font-size:13px;color:var(--muted)'>〔清〕龚自珍</span><br>九州生气恃风雷，万马齐喑究可哀。<br>我劝天公重抖擞，不拘一格降人才。</div>"+
-  "<p style='font-size:12.5px;color:var(--muted)'>默写易错字：祭（上部不是“登”）、乃（第一笔横折折折钩）、恃（竖心旁）、抖擞都是提手旁。</p></div>"+
+  "<button class='srcbtn' onclick='showCard(\"gs3\")'>📚 查资料 · 《己亥杂诗》的由来</button>"+
+  "<p style='font-size:12.5px;color:var(--muted)'>默写易错字：祭（上部不是“登”）、乃（第一笔横折折折钩）、恃（竖心旁）、抖擞都是提手旁。</p>"+
+  "</div></div>"+
   "<div class='card'><h3>🔍 精读深挖：一字一句读爱国</h3>"+
   "<div class='timeline'>"+
-  "<div class='tl'><b>⭐《示儿》· 一个“悲”字定全诗</b><br>“死去元知万事空”——人死万事空，可“但悲不见九州同”：放不下的不是家事，是国土。遗嘱不提家产，只提“王师北定”那天家祭告诉他。悲，是因为爱得深。</div>"+
-  "<div class='tl'><b>⭐《题临安邸》· 两个地名藏愤怒</b><br>“山外青山楼外楼”看似写景，实际写权贵层层叠叠的享乐；“直把杭州作汴州”——把临时避难的杭州当成丢了的老都城汴州，忘了国耻。一个“直”字，讽刺入骨。</div>"+
-  "<div class='tl'><b>⭐《己亥杂诗》· 从“哀”到“劝”的转折</b><br>前两句写“万马齐喑”的死气沉沉——究可哀；后两句陡然拔起，请天公重新抖擞精神、不拘一格降人才——由痛转呼，情感昂扬。</div>"+
+  "<div class='tl' id='gs-tl-1'><b>⭐《示儿》· 一个“悲”字定全诗</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>死去元知万事空，但悲不见九州同。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：诗人说人死后“万事空”，什么都放下了，为什么偏偏还有一个“悲”？</div>"+
+  "<ul class='jl-ju'><li><b>“元知万事空”</b>——明知人死后什么都不知道了，先把自己“放”下。</li>"+
+  "<li><b>“但悲”</b>——一个“但”字猛然转折：万事可放下，唯独国家统一放不下。</li>"+
+  "<li><b>悲因爱起</b>——悲得越深，爱得越深；所以遗嘱不提家产，只提“王师北定”那天家祭相告。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：以“空”衬“悲”——放不下的不是家事，是国土。</div>"+
+  "<div class='jl-kao'>📝 考法：《示儿》<b>默写高频</b>（“祭”“乃”易错）；情感题问“悲”的原因，答<b>至死不见国家统一的悲痛与盼望</b>。</div></div>"+
+  "<div class='tl' id='gs-tl-2'><b>⭐《题临安邸》· 一个“醉”字写透荒唐</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>暖风熏得游人醉，直把杭州作汴州。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：“游人”真是被暖风吹醉的吗？一个“醉”字，醉的到底是什么？</div>"+
+  "<ul class='jl-ju'><li><b>“熏”“醉”</b>——暖风熏的不是脸，是心：权贵沉迷歌舞享乐，醉生梦死。</li>"+
+  "<li><b>“直把”</b>——简直把临时避难的杭州，当成了早已沦陷的老都城汴州，浑忘国耻。</li>"+
+  "<li><b>对照之痛</b>——同一时刻，北方沦陷区的百姓在苦盼“王师”，西湖边却歌舞不休。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：不骂一句重话，讽刺全藏进“熏”“醉”“直把”——荒唐自己现形。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>讽刺诗理解</b>——问“讽刺了什么”，答<b>权贵忘却国耻、偏安享乐</b>；“汴州”指北宋都城开封（已沦陷）。</div></div>"+
+  "<div class='tl' id='gs-tl-3'><b>⭐《己亥杂诗》· 从“哀”到“劝”的呐喊</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>我劝天公重抖擞，不拘一格降人才。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：“劝天公”是诗人真的迷信上天吗？他真正想劝的是谁？</div>"+
+  "<ul class='jl-ju'><li><b>借天公说人间</b>——向“天公”呼喊，其实是向统治者和整个社会呼喊：变革吧！</li>"+
+  "<li><b>“万马齐喑”</b>——用万马沉默比喻社会死气沉沉的局面，所以“究可哀”。</li>"+
+  "<li><b>“不拘一格”</b>——打破僵化的规矩，让各种各样的人才涌现，国家才有生气。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：前两句写“哀”，后两句喊“变”——由痛转呼，情感昂扬。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>名句默写</b>（“抖擞”都是提手旁）；思想感情题答<b>解放人才、渴求变革的强烈愿望</b>。</div></div>"+
   "</div></div>"+
   "<div class='card'><h3>✍️ 写法借鉴：诗人怎么写爱国</h3>"+
   "<table class='ovtable'><thead><tr><th style='width:110px'>写法</th><th>课文里怎么用</th><th>你的作文怎么用</th></tr></thead>"+
@@ -2297,6 +2332,10 @@ var PANE_JIANGJIE = {
   "<div class='bili-frame'><iframe src='https://player.bilibili.com/player.html?bvid=BV1Gb4y1g7Mb&page=1&danmaku=0&autoplay=0&high_quality=1' scrolling='no' frameborder='no' allowfullscreen='true' loading='lazy'></iframe></div>"+
   "<p class='vnote'>📺 《题临安邸》诵读（中华经典资源库） · UP主：中华经典资源库 · 时长 1分25秒 · <a class='blink' href='https://www.bilibili.com/video/BV1Gb4y1g7Mb' target='_blank' rel='noopener'>在B站打开 ↗</a> · <a class='blink landlink'>⛶ 横屏看</a></p>"+
   "<div class='tipbox tip'>⚡ 这是教育部“中华经典资源库”的专业诵读，一字一句都有讲究。听完《题临安邸》，试着用同样庄重的语气读《示儿》和《己亥杂诗》；想了解陆游的一生，去“背景拓展”看《5分钟看完陆游一生》。</div></div>" +
+  "<div class='card'><h3>✍️ 小练笔：给诗人回一句话</h3>"+
+  "<p style='font-size:13.5px;color:var(--muted)'>如果陆游能看到今天，或龚自珍能穿越到现在，你想对他们说哪句话？写一段 50~100 字的话——可以告诉陆游“九州早已同”，也可以告诉龚自珍今天的人才是什么样。这是你从这三首诗真正带走的东西。</p>"+
+  "<textarea id='xilianbi-gushisan' class='xltextarea' rows='4' placeholder='写在这里，点保存会自动记住…'></textarea>"+
+  "<div style='margin-top:8px;display:flex;gap:10px;align-items:center'><button class='tflow' style='max-width:180px' onclick='saveXilianbi(\"gushisan\")'>💾 保存</button><span id='xlsave-gushisan' style='font-size:12.5px;color:#3C9E5C;font-weight:700'></span></div></div>"+
   "<div class='tipbox tip'>⚡ <b>本单元方法：</b>结合资料读诗——先查一查诗的时代背景（靖康之耻、南宋偏安、晚清危局），诗句里的感情一下子就读懂了。</div></div>";}
  ,snzgs:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🧾 本课必背内容（考试就考这些，先逐项过关）</h3>"+
@@ -3150,7 +3189,11 @@ var PANE_GUOGUAN={
  ymbyh:function(L){return "<div class='tabpane' data-tab='guoguan'>"+
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 圆明园的毁灭</h3>"+
   "<p style='font-size:13px;color:var(--muted)'>5 道题检验本课掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
-  "<div id='quizBox'></div></div></div>";}
+  "<div id='quizBox'></div></div></div>"}
+ ,gushisan:function(L){return "<div class='tabpane' data-tab='guoguan'>"+
+  "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 古诗三首</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>5 道题检验本课掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
+  "<div id='quizBox'></div></div></div>"}
 };
 
 var SRC={
@@ -3161,7 +3204,14 @@ var SRC={
  ym1:["🗺️ 圆明三园与“众星拱月”","圆明园、万春园、长春园三园相连，组成“圆明三园”；东、西、南三面还有 100 多个小园，像星星围着月亮一样环绕。园中最著名的景区有 40 处，被画进《圆明园四十景图咏》——课文里的“蓬岛瑶台”“武陵春色”都是其中之一。"],
  ym2:["🏛️ 西洋楼与大水法","圆明园西部有一组欧式宫殿建筑群，叫“西洋楼”，大水法是其中的喷泉景观，用白色大理石建造，造型精巧。今天你在圆明园遗址公园看到的几根白色石柱残迹，就是大水法的遗骸——它们常常出现在历史课本的封面上。"],
  ym3:["🦁 流失的十二生肖兽首","海晏堂前有一组人身兽首铜像，是十二生肖：每到一家时辰，对应的兽首就轮流喷水，正午十二个一起喷，设计精妙绝伦。1860 年它们被联军掠走，流失海外 160 多年。到今天，牛首、猴首、虎首、猪首、马首、鼠首、兔首已陆续回归祖国——每一次回归，都是一次“勿忘国耻”的提醒。"],
- ym4:["🔥 1860 年 10 月，圆明园经历了什么","10 月 6 日，英法联军占领圆明园，随后大肆抢劫；10 月 18 日和 19 日，三千多名侵略者奉命在园内放火。大火烧了三天三夜，园中 300 多名太监、宫女葬身火海。远在欧洲的雨果愤怒地写道：“有一天，两个强盗闯入了圆明园，一个强盗大肆掠夺，另一个强盗纵火焚烧。”"]
+ ym4:["🔥 1860 年 10 月，圆明园经历了什么","10 月 6 日，英法联军占领圆明园，随后大肆抢劫；10 月 18 日和 19 日，三千多名侵略者奉命在园内放火。大火烧了三天三夜，园中 300 多名太监、宫女葬身火海。远在欧洲的雨果愤怒地写道：“有一天，两个强盗闯入了圆明园，一个强盗大肆掠夺，另一个强盗纵火焚烧。”"],
+ gushisan_before:[
+  ["🏹 卡片一 · 靖康之变与南宋偏安","1127 年，金军攻破北宋都城，掳走徽、钦二帝，北宋灭亡，史称“靖康之变”。宋室仓皇南渡，定都临安（今杭州），北方大片国土沦陷——从此，“收复中原”成了南宋人一百年都没能圆的梦。"],
+  ["🖋️ 卡片二 · 陆游与《示儿》","陆游（1125—1210），南宋爱国诗人，一生盼望北伐收复中原，却屡遭排挤、壮志难酬。这首诗写于 1210 年，是他 85 岁临终前留给儿子的“遗嘱”——等了一辈子的消息没等到，就成了放不下的遗愿。"],
+  ["🕯️ 卡片三 · 1839 年的龚自珍","1839 年（己亥年），龚自珍辞官南归，一路目睹清朝“万马齐喑”的死气：官场僵化、人才受压、危机四伏。他在途中写下 315 首诗，总称《己亥杂诗》——课本里这首，是其中最响亮的一声呐喊。"]],
+ gs1:["📜 《示儿》写于什么时候","《示儿》写于 1210 年，是陆游的临终绝笔。“王师”指南宋的朝廷军队；“九州同”指全国统一——九州是古代中国的代称。诗人临终惦记的不是家产，而是国家统一那天，家祭时别忘了把这个好消息告诉他。"],
+ gs2:["🏙️ 杭州与汴州","汴州就是北宋的都城开封，1127 年已经沦陷；杭州是南宋的“行在”（临时都城）。林升在杭州的旅馆墙上题下这首诗：“直把杭州作汴州”——讽刺权贵们把逃难的落脚点当成了安乐窝，歌舞不休，全然忘了故都沦陷、国土未收。"],
+ gs3:["🕯️ 《己亥杂诗》的由来","1839 年是己亥年，龚自珍辞官离京南归，途中写下 315 首绝句，总称《己亥杂诗》。“万马齐喑”用万马的沉默比喻社会死气沉沉的局面。课本里这首是他最著名的一声呐喊：盼望社会变革，不拘一格地涌现人才。"]
 };
 
 function cardPop(title,html){
@@ -3220,11 +3270,24 @@ var QUIZ_YMBYH=[
  {q:"4. 给侵略者的罪行排出正确顺序：",opts:["放火 → 掠走 → 搬运 → 毁掉","掠走 → 搬运 → 毁掉 → 放火","搬运 → 掠走 → 放火 → 毁掉"],a:1},
  {q:"5. 按原文填空：大火连烧（　）天，烟云笼罩了整个北京城。",opts:["两","三","五"],a:1}
 ];
+var QUIZ_GUSHISAN=[
+ {q:"1. 《示儿》的作者与朝代是？",opts:["陆游 · 南宋","林升 · 北宋","龚自珍 · 清代"],a:0},
+ {q:"2. “但悲不见九州同”中“九州同”指的是什么？",opts:["家人团聚","全国统一","长寿安康"],a:1},
+ {q:"3. “直把杭州作汴州”讽刺的是什么？",opts:["杭州风景比不上汴州","权贵忘却国耻、沉迷享乐","诗人思念故乡汴州"],a:1},
+ {q:"4. “我劝天公重抖擞，不拘一格降人才”表达了什么？",opts:["渴求变革、盼望人才涌现","祈求上天保佑丰收","感叹自己怀才不遇"],a:0},
+ {q:"5. 三首诗情感的共同点是？",opts:["思念故乡","热爱自然","爱国"],a:2}
+];
+var QUIZ_MAP={ymbyh:QUIZ_YMBYH,gushisan:QUIZ_GUSHISAN};
 var quizState={};
+function quizBank(){
+  var key=currentLesson&&currentLesson.key;
+  return (key&&QUIZ_MAP[key])||QUIZ_YMBYH;
+}
 function buildQuiz(){
   var box=document.getElementById("quizBox");
   if(!box||box.dataset.built) return;
-  var html=QUIZ_YMBYH.map(function(item,qi){
+  var Q=quizBank();
+  var html=Q.map(function(item,qi){
     return "<div class='quizq' data-q='"+qi+"'><h4>"+item.q+"</h4>"+
       item.opts.map(function(o,oi){return "<button class='opt' onclick='pickOpt(this,"+qi+","+oi+")'>"+o+"</button>";}).join("")+"</div>";
   }).join("");
@@ -3241,8 +3304,10 @@ function pickOpt(btn,qi,oi){
 }
 function submitQuiz(){
   var res=document.getElementById("quizResult"); if(!res) return;
-  var right=0,total=QUIZ_YMBYH.length,answered=0;
-  QUIZ_YMBYH.forEach(function(item,qi){
+  var key=(currentLesson&&currentLesson.key)||"ymbyh";
+  var Q=quizBank();
+  var right=0,total=Q.length,answered=0;
+  Q.forEach(function(item,qi){
     var sel=quizState[qi];
     if(sel===undefined) return;
     answered++;
@@ -3262,7 +3327,7 @@ function submitQuiz(){
   res.style.color= right>=3?"#3C9E5C":"#C0392B";
   try{
     var p=JSON.parse(localStorage.getItem("inkclass_progress")||"{}");
-    p.ymbyh={score:right,total:total,time:new Date().toLocaleDateString("zh-CN")};
+    p[key]={score:right,total:total,time:new Date().toLocaleDateString("zh-CN")};
     localStorage.setItem("inkclass_progress",JSON.stringify(p));
   }catch(e){}
 }
