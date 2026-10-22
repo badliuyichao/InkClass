@@ -4,6 +4,28 @@
    口语交际：父母之爱 / 习作：我想对您说 / 语文园地：游子吟
    ============================================================ */
 window.UNIT58 = window.UNIT58 || {};
+/* —— 第六单元过关自测题库（每课 5 题，a 为正确选项索引）—— */
+var QUIZ_CIMU=[
+ {q:"1. 《慈母情深》的作者是？",opts:["梁晓声","吴冠中","孟郊"],a:0},
+ {q:"2. “龟裂的手指”中“龟裂”的读音是？",opts:["guī liè","jūn liè","guì liè"],a:1},
+ {q:"3. 四个“立刻”反复出现，有什么作用？",opts:["写母亲动作熟练、心情愉快","写出母亲争分夺秒、极度辛劳，反衬母爱无私","写车间里大家都手忙脚乱"],a:1},
+ {q:"4. 母亲把“揉得皱皱的毛票”“塞”给“我”，说明什么？",opts:["母亲想赶快打发“我”走","母亲毫不犹豫地支持“我”读书","这些毛票不值钱"],a:1},
+ {q:"5. “我鼻子一酸，攥着钱跑了出去”，原因是？",opts:["车间里的气味太刺鼻","第一次真正看见母亲的辛苦，又心疼又愧疚","发现买的书太贵了"],a:1}
+];
+var QUIZ_FUAI=[
+ {q:"1. 《父爱之舟》全文的线索是？",opts:["一条弯弯的小河","姑爹的小渔船","一辆破旧的马车"],a:1},
+ {q:"2. 课文围绕父亲写了多少个场景？",opts:["三件","五件","七件"],a:2},
+ {q:"3. 逛庙会时，父亲和“我”各吃了什么？",opts:["给“我”买热豆腐脑，自己吃凉粽子","自己吃热豆腐脑，“我”吃凉粽子","两个人一起分一碗豆腐脑"],a:0},
+ {q:"4. 结尾“醒来，枕边一片湿”好在哪里？",opts:["直接写出“我”很伤心","用细节含蓄表达对父亲的思念，照应开头写“梦”","说明睡觉出了很多汗"],a:1},
+ {q:"5. 用平凡小事写出深沉父爱的写法叫？",opts:["以小见大","夸张对比","借景抒情"],a:0}
+];
+var QUIZ_HTY=[
+ {q:"1. 这封信的作者是？",opts:["刘洋——中国首位进入太空的女航天员","陈冬","蔡旭哲"],a:0},
+ {q:"2. 这封信写于何时、何地？",opts:["2022年6月1日 · 酒泉卫星发射中心问天阁","2012年6月 · 太空之中","2026年6月1日 · 北京"],a:0},
+ {q:"3. “你们是妈妈的铠甲，也是妈妈的软肋”中“铠甲”比喻什么？",opts:["孩子给了妈妈勇气和力量","孩子是妈妈的负担","军人穿的防护服"],a:0},
+ {q:"4. “临危忘身，受命忘家”表现了什么？",opts:["军人的职责与担当","妈妈不爱自己的孩子","太空生活很危险"],a:0},
+ {q:"5. 结尾“等着妈妈拥抱完星辰大海再来拥抱你们”表达了什么？",opts:["完成任务就回家的深情与期待","妈妈再也不回来了","星辰大海非常美丽"],a:0}
+];
 UNIT58.u6 = {
 unit:{
  key:"unit6", num:"第六单元", title:"舐犊情深，纸短情长", emoji:"💌",
@@ -44,6 +66,14 @@ unit:{
 
 jiangjie:{
  cimu:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
+  "<div class='card' style='background:linear-gradient(135deg,#FDF3E3,#FFFDF8)'><h3>🚩 本课学习任务流（从场景与细节里，读懂慈母情深）</h3>"+
+  "<div class='taskflow'>"+
+  "<div class='tflow' onclick='showPack(\"cimu\")'>📖<br>读前资料包<small>先看 3 张背景卡再读课文</small></div>"+
+  "<div class='tflow' onclick='document.getElementById(\"cimu-src\").scrollIntoView({behavior:\"smooth\"})'>📚<br>读中查资料<small>读原文时点黄色标签</small></div>"+
+  "<div class='tflow' onclick='openXilianbi(\"cimu\")'>✍️<br>小练笔<small>抓一个细节写母亲或父亲</small></div>"+
+  "<div class='tflow' onclick='switchTab(\"guoguan\")'>🎯<br>过关自测<small>5 道题检验</small></div>"+
+  "</div>"+
+  "<div style='margin-top:10px;text-align:right'><button class='srcbtn' id='jjModeBtn' onclick='toggleJjMode()'>🔄 切换为：复习模式</button></div></div>"+
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🧾 本课必背内容（考试就考这些，先逐项过关）</h3>"+
   "<table class='ovtable'>"+
   "<tr><td><b>✅ 故事主线</b></td><td>“我”想买长篇小说《青年近卫军》→ 到母亲做工的车间要钱 → 看见母亲在恶劣环境中辛苦工作 → 母亲毫不犹豫给钱 → “我”买了水果罐头 → 母亲数落后又凑钱给“我”买书。</td></tr>"+
@@ -90,9 +120,66 @@ jiangjie:{
   "<div><b>🖋️ 背景</b><br>《慈母情深》节选自梁晓声的散文《母亲》，写的是上世纪六十年代初的事。那时物资匮乏，一元五角钱对一个工人家庭来说不是小数目——这也是“我”要钱时“犹豫”的原因。</div></div>"+
   "<div class='tipbox story'>📖 梁晓声回忆，母亲在街道小厂做工，车间里几十台缝纫机同时响，“像下暴雨”。他第一次去车间找母亲，被那声音震住了——课文里“震耳欲聋”四个字，就是他真实的记忆。</div>"+
   "<div class='tipbox tip'>⚡ <b>本课阅读提醒：</b>读的时候圈出所有“动词”和“数字”，你会发现母爱不是抽象的，它长在“凑、塞、掏、攥”这些动作里。</div></div>"+
+  "<div class='card'><h3>🎯 考点导航 · 先看考什么，再去深入</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>这张表不再重复讲解——只回答两件事：考试考什么题型？想深入时点右侧按钮直达对应精讲。</p>"+
+  "<table class='ovtable'><thead><tr><th style='width:132px'>重点内容</th><th>常考怎么考</th><th style='width:86px'>直达</th></tr></thead>"+
+  "<tr><td><b>⭐ 车间场景</b></td><td><b>环境描写的作用</b>：交代背景 + 表现母亲艰辛 + 烘托母爱 + 推动情节（“我”因此“鼻子一酸”）</td><td><button class='srcbtn' onclick='jumpJj(\"cimu-tl-1\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 四个“立刻”</b></td><td><b>反复的作用</b>：写出争分夺秒、极度辛劳，反衬母爱无私；也考“坐、弯、俯、陷”动词链</td><td><button class='srcbtn' onclick='jumpJj(\"cimu-tl-2\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 给钱细节</b></td><td><b>动作细节赏析</b>：掏、数、塞、攥——细节里读出无私与深情，常连考“鼻子一酸”的心理变化</td><td><button class='srcbtn' onclick='jumpJj(\"cimu-tl-3\")'>看精讲</button></td></tr>"+
+  "</table></div>"+
+  "<div class='card' id='cimu-src'><h3>📄 课文原文 · 节选（直读版）</h3>"+
+  "<div class='readtext'>"+
+  "<p style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:2'>我穿过一排排缝纫机，走到那个角落，看见一个极其瘦弱的脊背弯曲着，头凑到缝纫机板上。周围几只灯泡烤着我的脸。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"cimu1\")'>📚 查资料 · 震耳欲聋的车间</button>"+
+  "<p style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:2'>母亲说完，立刻又坐了下去，立刻又弯曲了背，立刻又将头俯在缝纫机板上了，立刻又陷入了忙碌。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"cimu2\")'>📚 查资料 · 四个“立刻”</button>"+
+  "<p style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:2'>母亲掏衣兜，掏出一卷揉得皱皱的毛票，用龟裂的手指数着。……母亲却已将钱塞在我手心里了，大声对那个女人说：‘我挺高兴他爱看书的！’</p>"+
+  "<button class='srcbtn' onclick='showCard(\"cimu3\")'>📚 查资料 · 揉皱的毛票与龟裂的手指</button>"+
+  "<p style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:2'>那天，我用那一元五角钱给母亲买了一听水果罐头。……母亲说完，又给我凑足了买《青年近卫军》的钱。我想，我没有权利用那钱再买任何别的东西，无论为我自己还是为母亲。</p>"+
+  "<p style='margin:10px 0 0;font-size:12.5px;color:var(--muted)'>——课文关键语句节选，段落顺序与课文一致；完整原文请对照课本朗读。</p>"+
+  "</div></div>"+
+  "<div class='card'><h3>🔍 精读深挖：场景、细节里的母爱</h3>"+
+  "<div class='timeline'>"+
+  "<div class='tl' id='cimu-tl-1'><b>⭐ 场景描写 · 震耳欲聋的车间</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>我穿过一排排缝纫机，走到那个角落，看见一个极其瘦弱的脊背弯曲着，头凑到缝纫机板上。周围几只灯泡烤着我的脸。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：作者为什么先写声音、温度和人数，再写母亲？</div>"+
+  "<ul class='jl-ju'><li><b>“七八十台”与“震耳欲聋”</b>——先给耳朵一击：母亲每天就在这样的噪音里干活。</li>"+
+  "<li><b>“灯泡烤着我的脸”</b>——再给皮肤一击：酷暑、闷热，环境越恶劣，母亲越辛苦。</li>"+
+  "<li><b>环境烘托</b>——场景写得越苦，后面母亲毫不犹豫给钱就越动人。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：先写场景，再写人——环境越苦，母爱越重。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>环境描写的作用</b>——交代背景 + 表现人物处境 + 烘托情感 + 推动情节。</div></div>"+
+  "<div class='tl' id='cimu-tl-2'><b>⭐ 反复 · 四个“立刻”</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>母亲说完，立刻又坐了下去，立刻又弯曲了背，立刻又将头俯在缝纫机板上了，立刻又陷入了忙碌。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：为什么连用四个“立刻”，只用一个不行吗？</div>"+
+  "<ul class='jl-ju'><li><b>像四个快镜头</b>——坐、弯、俯、陷，动作一个接一个，连喘口气的时间都没有。</li>"+
+  "<li><b>反复＝加重音</b>——强调母亲争分夺秒：这一元五角钱是一针一线熬出来的。</li>"+
+  "<li><b>节奏急促</b>——读起来让人心疼，母爱的分量全在这个节奏里。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：钱来之不易，爱给得干脆——四个“立刻”两头都写到了。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>反复的作用</b>——写出连续动作、表现极度辛劳、反衬母爱无私。</div></div>"+
+  "<div class='tl' id='cimu-tl-3'><b>⭐ 细节描写 · 皱皱的毛票与龟裂的手指</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>母亲掏衣兜，掏出一卷揉得皱皱的毛票，用龟裂的手指数着。……母亲却已将钱塞在我手心里了，大声对那个女人说：‘我挺高兴他爱看书的！’</div>"+
+  "<div class='jl-ask'>❓ 先想一想：“皱皱的”“龟裂的”“塞”这三个细节，分别藏着什么？</div>"+
+  "<ul class='jl-ju'><li><b>揉得皱皱的毛票</b>——零钱小而旧，是被一张张攒出来、捏过无数遍的。</li>"+
+  "<li><b>龟裂的手指</b>——长期劳作的印记；用这样的手“数着”钱，数的是艰辛。</li>"+
+  "<li><b>一个“塞”字</b>——毫不犹豫、生怕“我”反悔；同同事的劝阻形成对比，母亲的远见与深情就立起来了。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：不写一个“爱”字，爱全在“掏、数、塞”三个动作里。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>动作/细节描写赏析</b>——点出动作 + 分析处境 + 落到情感（无私、深沉）。</div></div>"+
+  "</div></div>"+
+  "<div class='card'><h3>✍️ 小练笔：抓一个细节写“我的母亲/父亲”</h3>"+
+  "<p style='font-size:13.5px;color:var(--muted)'>像梁晓声那样，不喊“爱”，只抓一个细节：一个动作（塞、攥、掖、擦），或一句口头禅，写 50~100 字，让读到的人自己心里一酸。</p>"+
+  "<textarea id='xilianbi-cimu' class='xltextarea' rows='4' placeholder='写在这里，点保存会自动记住…'></textarea>"+
+  "<div style='margin-top:8px;display:flex;gap:10px;align-items:center'><button class='tflow' style='max-width:180px' onclick='saveXilianbi(\"cimu\")'>💾 保存</button><span id='xlsave-cimu' style='font-size:12.5px;color:#3C9E5C;font-weight:700'></span></div></div>"+
   "</div>";},
 
  fuai:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
+  "<div class='card' style='background:linear-gradient(135deg,#FDF3E3,#FFFDF8)'><h3>🚩 本课学习任务流（从平凡小事里，读出深沉父爱）</h3>"+
+  "<div class='taskflow'>"+
+  "<div class='tflow' onclick='showPack(\"fuai\")'>📖<br>读前资料包<small>先看 3 张背景卡再读课文</small></div>"+
+  "<div class='tflow' onclick='document.getElementById(\"fuai-src\").scrollIntoView({behavior:\"smooth\"})'>📚<br>读中查资料<small>读原文时点黄色标签</small></div>"+
+  "<div class='tflow' onclick='openXilianbi(\"fuai\")'>✍️<br>小练笔<small>写一个“第一次”里藏着的爱</small></div>"+
+  "<div class='tflow' onclick='switchTab(\"guoguan\")'>🎯<br>过关自测<small>5 道题检验</small></div>"+
+  "</div>"+
+  "<div style='margin-top:10px;text-align:right'><button class='srcbtn' id='jjModeBtn' onclick='toggleJjMode()'>🔄 切换为：复习模式</button></div></div>"+
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🧾 本课必背内容（考试就考这些，先逐项过关）</h3>"+
   "<table class='ovtable'>"+
   "<tr><td><b>✅ 线索</b></td><td><b>姑爹的小渔船</b>——全文以“舟”为线索，串起父亲为“我”做的件件小事。“舟”既是交通工具，也是父爱的象征。</td></tr>"+
@@ -138,9 +225,65 @@ jiangjie:{
   "<div><b>🖋️ 背景</b><br>吴冠中出身农家，父亲靠卖茧、种田供他读书。他后来回忆：父亲“不识字，却懂得读书的重要”。这篇散文写于晚年，是回忆，也是致敬。</div></div>"+
   "<div class='tipbox story'>📖 吴冠中笔下的江南，总是白墙黑瓦、小桥流水。读《父爱之舟》时留意那些“颜色”和“光线”——这是画家的眼睛在写作。</div>"+
   "<div class='tipbox tip'>⚡ <b>本课阅读提醒：</b>把七件事列成一张表，横着看是“事”，竖着看是“爱”——父爱就藏在“吃、住、行、学”这些最普通的地方。</div></div>"+
+  "<div class='card'><h3>🎯 考点导航 · 先看考什么，再去深入</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>这张表不再重复讲解——只回答两件事：考试考什么题型？想深入时点右侧按钮直达对应精讲。</p>"+
+  "<table class='ovtable'><thead><tr><th style='width:132px'>重点内容</th><th>常考怎么考</th><th style='width:86px'>直达</th></tr></thead>"+
+  "<tr><td><b>⭐ 小渔船线索</b></td><td><b>线索的作用</b>：串起七个场景，象征父亲默默承载；常考“为什么以‘父爱之舟’为题”</td><td><button class='srcbtn' onclick='jumpJj(\"fuai-tl-1\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 七个场景</b></td><td><b>概括场景 + 以小见大</b>：卖茧买枇杷、庙会豆腐脑、雨雪背上学、船上缝被……小事写深情</td><td><button class='srcbtn' onclick='jumpJj(\"fuai-tl-2\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ “枕边一片湿”</b></td><td><b>含蓄结尾赏析</b>：用细节写流泪，照应开头写“梦”，首尾呼应</td><td><button class='srcbtn' onclick='jumpJj(\"fuai-tl-3\")'>看精讲</button></td></tr>"+
+  "</table></div>"+
+  "<div class='card' id='fuai-src'><h3>📄 课文原文 · 节选（直读版）</h3>"+
+  "<div class='readtext'>"+
+  "<p style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:2'>父亲和我都坐在这只小船上……船上载着我们的希望。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"fuai1\")'>📚 查资料 · 姑爹的小渔船</button>"+
+  "<p style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:2'>父亲送我到学校，替我铺好床，他回家时，我偷偷哭了。这是我第一次真正心酸的哭，与在家里撒娇的哭、发脾气的哭、打架的哭都大不一样。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"fuai2\")'>📚 查资料 · 第一次“心酸的哭”</button>"+
+  "<p style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:2'>我什么时候能够再看到我儿时的梦呢？……醒来，枕边一片湿。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"fuai3\")'>📚 查资料 · “枕边一片湿”的含蓄</button>"+
+  "<p style='margin:10px 0 0;font-size:12.5px;color:var(--muted)'>——课文关键语句节选，顺序与课文一致；完整原文请对照课本朗读。</p>"+
+  "</div></div>"+
+  "<div class='card'><h3>🔍 精读深挖：一只小舟，载起全部父爱</h3>"+
+  "<div class='timeline'>"+
+  "<div class='tl' id='fuai-tl-1'><b>⭐ 线索 · 以舟载情</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>父亲和我都坐在这只小船上……船上载着我们的希望。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：小船在文中出现了多少次？它运过什么、送过谁？</div>"+
+  "<ul class='jl-ju'><li><b>一线串珠</b>——摇船送“我”上学、送“我”报考、在船上缝棉被，小船把零散的小事串成一条线。</li>"+
+  "<li><b>象征父亲</b>——小船默默承载一家人的生计，也默默托举“我”走出乡村。</li>"+
+  "<li><b>点题</b>——“父爱之舟”的“舟”既是交通工具，更是父爱的象征。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：船载着生计，也载着孩子的未来——这就是题目的分量。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>线索题</b>——找反复出现的事物 + 答三步作用（串材料、象征人物、点题深化）。</div></div>"+
+  "<div class='tl' id='fuai-tl-2'><b>⭐ 心理细节 · 第一次“心酸的哭”</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>这是我第一次真正心酸的哭，与在家里撒娇的哭、发脾气的哭、打架的哭都大不一样。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：同样是哭，为什么这次“大不一样”？</div>"+
+  "<ul class='jl-ju'><li><b>三种哭作陪衬</b>——撒娇、发脾气、打架的哭都是“要”的哭；这次是“懂”的哭。</li>"+
+  "<li><b>一个“第一次”</b>——孩子第一次体会到父亲谋生的艰难和爱得深沉，这是成长的标志。</li>"+
+  "<li><b>以小见大</b>——替“我”铺好床这样一个平凡动作，胜过千言万语。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：小事写透，感情自现——父爱藏在“铺床”这样的细节里。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>场景概括 + 以小见大</b>——先概括七件事，再答“小事为何动人”（真实、日常、反差）。</div></div>"+
+  "<div class='tl' id='fuai-tl-3'><b>⭐ 含蓄收尾 · “醒来，枕边一片湿”</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>我什么时候能够再看到我儿时的梦呢？……醒来，枕边一片湿。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：作者为什么不直接写“我很想念父亲”？</div>"+
+  "<ul class='jl-ju'><li><b>细节代替抒情</b>——不说想念，只写枕头湿了；泪水自己会说话。</li>"+
+  "<li><b>首尾呼应</b>——开头从“梦”写起，结尾从梦中醒来，结构完整。</li>"+
+  "<li><b>留白</b>——话说一半，余味更长，这是“以细节收束”的高手写法。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：不说“我想你”，只说“枕边一片湿”——含蓄，却更动人。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>结尾赏析</b>——细节含蓄 + 首尾呼应 + 表达对父亲深深的怀念与感激。</div></div>"+
+  "</div></div>"+
+  "<div class='card'><h3>✍️ 小练笔：写一个“第一次”里藏着的爱</h3>"+
+  "<p style='font-size:13.5px;color:var(--muted)'>像吴冠中那样，写你的一个“第一次”：第一次独自回家、第一次发现爸爸变老了、第一次给妈妈做饭……用动作和细节收尾，别直接说“我很感动”。写 50~100 字。</p>"+
+  "<textarea id='xilianbi-fuai' class='xltextarea' rows='4' placeholder='写在这里，点保存会自动记住…'></textarea>"+
+  "<div style='margin-top:8px;display:flex;gap:10px;align-items:center'><button class='tflow' style='max-width:180px' onclick='saveXilianbi(\"fuai\")'>💾 保存</button><span id='xlsave-fuai' style='font-size:12.5px;color:#3C9E5C;font-weight:700'></span></div></div>"+
   "</div>";},
 
  hty:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
+  "<div class='card' style='background:linear-gradient(135deg,#FDF3E3,#FFFDF8)'><h3>🚩 本课学习任务流（从一封家书里，读懂铠甲与软肋）</h3>"+
+  "<div class='taskflow'>"+
+  "<div class='tflow' onclick='showPack(\"hty\")'>📖<br>读前资料包<small>先看 3 张背景卡再读课文</small></div>"+
+  "<div class='tflow' onclick='document.getElementById(\"hty-src\").scrollIntoView({behavior:\"smooth\"})'>📚<br>读中查资料<small>读原文时点黄色标签</small></div>"+
+  "<div class='tflow' onclick='openXilianbi(\"hty\")'>✍️<br>小练笔<small>写在批评或表扬里长大的瞬间</small></div>"+
+  "<div class='tflow' onclick='switchTab(\"guoguan\")'>🎯<br>过关自测<small>5 道题检验</small></div>"+
+  "</div>"+
+  "<div style='margin-top:10px;text-align:right'><button class='srcbtn' id='jjModeBtn' onclick='toggleJjMode()'>🔄 切换为：复习模式</button></div></div>"+
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🧾 本课必背内容（考试就考这些，先逐项过关）</h3>"+
   "<table class='ovtable'>"+
   "<tr><td><b>✅ 基本信息</b></td><td>作者<b>刘洋</b>（中国首位进入太空的女航天员）；写于<b>2022年6月1日</b>；地点<b>酒泉卫星发射中心问天阁</b>；背景是即将执行<b>神舟十四号</b>载人飞行任务，要离开孩子半年。</td></tr>"+
@@ -188,6 +331,54 @@ jiangjie:{
   "<div class='tipbox story'>📖 在太空的183天里，刘洋每天叠一颗纸星星，写下一句祝福，放进玻璃瓶。183天，183颗星星——她说，这些祝福不只是给自己的孩子，也是给祖国所有的孩子。</div>"+
   "<div class='tipbox fun'>🤔 你知道吗？这封信2022年儿童节写于酒泉，2026年秋季正式编入五年级上册语文教材——从“一封家书”变成了“一篇课文”。</div>"+
   "<div class='tipbox tip'>⚡ <b>本课阅读提醒：</b>这是略读课文，不用逐字精讲，重点读出“情感的变化”和“书信的格式”。</div></div>"+
+  "<div class='card'><h3>🎯 考点导航 · 先看考什么，再去深入</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>这张表不再重复讲解——只回答两件事：考试考什么题型？想深入时点右侧按钮直达对应精讲。</p>"+
+  "<table class='ovtable'><thead><tr><th style='width:132px'>重点内容</th><th>常考怎么考</th><th style='width:86px'>直达</th></tr></thead>"+
+  "<tr><td><b>⭐ 铠甲与软肋</b></td><td><b>比喻理解</b>：铠甲＝孩子给妈妈力量，软肋＝孩子是妈妈最深的牵挂——写出母爱的两面</td><td><button class='srcbtn' onclick='jumpJj(\"hty-tl-1\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 三个约定</b></td><td><b>排比与细节</b>：建太空房子、拍照片、写祝福——把“离别”写成“约定”</td><td><button class='srcbtn' onclick='jumpJj(\"hty-tl-2\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 纸短情长</b></td><td><b>结尾抒情</b>：一个“爱”字收束全文，“拥抱完星辰大海再来拥抱你们”深情作结</td><td><button class='srcbtn' onclick='jumpJj(\"hty-tl-3\")'>看精讲</button></td></tr>"+
+  "</table></div>"+
+  "<div class='card' id='hty-src'><h3>📄 课文原文 · 节选（直读版）</h3>"+
+  "<div class='readtext'>"+
+  "<p style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:2'>每次想起你们，妈妈心中就像阳光融化巧克力般甜蜜温暖；每次想起你们，妈妈心中就会泛起阵阵幸福的涟漪。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"hty1\")'>📚 查资料 · 比喻里的想念</button>"+
+  "<p style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:2'>你们是妈妈的铠甲，也是妈妈的软肋。我是妈妈，也是一名军人。那一刻妈妈是要出征，临危忘身，受命忘家，这是军人的职责。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"hty2\")'>📚 查资料 · 铠甲与软肋</button>"+
+  "<p style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:2'>妈妈答应你们，要好好完成任务，在太空建一座大大的房子，装进无数人的梦想……纸短情长，太多太多的话浓缩成一个‘爱’字……等着妈妈拥抱完星辰大海再来拥抱你们！</p>"+
+  "<button class='srcbtn' onclick='showCard(\"hty3\")'>📚 查资料 · 183颗纸星星</button>"+
+  "<p style='margin:10px 0 0;font-size:12.5px;color:var(--muted)'>——课文关键语句节选，顺序与课文一致；完整原文请对照课本朗读。</p>"+
+  "</div></div>"+
+  "<div class='card'><h3>🔍 精读深挖：一封家书的写法</h3>"+
+  "<div class='timeline'>"+
+  "<div class='tl' id='hty-tl-1'><b>⭐ 比喻 · 铠甲与软肋</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>你们是妈妈的铠甲，也是妈妈的软肋。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：孩子怎么能同时是“保护”和“牵挂”？</div>"+
+  "<ul class='jl-ju'><li><b>铠甲是保护</b>——因为爱孩子，妈妈变得勇敢，敢于出征、敢于面对风险。</li>"+
+  "<li><b>软肋是牵挂</b>——也是最放不下的地方，一想就心软、就流泪。</li>"+
+  "<li><b>一句话两面</b>——既坚强又柔软，这正是母爱的完整模样。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：因为爱你们，我无所畏惧；也因为爱你们，我步步牵挂。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>比喻理解</b>——分别解释两个喻体，再合起来答“母爱的两面：坚强与柔软”。</div></div>"+
+  "<div class='tl' id='hty-tl-2'><b>⭐ 排比与细节 · 把“离别”写成“约定”</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>妈妈答应你们，要好好完成任务，在太空建一座大大的房子，装进无数人的梦想……</div>"+
+  "<div class='jl-ask'>❓ 先想一想：说“我要走了”和说“我答应你们”，哪种说法让人更好受？</div>"+
+  "<ul class='jl-ju'><li><b>三个约定排比而下</b>——建太空房子、拍照片、写祝福，语气温柔又坚定。</li>"+
+  "<li><b>化不舍为期待</b>——把“离别”改写成“约定”，孩子就有了盼头。</li>"+
+  "<li><b>细节有温度</b>——嘱托照顾爷爷奶奶、给姥姥姥爷打电话，是具体可执行的爱。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：不写“舍不得”，写“等着我”——约定比眼泪更有力量。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>内容概括 + 写法分析</b>——列小标题（缘由、取舍、约定、嘱托、期望），答排比的作用。</div></div>"+
+  "<div class='tl' id='hty-tl-3'><b>⭐ 结尾 · 纸短情长</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>纸短情长，太多太多的话浓缩成一个‘爱’字……等着妈妈拥抱完星辰大海再来拥抱你们！</div>"+
+  "<div class='jl-ask'>❓ 先想一想：千言万语为什么最后只剩一个“爱”字？</div>"+
+  "<ul class='jl-ju'><li><b>“纸短情长”收束全文</b>——话说不完，就用最重的字收住。</li>"+
+  "<li><b>航天员的浪漫</b>——“星辰大海”既是任务，也是给孩子的童话。</li>"+
+  "<li><b>首尾呼应</b>——开头“不能陪你们过六一”，结尾“再来拥抱你们”，一封信完整落地。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：把使命和母爱写进同一句话——这是这封信最动人的地方。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>结尾赏析 + 情感题</b>——引用原句 + 说明原因；也常考书信格式六要素。</div></div>"+
+  "</div></div>"+
+  "<div class='card'><h3>✍️ 小练笔：写在批评或表扬里长大的一个瞬间</h3>"+
+  "<p style='font-size:13.5px;color:var(--muted)'>刘洋把“不舍”写成了“约定”。你也可以把一次批评或表扬写成一个成长的瞬间：当时发生了什么？谁说了什么话？你心里怎么想？现在怎么明白的？写 50~100 字。</p>"+
+  "<textarea id='xilianbi-hty' class='xltextarea' rows='4' placeholder='写在这里，点保存会自动记住…'></textarea>"+
+  "<div style='margin-top:8px;display:flex;gap:10px;align-items:center'><button class='tflow' style='max-width:180px' onclick='saveXilianbi(\"hty\")'>💾 保存</button><span id='xlsave-hty' style='font-size:12.5px;color:#3C9E5C;font-weight:700'></span></div></div>"+
   "</div>";},
 
  yuan6Di:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
@@ -344,7 +535,7 @@ tuozhan:{
   "<div class='bili-frame'><iframe src='https://player.bilibili.com/player.html?bvid=BV1Ey4y1M7DH&page=1&danmaku=0&autoplay=0&high_quality=1' scrolling='no' frameborder='no' allowfullscreen='true' loading='lazy'></iframe></div>"+
   "<p class='vnote'>📺 揭秘！航天员们在太空是怎么生活的？ · UP主：中国青年报 · 时长 3分16秒 · <a class='blink' href='https://www.bilibili.com/video/BV1Ey4y1M7DH' target='_blank' rel='noopener'>在B站打开 ↗</a> · <a class='blink landlink'>⛶ 横屏看</a></p>"+
   "<div class='tipbox tip'>⚡ 刘洋信里写的太空生活，镜头里是真的：睡觉要绑进睡袋、水会飘成球……边看边对照课文里的描写。</div></div>" +
-  "<div class='tipbox exam'>📝 读这封信，不妨想一想：如果让你给十年后的自己写一封信，你会写什么？</div></div></div>";},
+  "<div class='tipbox exam'>📝 读这封信，不妨想一想：如果让你给十年后的自己写一封信，你会写什么？</div></div></div></div></div>";},
 
  yuan6Di:function(L){return "<div class='tabpane' data-tab='tuozhan'>"+
   "<div class='card'><h3>🕰️ 日积月累：《游子吟》</h3>"+
@@ -405,5 +596,46 @@ ciyu:{
  fuai:[["客栈","旧时供旅客住宿的店铺。"],["恍惚","神志不清，精神不集中。"],["偏僻","离城市或中心区远，交通不便。"],["心酸","心里悲痛。"],["攥","用手紧紧握住。"]],
  hty:[["问天阁","酒泉卫星发射中心航天员出征前所在的地方。"],["铠甲","古代军人打仗时穿的护身服装，这里比喻保护自己的力量。"],["软肋","肋骨中最脆弱的部分，比喻最容易被触动的地方。"],["涟漪","细小的波纹。"],["凯旋","战胜归来。"]],
  yuan6Di:[["倾诉","把心里的话全部说出来。"],["谅解","了解实情后原谅或消除意见。"],["祝愿","表示良好愿望。"],["此致","书信结尾用语，表示到此为止。"],["敬礼","书信祝语，表示尊敬。"]]
-}
+},
+
+src:{
+ cimu_before:[
+  ["🖋️ 卡片一 · 作者梁晓声","梁晓声，1949年生于黑龙江哈尔滨，当代作家，代表作《今夜有暴风雪》《人世间》。他多次写自己的母亲，说母亲是他“文学的第一位老师”。《慈母情深》就节选自他的散文《母亲》。"],
+  ["💰 卡片二 · 那个年代的“一元五角”","故事发生在上世纪六十年代初：物资匮乏，一元五角钱可以买十几斤大米，对一个月工资只有几十元的工人家庭来说，是一笔要“算着花”的钱。母亲在街道小厂做工——设备简陋、噪音大、工资低，是那个年代许多城市家庭的真实写照。"],
+  ["📖 卡片三 · 从《母亲》到课本","梁晓声回忆，母亲在街道小厂做工，车间里几十台缝纫机同时响，“像下暴雨”。他第一次去车间找母亲，被那声音震住了——课文里“震耳欲聋”四个字，就是他真实的记忆。他后来说，写《母亲》时常常写着写着就哭了：他笔下的母亲，也是那一代中国母亲的缩影。"]],
+ cimu1:["🔊 震耳欲聋的车间","“震耳欲聋”写声音，“酷暑”“闷热”写温度，“七八十台破缝纫机”写拥挤。母亲就坐在这声音和闷热里，一坐就是一整天。这叫环境烘托：环境写得越苦，母亲越辛苦，母爱就越重——也才有了后面“我”的“鼻子一酸”。"],
+ cimu2:["🔁 四个“立刻”为什么连用","四个“立刻”像四个快镜头：坐下去、弯下背、俯下头、陷入忙碌——母亲给完钱，没有片刻停留。反复是在给感情“加重音”：钱来得太不容易，爱却给得太干脆。答题记三步：写出连续动作 → 表现极度辛劳 → 反衬母爱无私。"],
+ cimu3:["🤲 揉皱的毛票与龟裂的手指","“揉得皱皱的毛票”是被一张张攒出来、捏过无数遍的零钱；“龟裂”是皮肤因干燥寒冷裂开口子，是长期劳作的印记。一个“塞”字写出毫不犹豫——自己舍不得花一分钱，却舍得为孩子的成长花钱。同事劝阻与母亲支持形成对比，更反衬出母亲的远见与深情。"],
+ fuai_before:[
+  ["🎨 卡片一 · 画家吴冠中","吴冠中（1919—2010），江苏宜兴人，著名画家、美术教育家，也是散文家。他画江南水乡，也写江南水乡——文字里常常带着画面的光影。晚年的画作《周庄》《双燕》，用极简的线条把水乡画成了“诗”。"],
+  ["🖋️ 卡片二 · 不识字却懂读书的父亲","吴冠中出身农家，父亲靠卖茧、种田供他读书。他后来回忆：父亲“不识字，却懂得读书的重要”。这篇散文写于晚年——不是写某一个瞬间，而是把一辈子的父爱一件一件拾回来，是回忆，也是致敬。"],
+  ["🛶 卡片三 · 江南水乡的“校车”","在水乡，船是最常见的交通工具。对吴冠中一家来说，姑爹的小渔船既是下田、赶集的工具，也是送孩子上学、报考的“校车”——一只船，载着一家人的生计，也载着一个孩子的未来。"]],
+ fuai1:["🛶 姑爹的小渔船","全文以“舟”为线索：父亲摇船送“我”上学、送“我”报考、在船上为“我”缝补棉被。小船既是贫穷家境的写照，也是父亲默默承载、托举“我”走出乡村的“舟”——这就是题目“父爱之舟”的分量。"],
+ fuai2:["😢 第一次“心酸的哭”","撒娇的哭、发脾气的哭、打架的哭，都是“要”的哭；这一次是“懂”的哭——“我”第一次体会到父亲谋生的艰难和爱得深沉。一个“第一次”，写出孩子的成长。"],
+ fuai3:["🌊 “醒来，枕边一片湿”","不直接说“我想念父亲”，只写醒来枕头湿了——用细节写流泪，含蓄地表达深深的思念与感激；又照应开头写“梦”，首尾呼应，余味悠长。这是“以细节收束”的高手写法。"],
+ hty_before:[
+  ["🚀 卡片一 · 刘洋是谁","刘洋，1978年生于河南林州。2012年执行神舟九号任务，成为中国首位进入太空的女航天员；2022年执行神舟十四号任务，在太空驻留半年。"],
+  ["🛰️ 卡片二 · 这封信写在哪里","2022年6月1日，儿童节，酒泉卫星发射中心问天阁。几天后的6月5日，神舟十四号载人飞船发射（乘组：陈冬、刘洋、蔡旭哲），刘洋第二次飞向太空，这一去就是半年——她将错过孩子的节日和整个夏天的陪伴，于是在出征前写下这封家书。"],
+  ["⭐ 卡片三 · 183颗纸星星","神舟十四号任务期间，刘洋每天叠一颗纸星星、写一句祝福，放进玻璃瓶——183天，183颗星星。她说，这些祝福不只是给自己的孩子，也是给祖国所有的孩子。2026年秋季，这封儿童节的家书被编入统编版五年级上册第六单元。"]],
+ hty1:["🍬 比喻里的想念","“阳光融化巧克力般甜蜜温暖”——用孩子熟悉的甜，写母亲的想念：一想起你们，心里就又暖又软。全篇用第二人称“你们”，像面对面说话，这是书信最亲切的地方。"],
+ hty2:["🛡️ 铠甲与软肋","“铠甲”是保护：孩子给了妈妈勇气和力量，让她敢于出征；“软肋”是牵挂：孩子是妈妈最放不下的惦念。一句话写出母爱的两面——既让人坚强，也让人柔软。"],
+ hty3:["⭐ 183颗纸星星","在太空的183天里，刘洋每天叠一颗纸星星、写下一句祝福，放进玻璃瓶。183天，183颗星星——她说，这些祝福不只是给自己的孩子，也是给祖国所有的孩子。"]
+},
+
+guoguan:{
+ cimu:function(L){return "<div class='tabpane' data-tab='guoguan'>"+
+  "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 慈母情深</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>5 道题检验本课掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
+  "<div id='quizBox'></div></div></div>"}
+ ,fuai:function(L){return "<div class='tabpane' data-tab='guoguan'>"+
+  "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 父爱之舟</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>5 道题检验本课掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
+  "<div id='quizBox'></div></div></div>"}
+ ,hty:function(L){return "<div class='tabpane' data-tab='guoguan'>"+
+  "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 航天员写给孩子的信</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>5 道题检验本课掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
+  "<div id='quizBox'></div></div></div>"}
+},
+
+quizzes:{cimu:QUIZ_CIMU,fuai:QUIZ_FUAI,hty:QUIZ_HTY}
 };
