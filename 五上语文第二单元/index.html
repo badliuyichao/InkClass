@@ -238,6 +238,27 @@ footer li{margin-bottom:4px;margin-left:18px}
   .ovtable td:not([data-lb]):before{content:none}
   .ovtable td b{white-space:normal}
 }
+/* ===== 任务流 & 资料卡 & 过关自测（第四单元样板） ===== */
+.taskflow{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.tflow{flex:1;min-width:140px;border:2px solid #E5D9BE;border-radius:14px;background:#FFFDF8;padding:12px 10px;text-align:center;cursor:pointer;transition:.15s;font-weight:700;font-size:14.5px;color:var(--ink);font-family:inherit}
+.tflow:active{transform:scale(.97)}
+.tflow small{display:block;font-weight:400;font-size:12px;color:var(--muted);margin-top:4px}
+.srcbtn{display:inline-block;background:#FFF3D6;border:1.5px solid #E8C97A;color:#8A6A12;border-radius:999px;font-size:12.5px;font-weight:700;padding:3px 12px;margin:4px 6px 0 0;cursor:pointer;font-family:inherit}
+.srcbtn:active{transform:scale(.96)}
+.cardmask{position:fixed;inset:0;background:rgba(30,25,15,.55);z-index:1000;display:none;align-items:flex-end;justify-content:center}
+.cardmask.show{display:flex}
+.cardpop{background:#FFFDF8;width:min(560px,94vw);max-height:82vh;overflow:auto;border-radius:20px 20px 0 0;padding:20px 18px 28px;box-shadow:0 -8px 40px rgba(0,0,0,.25)}
+@media(min-width:700px){.cardmask{align-items:center}.cardpop{border-radius:20px}}
+.cardpop h4{margin:0 0 10px;font-size:17px;color:var(--ink)}
+.cardpop .closex{float:right;background:#F1EAE0;border:none;border-radius:999px;width:30px;height:30px;font-size:15px;cursor:pointer;color:#8A7F6E}
+.cardpop p{margin:0 0 10px;font-size:14.5px;line-height:1.85}
+.quizq{background:#FFFDF8;border:2px solid #E5D9BE;border-radius:14px;padding:14px;margin-bottom:12px}
+.quizq h4{margin:0 0 10px;font-size:15px;line-height:1.7}
+.quizq .opt{display:block;width:100%;text-align:left;background:#fff;border:2px solid #EDE4D3;border-radius:10px;padding:10px 12px;margin:6px 0;cursor:pointer;font-size:14.5px;font-family:inherit;transition:.12s}
+.quizq .opt.sel{border-color:#2F80C3;background:#EFF6FD}
+.quizq .opt.ok{border-color:#3C9E5C;background:#EFF9F1}
+.quizq .opt.bad{border-color:#C0392B;background:#FBF0EE}
+.xltextarea{width:100%;border:2px solid #E5D9BE;border-radius:12px;padding:10px;font-size:14.5px;font-family:inherit;box-sizing:border-box;resize:vertical;line-height:1.7}
 </style>
 </head>
 <body>
@@ -292,6 +313,7 @@ footer li{margin-bottom:4px;margin-left:18px}
     <button data-tab="jiangjie" onclick="switchTab('jiangjie')">📘 知识讲解</button>
     <button data-tab="kaodian" onclick="switchTab('kaodian')">📌 考点说明</button>
     <button data-tab="tuozhan" onclick="switchTab('tuozhan')">🌟 背景拓展</button>
+    <button data-tab="guoguan" onclick="switchTab('guoguan')" style="display:none">🎯 过关自测</button>
   </div>
   <div id="lessonPanes"></div>
 </section>
@@ -933,7 +955,12 @@ function openLesson(key){
   document.getElementById("lessonGoal").textContent = L.goal;
   var tabs=document.querySelectorAll("#lessonTabs button");
   var tnames = L.isWriting ? ["✍️ 审题指导","🖋️ 写作支架","🌟 素材与积累"] : ["📘 知识讲解","📌 考点说明","🌟 背景拓展"];
-  tabs.forEach(function(b,i){ b.textContent=tnames[i]; b.classList.remove("active"); b.style.removeProperty("background"); });
+  if(window.PANE_GUOGUAN && PANE_GUOGUAN[L.key]) tnames.push("🎯 过关自测");
+  tabs.forEach(function(b,i){
+    b.textContent=tnames[i]||"";
+    b.classList.remove("active"); b.style.removeProperty("background");
+    b.style.display = i<tnames.length ? "" : "none";
+  });
   tabs[0].classList.add("active");
   tabs[0].style.background=L.color;
   buildPanes(L);
@@ -956,10 +983,14 @@ function switchTab(name){
   });
   if(name==="kaodian") buildAccordion();
   if(name==="tuozhan") playSpeedChart();
+  if(name==="guoguan") buildQuiz();
 }
 function buildPanes(L){
   var box=document.getElementById("lessonPanes");
-  box.innerHTML = PANE_JIANGJIE[L.key](L) + PANE_KAODIAN[L.key](L) + PANE_TUOZHAN[L.key](L);
+  var html = PANE_JIANGJIE[L.key](L) + PANE_KAODIAN[L.key](L) + PANE_TUOZHAN[L.key](L);
+  if(window.PANE_GUOGUAN && PANE_GUOGUAN[L.key]) html += PANE_GUOGUAN[L.key](L);
+  box.innerHTML = html;
+  loadXilianbi(L.key);
   var anchor=box.querySelector(".tabpane[data-tab='jiangjie'] #jichuAnchor");
   if(anchor && JICHU[L.key]){ anchor.innerHTML=jichuHtml(L.key); }
   else{
@@ -2300,6 +2331,13 @@ var PANE_JIANGJIE = {
   "<div class='tipbox tip'>⚡ 先自己朗读原文体会气势，再看这段混剪——你会明白为什么说“美哉我少年中国，与天不老”！看完试着背诵课文。</div></div>" +
   "<div class='tipbox tip'>⚡ <b>本单元方法：</b>结合资料读——查一查 1900 年前后的中国发生了什么，你就明白作者为什么把全部希望“押”在少年身上。</div></div>";}
  ,ymbyh:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
+  "<div class='card' style='background:linear-gradient(135deg,#FDF3E3,#FFFDF8)'><h3>🚩 本课学习任务流（结合资料，体会情感）</h3>"+
+  "<div class='taskflow'>"+
+  "<div class='tflow' onclick='showPack(\"ymbyh\")'>📖<br>读前资料包<small>先看 3 张历史卡再读课文</small></div>"+
+  "<div class='tflow' onclick='document.getElementById(\"ym-src\").scrollIntoView({behavior:\"smooth\"})'>📚<br>读中查资料<small>读原文时点黄色标签</small></div>"+
+  "<div class='tflow' onclick='openXilianbi(\"ymbyh\")'>✍️<br>小练笔<small>对 1860 年说一句话</small></div>"+
+  "<div class='tflow' onclick='switchTab(\"guoguan\")'>🎯<br>过关自测<small>5 道题检验</small></div>"+
+  "</div></div>"+
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🧾 本课必背内容（考试就考这些，先逐项过关）</h3>"+
   "<p style='font-size:13px;color:var(--muted)'>这篇课文必须背诵的内容都在这一页——一项一项过关，考试填空题就不丢分。</p>"+
   "<table class='ovtable'>"+
@@ -2320,13 +2358,17 @@ var PANE_JIANGJIE = {
   "<div class='kv'><div><b>🏛️ 圆明园有多了不起？</b><br>历经清朝六代皇帝、150 多年建成；由圆明园、万春园、长春园组成，又称“圆明三园”；西方人称它“万园之园”“夏宫”。</div>"+
   "<div><b>🧭 全文结构线</b><br>损失之大（第1段）→ 昔日辉煌（第2-4段：布局→建筑→文物）→ 毁灭经过（第5段）——先扬后抑，越美越痛。</div></div>"+
   "<div class='kv'><div><b>🧠 一课一背（主要内容＋中心思想）</b><br>主要内容：课文先写圆明园毁灭的损失不可估量，再再现它昔日的辉煌景观和珍贵文物，最后叙述 1860 年英法联军毁灭圆明园的经过。<br>中心思想：表达对祖国灿烂文化的无限热爱和对侵略者野蛮行径的无比愤慨，激发人们<b>不忘国耻、振兴中华</b>的责任感。</div></div></div>"+
-  "<div class='card'><h3>📄 课文原文（点击展开，全文 5 个自然段）</h3>"+
+  "<div class='card' id='ym-src'><h3>📄 课文原文（点击展开，全文 5 个自然段）</h3>"+
   "<div class='acc' onclick='this.classList.toggle(\"open\")'><button class='head'><span class='idx'>📄</span>《圆明园的毁灭》全文（王英琦）<span class='arrow'>▸</span></button><div class='body'>"+
   "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>1</span>圆明园的毁灭是祖国文化史上不可估量的损失，也是世界文化史上不可估量的损失！</p>"+
   "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>2</span>圆明园在北京西北郊，是一座举世闻名的皇家园林。它由圆明园、万春园和长春园组成，所以也叫圆明三园。此外，还有许多小园，分布在圆明园东、西、南三面，众星拱月般环绕在圆明园周围。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"ym1\")'>📚 查资料 · 圆明三园与“众星拱月”</button>"+
   "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>3</span>园中，有金碧辉煌的殿堂，也有玲珑剔透的亭台楼阁；有象征着热闹街市的“买卖街”，也有象征着田园风光的山乡村野。园中许多景物都是仿照各地名胜建造的，如海宁的安澜园，苏州的狮子林，杭州西湖的平湖秋月、雷峰夕照；还有很多景物是根据古代诗人的诗情画意建造的，如蓬岛瑶台，武陵春色。园中不仅有民族建筑，还有西洋景观。漫步园内，有如漫游在天南海北，饱览着中外风景名胜；流连其间，仿佛置身在幻想的境界里。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"ym2\")'>📚 查资料 · 西洋楼与大水法</button>"+
   "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>4</span>圆明园不但建筑宏伟，还收藏着最珍贵的历史文物。上自先秦时代的青铜礼器，下至唐、宋、元、明、清历代的名人书画和各种奇珍异宝。所以，它又是当时世界上最大的博物馆、艺术馆。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"ym3\")'>📚 查资料 · 流失的十二生肖兽首</button>"+
   "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>5</span>1860 年 10 月 6 日，英法联军侵入北京，闯进圆明园。他们把园内凡是能拿走的东西，统统掠走；拿不动的，就用大车或牲口搬运；实在运不走的，就任意破坏、毁掉。为了销毁罪证，10 月 18 日和 19 日，三千多名侵略者奉命在园内放火。大火连烧三天，烟云笼罩了整个北京城。我国这一园林艺术的瑰宝、建筑艺术的精华，就这样化成了一片灰烬。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"ym4\")'>📚 查资料 · 1860 年 10 月，圆明园经历了什么</button>"+
   "<p style='margin:10px 0 0;font-size:12.5px;color:var(--muted)'>——本文作者王英琦，选作课文时有改动。段落序号为便于对照所加，以课本为准。</p>"+
   "</div></div></div>"+
   "<div class='card'><h3>🔍 精读深挖：辉煌写得越美，毁灭越痛</h3>"+
@@ -2355,6 +2397,10 @@ var PANE_JIANGJIE = {
   "<div class='bili-frame'><iframe src='https://player.bilibili.com/player.html?bvid=BV16FyYBqEpv&page=1&danmaku=0&autoplay=0&high_quality=1' scrolling='no' frameborder='no' allowfullscreen='true' loading='lazy'></iframe></div>"+
   "<p class='vnote'>📺 圆明园遗址公园实拍 · UP主：大希小云旅行记 · 时长 3分08秒（80万播放） · <a class='blink' href='https://www.bilibili.com/video/BV16FyYBqEpv' target='_blank' rel='noopener'>在B站打开 ↗</a> · <a class='blink landlink'>⛶ 横屏看</a></p>"+
   "<div class='tipbox tip'>⚡ 视频里就是今天的圆明园遗址公园。对照课文想象它当年的辉煌，再看到如今的断壁残垣，你才能真正读懂“化为灰烬”四个字的分量。</div></div>" +
+  "<div class='card'><h3>✍️ 小练笔：对 1860 年说一句话</h3>"+
+  "<p style='font-size:13.5px;color:var(--muted)'>看完资料和视频，此刻你最想说什么？写一段 50~100 字的话——可以是对着火的园子说的，可以是对抢掠的人说的，也可以是对今天的自己说的。这是你从这个单元真正带走的东西。</p>"+
+  "<textarea id='xilianbi-ymbyh' class='xltextarea' rows='4' placeholder='写在这里，点保存会自动记住…'></textarea>"+
+  "<div style='margin-top:8px;display:flex;gap:10px;align-items:center'><button class='tflow' style='max-width:180px' onclick='saveXilianbi(\"ymbyh\")'>💾 保存</button><span id='xlsave-ymbyh' style='font-size:12.5px;color:#3C9E5C;font-weight:700'></span></div></div>"+
   "<div class='tipbox tip'>⚡ <b>本单元方法：</b>结合资料读课文——查一查圆明园的复原图和兽首回归的新闻，再读“化为灰烬”四个字，感受完全不同。</div></div>";}
  ,mlf:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🧾 本课必背内容（考试就考这些，先逐项过关）</h3>"+
@@ -3015,6 +3061,119 @@ var PANE_TUOZHAN = {
   "<div class='acc' onclick='this.classList.toggle(\"open\")'><button class='head'><span class='idx'>范3</span>《外婆家的新炊烟》（约420字）<span class='arrow'>▸</span></button><div class='body'>二十年后回外婆家，村口那条石子路变成了会发光的步行道，我却在寻找一样东西——炊烟。<br>小时候，每次回外婆家，远远看见屋顶那缕白白的炊烟，脚步就不由自主地加快：那是外婆在烧饭。后来村里通了天然气，炊烟渐渐少了，我总觉得少了点什么。<br>推开院门，外婆正戴着 AR 眼镜跟城里的大夫“面对面”问诊，智能药箱按处方把药分好。厨房里，做饭机器人颠着小锅，外婆在一旁指挥：“盐少放点儿，你外孙口味淡。”——她学得可真快！<br>饭桌上，我故意问：“外婆，现在什么都是机器人干，您不无聊吗？”外婆把一筷子青菜放进我碗里：“机器人会做饭，可它不知道你爱吃锅巴。那口老灶我留着呢，过年蒸馒头，还得靠它。”我顺着她的手指看去，老灶台擦得锃亮，烟囱口正冒着细细的一缕烟。<br>原来科技不是把过去统统换掉，而是把辛苦的部分接过去，把珍贵的部分留下来。新农村的医疗、互联网让外婆的晚年既省心又自在，而那缕炊烟，还在替她守着一家人的团圆。<br>离村时我又回头看了一眼——新炊烟，旧味道，都是家的方向。<br>✏️ <b>点评：</b>以“炊烟”为线索串起今昔✓；科技与温情双线并行✓（AR 问诊+老灶台）；人物有神✓（外婆的台词鲜活）；立意高一筹✓（科技留下珍贵的东西）。全文约420字。</div></div>"+
   "</div></div>";}
 };
+
+/* ===================== 过关任务 & 资料卡（第四单元样板） ===================== */
+var PANE_GUOGUAN={
+ ymbyh:function(L){return "<div class='tabpane' data-tab='guoguan'>"+
+  "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 圆明园的毁灭</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>5 道题检验本课掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
+  "<div id='quizBox'></div></div></div>";}
+};
+
+var SRC={
+ ymbyh_before:[
+  ["🏛️ 卡片一 · “万园之园”有多大","圆明园由圆明园、万春园、长春园组成，所以叫“圆明三园”；周围还有 100 多个小园环绕。从 1707 年开始营建，历经六代皇帝、150 多年才建成。法国大文豪雨果这样写它：“在世界的一隅，存在着人类的一大奇迹，这个奇迹就是圆明园。”"],
+  ["🎨 卡片二 · 画里的圆明园","清朝宫廷画师绘制了《圆明园四十景图咏》，把园中每个景区都画了下来——正大光明、蓬岛瑶台、武陵春色……这是今天想象圆明园昔日辉煌最珍贵的依据。可惜原作在 1860 年被掠走，现藏于法国国家图书馆。"],
+  ["⚔️ 卡片三 · 1860 年的中国","那一年，第二次鸦片战争进入尾声。英法联军一路打进北京，咸丰皇帝仓皇逃往热河。10 月，联军闯入圆明园，大肆抢掠之后放火焚烧——一座造了一个多世纪的园林，三天之内化为灰烬。"]],
+ ym1:["🗺️ 圆明三园与“众星拱月”","圆明园、万春园、长春园三园相连，组成“圆明三园”；东、西、南三面还有 100 多个小园，像星星围着月亮一样环绕。园中最著名的景区有 40 处，被画进《圆明园四十景图咏》——课文里的“蓬岛瑶台”“武陵春色”都是其中之一。"],
+ ym2:["🏛️ 西洋楼与大水法","圆明园西部有一组欧式宫殿建筑群，叫“西洋楼”，大水法是其中的喷泉景观，用白色大理石建造，造型精巧。今天你在圆明园遗址公园看到的几根白色石柱残迹，就是大水法的遗骸——它们常常出现在历史课本的封面上。"],
+ ym3:["🦁 流失的十二生肖兽首","海晏堂前有一组人身兽首铜像，是十二生肖：每到一家时辰，对应的兽首就轮流喷水，正午十二个一起喷，设计精妙绝伦。1860 年它们被联军掠走，流失海外 160 多年。到今天，牛首、猴首、虎首、猪首、马首、鼠首、兔首已陆续回归祖国——每一次回归，都是一次“勿忘国耻”的提醒。"],
+ ym4:["🔥 1860 年 10 月，圆明园经历了什么","10 月 6 日，英法联军占领圆明园，随后大肆抢劫；10 月 18 日和 19 日，三千多名侵略者奉命在园内放火。大火烧了三天三夜，园中 300 多名太监、宫女葬身火海。远在欧洲的雨果愤怒地写道：“有一天，两个强盗闯入了圆明园，一个强盗大肆掠夺，另一个强盗纵火焚烧。”"]
+};
+
+function cardPop(title,html){
+  var mask=document.getElementById("srcMask");
+  if(!mask){
+    mask=document.createElement("div");mask.id="srcMask";mask.className="cardmask";
+    mask.innerHTML="<div class='cardpop'><button class='closex' onclick='closeCard()'>✕</button><div id='srcPopBody'></div></div>";
+    document.body.appendChild(mask);
+    mask.addEventListener("click",function(e){ if(e.target===mask) closeCard(); });
+  }
+  mask.querySelector("#srcPopBody").innerHTML="<h4>"+title+"</h4>"+html;
+  mask.classList.add("show");
+}
+function showCard(key){
+  var d=SRC[key]; if(!d) return;
+  cardPop(d[0],"<p>"+d[1]+"</p>");
+}
+function showPack(key){
+  var arr=SRC[key+"_before"]||[];
+  var html=arr.map(function(x){return "<div style='margin-bottom:16px;padding-bottom:14px;border-bottom:1px dashed #E5D9BE'><h4 style='margin:0 0 6px;font-size:15px'>"+x[0]+"</h4><p>"+x[1]+"</p></div>";}).join("");
+  cardPop("📖 读前资料包（先看完这 3 张卡，再读课文）",html);
+}
+function closeCard(){var m=document.getElementById("srcMask"); if(m)m.classList.remove("show");}
+
+function openXilianbi(key){
+  switchTab("jiangjie");
+  setTimeout(function(){
+    var t=document.getElementById("xilianbi-"+key);
+    if(t){t.scrollIntoView({behavior:"smooth",block:"center"});t.focus();}
+  },120);
+}
+function saveXilianbi(key){
+  var t=document.getElementById("xilianbi-"+key); if(!t) return;
+  try{localStorage.setItem("inkclass_xilianbi_"+key,t.value);}catch(e){}
+  var s=document.getElementById("xlsave-"+key);
+  if(s){s.textContent="已保存 ✓";setTimeout(function(){s.textContent="";},2000);}
+}
+function loadXilianbi(key){
+  var t=document.getElementById("xilianbi-"+key); if(!t) return;
+  try{t.value=localStorage.getItem("inkclass_xilianbi_"+key)||"";}catch(e){}
+}
+
+var QUIZ_YMBYH=[
+ {q:"1. 按原文填空：圆明园的毁灭是（　）文化史上不可估量的损失，也是（　）文化史上不可估量的损失！",opts:["祖国／世界","中国／外国","东方／西方"],a:0},
+ {q:"2. “圆明三园”指的是哪三座园子？",opts:["圆明园、颐和园、长春园","圆明园、万春园、长春园","圆明园、避暑山庄、万春园"],a:1},
+ {q:"3. 题目是“毁灭”，作者却用大量笔墨写辉煌。这种写法叫什么？",opts:["对比——突出侵略者的残暴","反衬——把美写足，毁灭才更痛心","夸张——强调圆明园很大"],a:1},
+ {q:"4. 给侵略者的罪行排出正确顺序：",opts:["放火 → 掠走 → 搬运 → 毁掉","掠走 → 搬运 → 毁掉 → 放火","搬运 → 掠走 → 放火 → 毁掉"],a:1},
+ {q:"5. 按原文填空：大火连烧（　）天，烟云笼罩了整个北京城。",opts:["两","三","五"],a:1}
+];
+var quizState={};
+function buildQuiz(){
+  var box=document.getElementById("quizBox");
+  if(!box||box.dataset.built) return;
+  var html=QUIZ_YMBYH.map(function(item,qi){
+    return "<div class='quizq' data-q='"+qi+"'><h4>"+item.q+"</h4>"+
+      item.opts.map(function(o,oi){return "<button class='opt' onclick='pickOpt(this,"+qi+","+oi+")'>"+o+"</button>";}).join("")+"</div>";
+  }).join("");
+  html+="<div style='text-align:center;margin-top:14px'><button class='tflow' style='display:inline-block;min-width:200px' onclick='submitQuiz()'>✅ 交卷</button><div id='quizResult' style='margin-top:10px;font-weight:700'></div></div>";
+  box.innerHTML=html;
+  box.dataset.built="1";
+  quizState={};
+}
+function pickOpt(btn,qi,oi){
+  var qbox=btn.closest(".quizq");
+  qbox.querySelectorAll(".opt").forEach(function(b){b.classList.remove("sel");});
+  btn.classList.add("sel");
+  quizState[qi]=oi;
+}
+function submitQuiz(){
+  var res=document.getElementById("quizResult"); if(!res) return;
+  var right=0,total=QUIZ_YMBYH.length,answered=0;
+  QUIZ_YMBYH.forEach(function(item,qi){
+    var sel=quizState[qi];
+    if(sel===undefined) return;
+    answered++;
+    var qbox=document.querySelector(".quizq[data-q='"+qi+"']");
+    qbox.querySelectorAll(".opt").forEach(function(b,bi){
+      if(bi===item.a) b.classList.add("ok");
+      else if(bi===sel) b.classList.add("bad");
+    });
+    if(sel===item.a) right++;
+  });
+  if(answered<total){
+    res.innerHTML="⚠️ 还有 "+(total-answered)+" 题没有作答";
+    res.style.color="#C46E08"; return;
+  }
+  var msg= right===total?"🏆 满分过关！": right>=3?"👍 过关！错题回讲解里再看看":"💪 先回「知识讲解」读一遍，再回来挑战";
+  res.innerHTML=msg+"　得分："+right+" / "+total;
+  res.style.color= right>=3?"#3C9E5C":"#C0392B";
+  try{
+    var p=JSON.parse(localStorage.getItem("inkclass_progress")||"{}");
+    p.ymbyh={score:right,total:total,time:new Date().toLocaleDateString("zh-CN")};
+    localStorage.setItem("inkclass_progress",JSON.stringify(p));
+  }catch(e){}
+}
 
 /* ===================== 合并第五~八单元（2026新版数据） ===================== */
 (function merge58(){
