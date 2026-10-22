@@ -5,3 +5,6 @@
 # OS files
 Thumbs.db
 .DS_Store
+
+# Playwright test artifacts
+.playwright-cli/
