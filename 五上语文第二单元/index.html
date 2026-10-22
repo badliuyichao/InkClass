@@ -2338,6 +2338,14 @@ var PANE_JIANGJIE = {
   "<div style='margin-top:8px;display:flex;gap:10px;align-items:center'><button class='tflow' style='max-width:180px' onclick='saveXilianbi(\"gushisan\")'>💾 保存</button><span id='xlsave-gushisan' style='font-size:12.5px;color:#3C9E5C;font-weight:700'></span></div></div>"+
   "<div class='tipbox tip'>⚡ <b>本单元方法：</b>结合资料读诗——先查一查诗的时代背景（靖康之耻、南宋偏安、晚清危局），诗句里的感情一下子就读懂了。</div></div>";}
  ,snzgs:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
+  "<div class='card' style='background:linear-gradient(135deg,#FDF3E3,#FFFDF8)'><h3>🚩 本课学习任务流（朗读出气势，读出少年豪情）</h3>"+
+  "<div class='taskflow'>"+
+  "<div class='tflow' onclick='showPack(\"snzgs\")'>📖<br>读前资料包<small>先看 3 张历史卡再读课文</small></div>"+
+  "<div class='tflow' onclick='document.getElementById(\"sn-src\").scrollIntoView({behavior:\"smooth\"})'>📚<br>读中查资料<small>读原文时点黄色标签</small></div>"+
+  "<div class='tflow' onclick='openXilianbi(\"snzgs\")'>✍️<br>小练笔<small>把“少年强则国强”翻译成今天的你</small></div>"+
+  "<div class='tflow' onclick='switchTab(\"guoguan\")'>🎯<br>过关自测<small>5 道题检验</small></div>"+
+  "</div>"+
+  "<div style='margin-top:10px;text-align:right'><button class='srcbtn' id='jjModeBtn' onclick='toggleJjMode()'>🔄 切换为：复习模式</button></div></div>"+
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🧾 本课必背内容（考试就考这些，先逐项过关）</h3>"+
   "<p style='font-size:13px;color:var(--muted)'>这篇课文必须背诵的内容都在这一页——一项一项过关，考试填空题就不丢分。</p>"+
   "<table class='ovtable'>"+
@@ -2346,11 +2354,12 @@ var PANE_JIANGJIE = {
   "<tr><td><b>✅ 必背中心思想</b></td><td>通过赞美<b>少年中国</b>与<b>中国少年</b>，表达作者对祖国繁荣富强的热切盼望和积极进取的精神</td></tr>"+
   "<tr><td><b>✅ 必会字词</b></td><td>会写：泻、潜、试、胎、皇、履、疆；易错音：隼 sǔn、矞 yù、硎 xíng；必考词：一泻汪洋、鹰隼、矞矞皇皇、干将发硎</td></tr>"+
   "</table></div>"+
-  "<div class='card'><h3>🎯 精读段落速查（先抓这几段！）</h3>"+
-  "<table class='ovtable'><thead><tr><th style='width:150px'>精读段落</th><th>重点是什么</th><th style='width:150px'>常考怎么考</th></tr></thead>"+
-  "<tr><td><b>⭐ 第1段 · 排比责任段</b></td><td>八个“少年……则国……”从智、富、强到独立、自由、进步、胜于、雄于——程度层层升级。</td><td>排比的作用、背诵默写</td></tr>"+
-  "<tr><td><b>⭐ 第2段 · 四字韵语段</b></td><td>红日、伏流、潜龙、乳虎、鹰隼、奇花、干将……八个比喻写出“少年中国”的蓬勃气象。</td><td>比喻理解、四字词语积累</td></tr>"+
-  "<tr><td><b>⭐ 第3段 · 直抒胸臆段</b></td><td>“美哉我少年中国，与天不老！壮哉我中国少年，与国无疆！”两大感叹收束全文。</td><td>情感体会、朗读语气</td></tr>"+
+  "<div class='card'><h3>🎯 考点导航 · 先看考什么，再去深入</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>这张表不再重复讲解——只回答两件事：考试考什么题型？想深入时点右侧按钮直达对应精讲。</p>"+
+  "<table class='ovtable'><thead><tr><th style='width:132px'>重点段落</th><th>常考怎么考</th><th style='width:86px'>直达</th></tr></thead>"+
+  "<tr><td><b>⭐ 第1段 · 排比责任段</b></td><td><b>排比的作用</b>：八个分句层层递进（智→富→强→……→雄于地球），突出少年责任之重；背诵默写高频</td><td><button class='srcbtn' onclick='jumpJj(\"sn-tl-1\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 第2段 · 四字韵语段</b></td><td><b>比喻理解</b>：“红日初升”答前途光明（高频）；“干将发硎”考典故；四字词语积累</td><td><button class='srcbtn' onclick='jumpJj(\"sn-tl-2\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 第3段 · 直抒胸臆段</b></td><td><b>关系题＋情感</b>：“少年中国”与“中国少年”互为因果；朗读语气考豪迈</td><td><button class='srcbtn' onclick='jumpJj(\"sn-tl-3\")'>看精讲</button></td></tr>"+
   "</table></div>"+
   "<div id='jichuAnchor'></div>"+
   "<div class='card'><h3>📖 读懂课文：什么是“少年中国”？</h3>"+
@@ -2358,19 +2367,42 @@ var PANE_JIANGJIE = {
   "<div><b>🧑‍🤝‍🧑 谁来创造它？</b><br>“中国少年”！文章把国家的命运和少年的责任绑在一起——少年强，则国强。这正是全文最响亮的宣言。</div></div>"+
   "<div class='kv'><div><b>🧭 全文结构线</b><br>责任宣言（排比段）→ 礼赞气象（比喻段）→ 深情感叹（结尾段）——层层推进，气势一浪高过一浪。</div>"+
   "<div><b>🧠 一课一背（主要内容＋中心思想）</b><br>主要内容：文章以排比和比喻，讴歌少年中国的蓬勃气象，强调中国少年肩负的责任。<br>中心思想：表达作者对少年中国的热爱和期望，号召中国少年奋发图强、创建繁荣富强的祖国。</div></div></div>"+
-  "<div class='card'><h3>📄 课文原文（点击展开，节选全文）</h3>"+
-  "<div class='acc' onclick='this.classList.toggle(\"open\")'><button class='head'><span class='idx'>📄</span>《少年中国说（节选）》全文<span class='arrow'>▸</span></button><div class='body'>"+
+  "<div class='card' id='sn-src'><h3>📄 课文原文 · 节选全文（直读版）</h3>"+
+  "<div class='readtext'>"+
   "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>1</span>故今日之责任，不在他人，而全在我少年。少年智则国智，少年富则国富；少年强则国强，少年独立则国独立；少年自由则国自由，少年进步则国进步；少年胜于欧洲则国胜于欧洲，少年雄于地球则国雄于地球。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"sn1\")'>📚 查资料 · “少年中国”与“中国少年”的区别</button>"+
   "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>2</span>红日初升，其道大光。河出伏流，一泻汪洋。潜龙腾渊，鳞爪飞扬。乳虎啸谷，百兽震惶。鹰隼试翼，风尘翕张。奇花初胎，矞矞皇皇。干将发硎，有作其芒。天戴其苍，地履其黄。纵有千古，横有八荒。前途似海，来日方长。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"sn2\")'>📚 查资料 · “干将发硎”的典故（吴国名剑）</button>"+
   "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>3</span>美哉我少年中国，与天不老！壮哉我中国少年，与国无疆！</p>"+
+  "<button class='srcbtn' onclick='showCard(\"sn3\")'>📚 查资料 · “美哉壮哉”的感叹层次</button>"+
   "<p style='margin:10px 0 0;font-size:12.5px;color:var(--muted)'>——作者梁启超，选作课文时有改动。段落序号为便于对照所加。</p>"+
-  "</div></div></div>"+
+  "</div></div>"+
   "<div class='card'><h3>🔍 精读深挖：读出文章的“气势”</h3>"+
   "<div class='timeline'>"+
-  "<div class='tl'><b>⭐ 第1段 · 八级排比，步步登高</b><br>智→富→强→独立→自由→进步→胜于欧洲→雄于地球：从个人素质写到国际地位，一层比一层响亮。朗读时一句比一句加重。</div>"+
-  "<div class='tl'><b>⭐ 第2段 · 八个比喻，八个“新生”</b><br>红日初升（朝气）、河出伏流（势不可挡）、潜龙腾渊（潜能爆发）、乳虎啸谷（初生之威）、鹰隼试翼（跃跃欲试）、奇花初胎（含苞待放）、干将发硎（锋芒初露）——每个比喻都指向“新生的力量”。</div>"+
-  "<div class='tl'><b>对偶与用典</b><br>“天戴其苍，地履其黄；纵有千古，横有八荒”对仗工整，写少年中国顶天立地、历史悠久又前途无量；“干将发硎”用了古代宝剑的典故。</div>"+
-  "<div class='tl'><b>⭐ 第3段 · 两大感叹，互为因果</b><br>“美哉我少年中国”赞国家，“壮哉我中国少年”赞少年——中国因少年而美，少年因中国而壮，读时要读出豪迈之情。</div>"+
+  "<div class='tl' id='sn-tl-1'><b>⭐ 第1段 · 八级排比，步步登高</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>故今日之责任，不在他人，而全在我少年。<br>少年·智 / 则国·智，少年·富 / 则国·富；少年·强 / 则国·强，少年·独立 / 则国·独立；少年·自由 / 则国·自由，少年·进步 / 则国·进步；少年·胜于欧洲 / 则国·胜于欧洲，少年·雄于地球 / 则国·雄于地球。<small style='display:block;margin-top:4px;color:var(--muted)'>（“/”标停顿，“·”标重音：每个分句的开头咬字要实，停顿短促，一句推一句）</small></div>"+
+  "<div class='jl-ask'>❓ 先想一想：这八个分句能调换顺序吗？比如把“少年雄于地球”放到最前面说？</div>"+
+  "<ul class='jl-ju'><li><b>不能调换</b>——这是一条递进链条：智（有头脑）→ 富（有家底）→ 强（有力量），先长脑子，再长身子，再上台阶。</li>"+
+  "<li><b>后半程继续升级</b>——独立、自由、进步写国家状态，胜于欧洲、雄于地球写国际地位：一步比一步高，最后登上顶点。</li>"+
+  "<li><b>同一句式重复八遍</b>——每句都是“少年……则国……”，像鼓点越敲越重，把“责任全在我少年”敲进人心。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：排比不是随便排——顺序是上台阶，一层更比一层高；读的时候也要一层更比一层响。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>排比的作用</b>——答“层层递进，突出少年责任之重，读起来气势磅礴”；背诵默写高频，“智富强→独立自由进步→胜雄”的顺序不能错。<br>🎤 朗读指导：八个分句一句比一句响——开头沉稳有力，读到“胜于欧洲”“雄于地球”时达到最强音。</div></div>"+
+  "<div class='tl' id='sn-tl-2'><b>⭐ 第2段 · 八个比喻，八个“新生的力量”</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>红日 / 初升，其道 / 大光。河出 / 伏流，一泻 / 汪洋。潜龙 / 腾渊，鳞爪 / 飞扬。乳虎 / 啸谷，百兽 / 震惶。鹰隼 / 试翼，风尘 / 翕张。奇花 / 初胎，矞矞 / 皇皇。干将 / 发硎，有作 / 其芒。<small style='display:block;margin-top:4px;color:var(--muted)'>（“/”标停顿：四字韵语按“二二”停顿读，字字铿锵，两个四字句一组，读出鼓点般的节奏）</small></div>"+
+  "<div class='jl-ask'>❓ 先想一想：写“少年中国”有希望，为什么不直接说“中国有希望”，而要连用八个比喻？</div>"+
+  "<ul class='jl-ju'><li><b>红日初升、河出伏流</b>——前途光明、势头不可挡：这是“少年中国”的气象。</li>"+
+  "<li><b>潜龙腾渊、乳虎啸谷、鹰隼试翼</b>——潜能即将爆发、初生之威、跃跃欲试：这是新生的力量“动”起来的样子。</li>"+
+  "<li><b>奇花初胎、干将发硎</b>——含苞待放、锋芒初露：美好与才干都正在“开始”，一切皆有可能。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：八个比喻各不相同，但都指向同一件事——新生的力量；画面越具体，“希望”就越可感。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>比喻理解</b>——“红日初升”答前途光明（高频）；“干将发硎”考典故（吴国名剑在磨刀石上磨出新品，锋芒初露）。<br>🎤 朗读指导：四字韵语读出节奏感——按“二二”停顿、字字铿锵，像敲鼓一样，一组比一组昂扬。</div></div>"+
+  "<div class='tl' id='sn-tl-3'><b>⭐ 第3段 · 两大感叹，互为因果</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>·美哉 / 我少年中国，与天 / 不老！·壮哉 / 我中国少年，与国 / 无疆！<small style='display:block;margin-top:4px;color:var(--muted)'>（“·”标重音：“美哉”“壮哉”要读得饱满；“与天不老”“与国无疆”收音拉长，读出豪迈）</small></div>"+
+  "<div class='jl-ask'>❓ 先想一想：前一句赞“少年中国”，后一句赞“中国少年”——这两个说法是一回事吗？</div>"+
+  "<ul class='jl-ju'><li><b>“少年中国”是理想</b>——那个朝气蓬勃、与天不老的新中国，是作者心中的蓝图。</li>"+
+  "<li><b>“中国少年”是力量</b>——蓝图不会自己实现，要靠一代代奋发图强的少年去创造。</li>"+
+  "<li><b>互为因果</b>——少年强，国才强；国有希望，少年更有奔头。所以两句感叹缺一不可，先国后人、层层收束。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：美哉赞“国”的理想，壮哉赞“人”的力量——理想与力量相拥，全文情感到达顶点。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>“少年中国”与“中国少年”的关系</b>——答“互为因果、互相成就”；情感题答“对祖国繁荣富强的热切盼望”。<br>🎤 朗读指导：“美哉”“壮哉”读出豪迈之情——挺胸抬头、声音放开，这是全文的最高点，可在两句之间稍作停顿再爆发。</div></div>"+
   "</div></div>"+
   "<div class='card'><h3>✍️ 写法借鉴：课文怎么写，作文怎么用</h3>"+
   "<table class='ovtable'><thead><tr><th style='width:110px'>写法</th><th>课文里怎么用</th><th>你的作文怎么用</th></tr></thead>"+
@@ -2391,6 +2423,10 @@ var PANE_JIANGJIE = {
   "<div class='bili-frame'><iframe src='https://player.bilibili.com/player.html?bvid=BV1yf4y1F7Cd&page=1&danmaku=0&autoplay=0&high_quality=1' scrolling='no' frameborder='no' allowfullscreen='true' loading='lazy'></iframe></div>"+
   "<p class='vnote'>📺 人民日报：国庆版《少年中国说》 · UP主：人民日报 · 时长 3分20秒（284万播放） · <a class='blink' href='https://www.bilibili.com/video/BV1yf4y1F7Cd' target='_blank' rel='noopener'>在B站打开 ↗</a> · <a class='blink landlink'>⛶ 横屏看</a></p>"+
   "<div class='tipbox tip'>⚡ 先自己朗读原文体会气势，再看这段混剪——你会明白为什么说“美哉我少年中国，与天不老”！看完试着背诵课文。</div></div>" +
+  "<div class='card'><h3>✍️ 小练笔：把“少年强则国强”翻译成今天的你</h3>"+
+  "<p style='font-size:13.5px;color:var(--muted)'>一百多年前的少年救中国，今天的少年强中国。梁启超把国家的希望“押”在少年身上——那么，“强”字对你来说意味着什么？是身体棒、学习好，还是有担当、敢坚持？写一段 50~100 字的话，把一百多年前的呐喊翻译成你自己的行动。这是你从这篇课文真正带走的东西。</p>"+
+  "<textarea id='xilianbi-snzgs' class='xltextarea' rows='4' placeholder='写在这里，点保存会自动记住…'></textarea>"+
+  "<div style='margin-top:8px;display:flex;gap:10px;align-items:center'><button class='tflow' style='max-width:180px' onclick='saveXilianbi(\"snzgs\")'>💾 保存</button><span id='xlsave-snzgs' style='font-size:12.5px;color:#3C9E5C;font-weight:700'></span></div></div>"+
   "<div class='tipbox tip'>⚡ <b>本单元方法：</b>结合资料读——查一查 1900 年前后的中国发生了什么，你就明白作者为什么把全部希望“押”在少年身上。</div></div>";}
  ,ymbyh:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
   "<div class='card' style='background:linear-gradient(135deg,#FDF3E3,#FFFDF8)'><h3>🚩 本课学习任务流（结合资料，体会情感）</h3>"+
@@ -3194,6 +3230,10 @@ var PANE_GUOGUAN={
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 古诗三首</h3>"+
   "<p style='font-size:13px;color:var(--muted)'>5 道题检验本课掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
   "<div id='quizBox'></div></div></div>"}
+ ,snzgs:function(L){return "<div class='tabpane' data-tab='guoguan'>"+
+  "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 少年中国说（节选）</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>5 道题检验本课掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
+  "<div id='quizBox'></div></div></div>"}
 };
 
 var SRC={
@@ -3212,6 +3252,13 @@ var SRC={
  gs1:["📜 《示儿》写于什么时候","《示儿》写于 1210 年，是陆游的临终绝笔。“王师”指南宋的朝廷军队；“九州同”指全国统一——九州是古代中国的代称。诗人临终惦记的不是家产，而是国家统一那天，家祭时别忘了把这个好消息告诉他。"],
  gs2:["🏙️ 杭州与汴州","汴州就是北宋的都城开封，1127 年已经沦陷；杭州是南宋的“行在”（临时都城）。林升在杭州的旅馆墙上题下这首诗：“直把杭州作汴州”——讽刺权贵们把逃难的落脚点当成了安乐窝，歌舞不休，全然忘了故都沦陷、国土未收。"],
  gs3:["🕯️ 《己亥杂诗》的由来","1839 年是己亥年，龚自珍辞官离京南归，途中写下 315 首绝句，总称《己亥杂诗》。“万马齐喑”用万马的沉默比喻社会死气沉沉的局面。课本里这首是他最著名的一声呐喊：盼望社会变革，不拘一格地涌现人才。"]
+ ,snzgs_before:[
+  ["⚔️ 卡片一 · 1900 年的时局","1900 年，八国联军入侵北京，史称“庚子国变”：国家被瓜分豆剖，条约一个接一个，赔款压弯了国人的腰。列强讥笑中国是“东亚病夫”——“老大帝国”“一盘散沙”的说法满天飞。也正是在这样的绝境里，维新人士渴望变革，把目光投向了“少年”。"],
+  ["🖋️ 卡片二 · 梁启超与《少年中国说》","梁启超是戊戌变法的领袖之一。变法失败后他流亡日本，1900 年在《清议报》上发表了《少年中国说》。面对西方“中国已老”的讥讽，他奋笔反驳：中国不是垂暮的老人，而是初升的少年——文章一发表，“少年中国”的呐喊便传遍全国。"],
+  ["🌟 卡片三 · 文中的八个比喻","红日（前途光明）、黄河（势不可挡）、潜龙（潜能爆发）、乳虎（初生之威）、鹰隼（跃跃欲试）、奇花（含苞待放）、干将（锋芒初露）……每个比喻的画面不同，但都指向同一件事：新生的力量。梁启超用一连串画面告诉国人——中国的希望，正在“开始”里。"]]
+ ,sn1:["🧑‍🤝‍🧑 “少年中国”与“中国少年”的区别","“少年中国”是理想——梁启超心目中那个朝气蓬勃、与天不老的新中国；“中国少年”是力量——创造这个新中国的千千万万中国少年。一个是蓝图，一个是建设者：少年奋发图强，少年中国才能站起来；国有希望，少年更有奔头——二者互为因果、互相成就。"],
+ sn2:["⚔️ “干将发硎”的典故（吴国名剑）","干将（gān jiāng）是古代吴国铸剑名师，与妻子莫邪一起铸成一对名剑，雄剑就叫“干将”。硎（xíng）是磨刀石。“干将发硎，有作其芒”是说：宝剑刚在磨刀石上磨出锋刃，寒光四射——比喻少年中国的才干与锋芒刚刚显露，来日不可限量。"],
+ sn3:["📣 “美哉壮哉”的感叹层次","这两句感叹不是简单重复，而是层层递进：第一句“美哉我少年中国”赞国家——赞美理想中的新中国与天地共存；第二句“壮哉我中国少年”赞人——赞美创造它的少年与祖国同在、力量无穷。先国后人、由理想到力量，情感步步推高，最后喷薄而出。"]
 };
 
 function cardPop(title,html){
@@ -3277,7 +3324,14 @@ var QUIZ_GUSHISAN=[
  {q:"4. “我劝天公重抖擞，不拘一格降人才”表达了什么？",opts:["渴求变革、盼望人才涌现","祈求上天保佑丰收","感叹自己怀才不遇"],a:0},
  {q:"5. 三首诗情感的共同点是？",opts:["思念故乡","热爱自然","爱国"],a:2}
 ];
-var QUIZ_MAP={ymbyh:QUIZ_YMBYH,gushisan:QUIZ_GUSHISAN};
+var QUIZ_SNZGS=[
+ {q:"1. 《少年中国说（节选）》的作者与发表年份是？",opts:["梁启超 · 1900 年","龚自珍 · 1839 年","陆游 · 1210 年"],a:0},
+ {q:"2. 第 1 段连用八个“少年……则国……”，它的作用是？",opts:["罗列国家存在的种种问题","层层递进，突出少年责任之重","反复强调国家已经很强大"],a:1},
+ {q:"3. “红日初升，其道大光”比喻什么？",opts:["前途光明","日落西山","时光飞逝"],a:0},
+ {q:"4. “少年中国”与“中国少年”的关系是？",opts:["互为因果、互相成就","没有直接关系","两个词意思完全相同"],a:0},
+ {q:"5. 朗读“美哉我少年中国，与天不老！壮哉我中国少年，与国无疆！”应用怎样的语气？",opts:["低沉悲伤","豪迈","平淡随意"],a:1}
+];
+var QUIZ_MAP={ymbyh:QUIZ_YMBYH,gushisan:QUIZ_GUSHISAN,snzgs:QUIZ_SNZGS};
 var quizState={};
 function quizBank(){
   var key=currentLesson&&currentLesson.key;
