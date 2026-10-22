@@ -275,6 +275,17 @@ footer li{margin-bottom:4px;margin-left:18px}
 .readtext p{margin:13px 0;font-size:15px;line-height:2.05;color:var(--ink)}
 .readtext p>span:first-child{margin-right:8px}
 .readtext .srcbtn{margin:2px 0 14px}
+/* 提纲生成器 */
+.tg-chip{display:inline-block;background:#fff;border:2px solid #EDE4D3;border-radius:999px;padding:5px 14px;margin:4px 6px 0 0;cursor:pointer;font-size:14px;font-weight:700;font-family:inherit;color:var(--ink);transition:.12s}
+.tg-chip:active{transform:scale(.96)}
+.tg-chip.on{border-color:#3C9E5C;background:#EFF9F1;color:#2E6B45}
+.tg-row{border:1.5px solid #EDE4D3;border-radius:12px;padding:10px;margin:8px 0;background:#FFFDF8}
+.tg-row .tg-head{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.tg-row textarea{width:100%;border:1.5px solid #E5D9BE;border-radius:10px;padding:8px;font-size:14px;font-family:inherit;margin-top:6px;box-sizing:border-box;min-height:52px;resize:vertical;line-height:1.7}
+.tg-out{background:#FFFDF8;border:2px dashed #C9A961;border-radius:14px;padding:14px;margin-top:12px;line-height:1.9}
+.tg-out h5{margin:0 0 8px;font-size:16px;color:var(--ink)}
+.tg-out .tg-line{display:flex;gap:8px;align-items:flex-start;margin:6px 0;font-size:14.5px}
+.tg-out .tg-tag{flex:none;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-size:12px;font-weight:900;padding:1px 8px;margin-top:2px;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -1007,6 +1018,7 @@ function buildPanes(L){
   if(window.PANE_GUOGUAN && PANE_GUOGUAN[L.key]) html += PANE_GUOGUAN[L.key](L);
   box.innerHTML = html;
   loadXilianbi(L.key);
+  if(L.key==="yuan4Di") tgInit();
   var anchor=box.querySelector(".tabpane[data-tab='jiangjie'] #jichuAnchor");
   if(anchor && JICHU[L.key]){ anchor.innerHTML=jichuHtml(L.key); }
   else{
@@ -2632,6 +2644,12 @@ var PANE_JIANGJIE = {
   "<div><b>🧩 写哪些方面？</b><br>选 2~3 个方面（如环境 + 交通 + 学校），每个方面写一段；不要面面俱到，什么都写等于什么都没写清。</div>"+
   "<div><b>❤️ 情感怎么放？</b><br>所有变化背后，是你对家乡的爱。结尾可以用一句抒情的话点题，让想象“落地”。</div></div>"+
   "<div class='tipbox exam'>⚠️ 特别提醒：想象<b>要合理有依据</b>——从今天真实存在的科技、趋势往前推；天马行空可以，但要能让读者觉得“有可能！”</div></div>"+
+  "<div class='card' id='tigang-tool'><h3>🧭 交互式提纲生成器（本次习作核心技能）</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>三步生成规范提纲：① 勾选 2~3 个变化方面 → ② 每个方面写一句想象要点 → ③ 标出详略，点“生成提纲”。生成后可一键复制到作业本。</p>"+
+  "<div id='tg-aspects'></div>"+
+  "<div id='tg-form'></div>"+
+  "<div style='margin-top:10px;display:flex;gap:10px;flex-wrap:wrap'><button class='tflow' style='max-width:220px' onclick='genTigang()'>🧭 生成提纲</button><button class='srcbtn' onclick='copyTigang()'>📋 复制提纲文本</button><button class='srcbtn' onclick='resetTigang()'>🗑️ 重来</button></div>"+
+  "<div id='tg-result'></div></div>"+
   "<div class='card'><h3>❓ 审题三问自检（动笔前先问自己）</h3>"+
   "<div class='kv'><div><b>Q1 · 我的提纲列了吗？</b><br>本次习作的核心考点就是<b>列提纲</b>：动笔前，把题目、开头、中间各段要点、结尾一条条写下来。</div>"+
   "<div><b>Q2 · 我写了几个方面？</b><br>2~3 个方面最合适，每段一个方面，用“现在 vs 二十年后”的对比来展开。</div>"+
@@ -3337,6 +3355,96 @@ function jumpJj(id){
   el.classList.remove("tl-flash");
   void el.offsetWidth;
   el.classList.add("tl-flash");
+}
+
+/* ===================== 提纲生成器（二十年后的家乡） ===================== */
+var TG_ASPECTS=[["环境","🌳 环境变化","例：河道变清了，屋顶花园成了每栋楼的标配"],["交通","🚄 交通变化","例：磁悬浮公交沿线穿行，堵车成了历史"],["学校","🏫 学校变化","例：教室有全息投影，可以“走进”课文里的场景"],["工作","💼 工作变化","例：爸爸妈妈在家里的全息办公室上班，不出差了"],["家","🏠 家的变化","例：老房子智能改造，外婆用语音就能关好所有门窗"],["医疗","🏥 医疗变化","例：社区诊所就能远程请大医院专家看病"],["饮食","🍜 饮食变化","例：家乡小吃有了标准化工厂，味道一点没变"],["通讯","📱 通讯变化","例：戴上眼镜就能和远方亲人“面对面”吃年夜饭"]];
+var tgState={sel:[],rows:{},detail:{},text:""};
+function tgRender(){
+  var box=document.getElementById("tg-aspects");
+  if(!box) return;
+  box.innerHTML="<div style='font-weight:900;font-size:14px;margin-top:6px'>① 选择 2~3 个变化方面（已选 "+tgState.sel.length+" / 3）</div>"+
+    TG_ASPECTS.map(function(a){
+      var on=tgState.sel.indexOf(a[0])>=0;
+      return "<button class='tg-chip"+(on?" on":"")+"' onclick='tgToggle(\""+a[0]+"\")'>"+a[1]+(on?" ✓":"")+"</button>";
+    }).join("")+
+    "<div style='font-size:12.5px;color:var(--muted);margin-top:6px'>建议选 2 个详写 + 1 个略写，面面俱到反而写不清。</div>";
+  var form=document.getElementById("tg-form");
+  form.innerHTML=tgState.sel.length?"<div style='font-weight:900;font-size:14px;margin-top:12px'>② 每个方面写一句想象要点，并标出详略</div>"+
+    tgState.sel.map(function(k){
+      var a=TG_ASPECTS.find(function(x){return x[0]===k;});
+      var d=tgState.detail[k];
+      return "<div class='tg-row'><div class='tg-head'><b>"+a[1]+"</b>"+
+        "<button class='srcbtn' onclick='tgToggleDetail(\""+k+"\")'>"+(d?"⭐ 详写（点击改为略写）":"略写（点击改为详写）")+"</button></div>"+
+        "<textarea placeholder='"+a[2]+"…' oninput='tgSetPoint(\""+k+"\",this.value)'>"+(tgState.rows[k]||"")+"</textarea></div>";
+    }).join(""):"<p style='font-size:13px;color:var(--muted);margin:10px 0 0'>↑ 先在上面勾选方面，这里会出现要点填写框。</p>";
+}
+function tgToggle(k){
+  var i=tgState.sel.indexOf(k);
+  if(i>=0){ tgState.sel.splice(i,1); delete tgState.detail[k]; }
+  else if(tgState.sel.length<3){ tgState.sel.push(k); }
+  else{ tgState.sel.push(tgState.sel.shift()); tgState.sel[2]=k; }
+  tgRender(); tgSave();
+}
+function tgToggleDetail(k){
+  tgState.detail[k]=!tgState.detail[k];
+  tgRender(); tgSave();
+}
+function tgSetPoint(k,v){
+  tgState.rows[k]=v;
+  tgSave();
+}
+function tgSave(){
+  try{localStorage.setItem("inkclass_tigang",JSON.stringify(tgState));}catch(e){}
+}
+function tgInit(){
+  try{
+    var s=JSON.parse(localStorage.getItem("inkclass_tigang")||"null");
+    if(s&&s.sel){ tgState=s; tgState.text=tgState.text||""; }
+  }catch(e){}
+  tgRender();
+  if(tgState.text){ var r=document.getElementById("tg-result"); if(r&&!r.innerHTML) r.innerHTML=tgState.text; }
+}
+function resetTigang(){
+  tgState={sel:[],rows:{},detail:{},text:""};
+  tgSave(); tgRender();
+  var r=document.getElementById("tg-result"); if(r) r.innerHTML="";
+}
+function genTigang(){
+  var r=document.getElementById("tg-result");
+  if(!r) return;
+  if(tgState.sel.length<2){ r.innerHTML="<div class='tg-out'><b>⚠️ 至少选择 2 个方面才能生成提纲</b>——面面俱到等于什么都没写清。</div>"; tgState.text=""; tgSave(); return; }
+  var hasDetail=tgState.sel.some(function(k){return tgState.detail[k];});
+  var mid=tgState.sel.map(function(k,i){
+    var a=TG_ASPECTS.find(function(x){return x[0]===k;});
+    var d=tgState.detail[k]?"⭐ 详写":"略写";
+    var pt=(tgState.rows[k]||"（这里填一句你的想象要点）");
+    return "<div class='tg-line'><span class='tg-tag'>第"+(i+1)+"段 · "+d+"</span><span><b>"+a[1]+"</b>："+pt+"　<span style='color:var(--muted);font-size:12.5px'>（用“现在 vs 二十年后”的对比展开）</span></span></div>";
+  }).join("");
+  var tip=hasDetail?"":"<div style='margin-top:8px;font-size:13px;color:#C46E08'>💡 建议：至少把一个方面标为详写——详写的段落要有具体画面，略写的可以一笔带过。</div>";
+  var html="<div class='tg-out'><h5>🧭 习作提纲：二十年后的家乡</h5>"+
+    "<div class='tg-line'><span class='tg-tag'>题目</span><span><b>二十年后的家乡</b></span></div>"+
+    "<div class='tg-line'><span class='tg-tag'>开头</span><span>用“回到家乡的第一眼”切入：坐上什么回来的？看到了什么？一句“变化真大”引出下文。</span></div>"+
+    mid+
+    "<div class='tg-line'><span class='tg-tag'>结尾</span><span>回到“人”与情感：变化的是家乡的样子，不变的是热爱——用一句抒情的话点题收束。</span></div>"+
+    tip+"</div>";
+  r.innerHTML=html;
+  tgState.text=html; tgSave();
+}
+function copyTigang(){
+  var r=document.getElementById("tg-result");
+  if(!r||!tgState.text){ return; }
+  var plain=r.innerText.replace(/\n{3,}/g,"\n\n").trim();
+  function done(){ var b=event&&event.target; if(b){ var t=b.textContent; b.textContent="已复制 ✓"; setTimeout(function(){b.textContent=t;},1500); } }
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(plain).then(done,function(){fallbackCopy(plain);done();});
+  }else{ fallbackCopy(plain); done(); }
+}
+function fallbackCopy(s){
+  var ta=document.createElement("textarea");
+  ta.value=s; document.body.appendChild(ta); ta.select();
+  try{document.execCommand("copy");}catch(e){}
+  document.body.removeChild(ta);
 }
 
 function openXilianbi(key){
