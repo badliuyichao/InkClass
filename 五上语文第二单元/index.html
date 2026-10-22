@@ -2240,6 +2240,14 @@ var PANE_JIANGJIE = {
   "<div style='margin-top:8px;display:flex;gap:10px;align-items:center'><button class='tflow' style='max-width:180px' onclick='saveXilianbi(\"yuan1Di\")'>💾 保存</button><span id='xlsave-yuan1Di' style='font-size:12.5px;color:#3C9E5C;font-weight:700'></span></div></div>"+
   "<div class='tipbox tip'>📌 本页要点：心爱之物三件事——样子、来历、为什么心爱。点“🖋️ 写作支架”，手把手教你搭结构、升格语言。</div></div></div>";}
   ,hailibu:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
+  "<div class='card' style='background:linear-gradient(135deg,#EAF6EC,#FFFFFF)'><h3>🚩 本课学习任务流（抓住情节，练习复述）</h3>"+
+  "<div class='taskflow'>"+
+  "<div class='tflow' onclick='showPack(\"hailibu\")'>📖<br>读前资料包<small>先看 3 张背景卡再读课文</small></div>"+
+  "<div class='tflow' onclick='document.getElementById(\"hailibu-src\").scrollIntoView({behavior:\"smooth\"})'>📚<br>读中查资料<small>读原文时点黄色标签</small></div>"+
+  "<div class='tflow' onclick='openXilianbi(\"hailibu\")'>✍️<br>小练笔<small>写两三句海力布的催促</small></div>"+
+  "<div class='tflow' onclick='switchTab(\"guoguan\")'>🎯<br>过关自测<small>5 道题检验</small></div>"+
+  "</div>"+
+  "<div style='margin-top:10px;text-align:right'><button class='srcbtn' id='jjModeBtn' onclick='toggleJjMode()'>🔄 切换为：复习模式</button></div></div>"+
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🧾 本课必背内容（考试就考这些，先逐项过关）</h3>"+
   "<p style='font-size:13px;color:var(--muted)'>这篇课文必须背诵的内容都在这一页——一项一项过关，考试填空题就不丢分。</p>"+
   "<table class='ovtable'>"+
@@ -2251,34 +2259,37 @@ var PANE_JIANGJIE = {
   ""+
   ""+
   "</table></div>"+
-  "<div class='card'><h3>🎯 精读段落速查（先抓这几段！）</h3>"+
-  "<table class='ovtable'><thead><tr><th style='width:150px'>精读段落</th><th>重点是什么</th><th style='width:150px'>常考怎么考</th></tr></thead>"+
-  "<tr><td><b>⭐ 救蛇得宝石</b><br>（第2-6段）</td><td>全篇的“开关”：宝石＝能听懂动物说话，<b>禁忌＝说出来就变石头</b>。没有这个条件，后面的牺牲就不成立。复述时“只能自己知道”这个细节不能丢。</td><td>情节排序、复述要点</td></tr>"+
-  "<tr><td><b>⭐ 劝乡亲</b><br>（第8段）</td><td>最揪心的矛盾：不说实话，乡亲不走；说了实话，自己变石头。“急得掉下了眼泪”“我可以发誓”——心理和语言描写，为高潮蓄力。</td><td>人物心理、内容理解</td></tr>"+
-  "<tr><td><b>⭐ 说实话变石头</b><br>（第9-10段）</td><td>全文高潮：“原原本本照实说了”说明毫无保留。海力布<b>舍己为人</b>的品质全靠这段立起来——人物评价题的答案就在这里。</td><td>人物品质、主旨感悟</td></tr></table>"+
-  "</div>"+
+  "<div class='card'><h3>🎯 考点导航 · 先看考什么，再去深入</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>这张表不再重复讲解——只回答两件事：考试考什么题型？想深入时点右侧按钮直达对应精讲。</p>"+
+  "<table class='ovtable'><thead><tr><th style='width:132px'>重点段落</th><th>常考怎么考</th><th style='width:86px'>直达</th></tr></thead>"+
+  "<tr><td><b>⭐ 救蛇得宝石<br>（第3-6段）</b></td><td><b>情节排序＋条件复述</b>：宝石＝能听懂动物说话，<b>禁忌＝说出来就变石头</b>——没有这个条件，后面的牺牲就不成立；“只能自己知道”这个细节不能丢</td><td><button class='srcbtn' onclick='jumpJj(\"hailibu-tl-1\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 劝乡亲<br>（第8段）</b></td><td><b>人物心理</b>：不说实话乡亲不走，说实话自己变石头——“急得掉下了眼泪”“我可以发誓”，心理和语言描写为高潮蓄力</td><td><button class='srcbtn' onclick='jumpJj(\"hailibu-tl-2\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 说实话变石头<br>（第9段）</b></td><td><b>人物品质＋主旨</b>：“原原本本照实说了”说明毫无保留，<b>舍己为人</b>全靠这段立起来；复述按“救蛇—得宝—闻讯—劝迁—变石”顺序抓关键情节</td><td><button class='srcbtn' onclick='jumpJj(\"hailibu-tl-3\")'>看精讲</button></td></tr>"+
+  "</table></div>"+
   "<div id='jichuAnchor'></div>"+
   "<div class='card'><h3>🏹 读懂课文：六步走完这个感人的传说</h3>"+
   "<div class='tipbox exam'>📝 <b>一课一背（考试标准答案）</b><br>主要内容：猎人海力布救了龙王的女儿，得到能听懂动物说话的宝石；为救乡亲说出鸟儿的秘密，自己变成石头。<br>中心思想：赞扬海力布<b>热心助人、舍己为人</b>的高尚品质。</div>"+
   "<div class='kv'><div><b>🧭 全文结构（情节链）</b><br>引子（第1段）→ 人设（第2段）→ 救蛇（第3段）→ 得宝石·禁忌（第4-6段）→ 听鸟语（第7段）→ 劝乡亲（第8段）→ 说实话变石头（第9段）→ 得救纪念（第10-11段）。</div></div>"+
   "<div class='kv'><div><b>💛 人物品质</b><br>平时热心助人（把猎物分给大家），关键时刻<b>舍己为人</b>——用生命换来大家的平安。</div>"+
   "<div><b>🎭 故事的张力</b><br>最揪心的矛盾：不说实话，乡亲们不走；说实话，自己变石头。海力布选择了牺牲——这是整个故事的精华。</div></div></div>"+
-  "<div class='card'><h3>📄 课文原文（对照精讲用）</h3>"+
-  "<p style='font-size:13px;color:var(--muted)'>依据统编教材，共 11 个自然段。民间故事，由甘珠尔扎布整理，选作课文时有改动。点击展开。</p>"+
-  "<div class='acc' onclick='this.classList.toggle(\"open\")'><button class='head'><span class='idx'>原</span>展开课文全文（约1100字）<span class='arrow'>▸</span></button><div class='body'>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>1</span>在我国的一些地区，流传着一个动人的民间故事。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>2</span>从前有一个猎人，名叫海力布。他热心帮助别人，每次打猎回来，总是把猎物分给大家，自己只留下很少的一份。大家都非常尊敬他。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>3</span>有一天，海力布到深山去打猎，忽然听见天上有呼救声。他抬头一看，一只老鹰抓着一条小白蛇正从他头上方飞过。他急忙搭箭开弓，对准老鹰射去。老鹰受了伤，丢下小白蛇逃了。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>4</span>海力布对小白蛇说：“可怜的小东西，快回家去吧！”小白蛇说：“敬爱的猎人，您是我的救命恩人，我要报答您。我是龙王的女儿，您跟我回去，我爸爸一定会好好酬谢谢您。我爸爸的宝库里有许多珍宝，您要什么都可以。如果您都不喜欢，可以要我爸爸含在嘴里的那颗宝石。只要嘴里含着那颗宝石，就能听懂各种动物说的话。”海力布想，珍宝我倒不在乎，能听懂动物的话，对一个猎人来说，实在是太好了。他问小白蛇：“真有这样一颗宝石吗？”小白蛇说：“真的。但是动物说什么话，您只能自己知道。如果对别人说了，您就会变成一块石头。”</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>5</span>海力布点点头，跟着小白蛇到了龙宫。老龙王对海力布十分感激，要重谢他，于是把他领进宝库，让他自己挑选珍宝，爱什么就拿什么。海力布什么珍宝也不要，他对龙王说：“如果您真想给我点儿东西作纪念，请把您嘴里含着的那颗宝石送给我吧。”龙王低头想了一会儿，就把嘴里含的宝石吐出来，送给了海力布。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>6</span>海力布临走的时候，小白蛇跟了出来，再三叮嘱他说：“敬爱的猎人，您要记住，无论动物说了什么话，都不要对别人说。如果说了，您马上就会变成石头，永远不能复活了！”海力布谢过小白蛇，就回家了。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>7</span>海力布有了这颗宝石，打猎方便极了。他把宝石含在嘴里，能听懂飞禽走兽的语言，能知道哪座山上有哪些动物。从此以后，他每次打猎回来，分给大家的猎物更多了。这样过了几年。有一天，他正在深山里打猎，忽然听见一群鸟在议论着什么。仔细一听，那只领头的鸟说：“咱们赶快飞到别处去吧！今天晚上，这里的大山要崩塌，大地要被洪水淹没，不知道要淹死多少人呢！”</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>8</span>海力布听到这个消息，大吃一惊。他急忙跑回家对大家说：“咱们赶快搬到别处去吧！这个地方不能住了！”大家听了感到很奇怪，住得好好的，为什么要搬家呢？尽管海力布焦急地催促大家，可是谁也不相信他。海力布急得掉下了眼泪，说：“我可以发誓，我说的话千真万确。相信我的话吧，赶快搬走！再晚就来不及了！”有个老人对海力布说：“海力布，你是我们的好邻居，我们知道你从来不说谎话。可是今天你让我们搬家，你总得说清楚哇。咱们在这山下住了好几代啦，老老小小这么多人，搬家可不容易呀！”</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>9</span>海力布知道着急也没有用，不把为什么要搬家说清楚，大家是不会相信的。再一迟延，灾难就要夺去乡亲们的生命。要救乡亲们，只有牺牲自己。他想到这里，就镇定地对大家说：“今天晚上，这里的大山要崩塌，洪水要淹没大地。你们看，鸟都飞走了。”接着，他就把怎么得到宝石，怎么听见一群鸟议论避难，以及为什么不能把听来的消息告诉别人，都原原本本照实说了。海力布刚说完，就变成了一块僵硬的石头。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>10</span>大家看见海力布变成了石头，都非常后悔，非常悲痛。他们含着眼泪，念着海力布的名字，扶着老人，领着孩子，赶着牛羊，往很远的地方走去。他们走在路上，忽然乌云密布，狂风怒号，接着就是倾盆大雨。半夜里，听见一声震天动地的巨响，大山崩塌了，地下涌出洪水，把他们住的村子淹没了。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>11</span>人们世世代代纪念海力布。据说现在还能找到那块叫“海力布”的石头呢。</div>"+
+  "<div class='card' id='hailibu-src'><h3>📄 课文原文 · 全文（直读版）</h3>"+
+  "<div class='readtext'>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>1</span>在我国的一些地区，流传着一个动人的民间故事。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>2</span>从前有一个猎人，名叫海力布。他热心帮助别人，每次打猎回来，总是把猎物分给大家，自己只留下很少的一份。大家都非常尊敬他。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>3</span>有一天，海力布到深山去打猎，忽然听见天上有呼救声。他抬头一看，一只老鹰抓着一条小白蛇正从他头上方飞过。他急忙搭箭开弓，对准老鹰射去。老鹰受了伤，丢下小白蛇逃了。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>4</span>海力布对小白蛇说：“可怜的小东西，快回家去吧！”小白蛇说：“敬爱的猎人，您是我的救命恩人，我要报答您。我是龙王的女儿，您跟我回去，我爸爸一定会好好酬谢谢您。我爸爸的宝库里有许多珍宝，您要什么都可以。如果您都不喜欢，可以要我爸爸含在嘴里的那颗宝石。只要嘴里含着那颗宝石，就能听懂各种动物说的话。”海力布想，珍宝我倒不在乎，能听懂动物的话，对一个猎人来说，实在是太好了。他问小白蛇：“真有这样一颗宝石吗？”小白蛇说：“真的。但是动物说什么话，您只能自己知道。如果对别人说了，您就会变成一块石头。”</p>"+
+  "<button class='srcbtn' onclick='showCard(\"hailibu1\")'>📚 查资料 · 宝石与禁忌的设定</button>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>5</span>海力布点点头，跟着小白蛇到了龙宫。老龙王对海力布十分感激，要重谢他，于是把他领进宝库，让他自己挑选珍宝，爱什么就拿什么。海力布什么珍宝也不要，他对龙王说：“如果您真想给我点儿东西作纪念，请把您嘴里含着的那颗宝石送给我吧。”龙王低头想了一会儿，就把嘴里含的宝石吐出来，送给了海力布。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>6</span>海力布临走的时候，小白蛇跟了出来，再三叮嘱他说：“敬爱的猎人，您要记住，无论动物说了什么话，都不要对别人说。如果说了，您马上就会变成石头，永远不能复活了！”海力布谢过小白蛇，就回家了。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>7</span>海力布有了这颗宝石，打猎方便极了。他把宝石含在嘴里，能听懂飞禽走兽的语言，能知道哪座山上有哪些动物。从此以后，他每次打猎回来，分给大家的猎物更多了。这样过了几年。有一天，他正在深山里打猎，忽然听见一群鸟在议论着什么。仔细一听，那只领头的鸟说：“咱们赶快飞到别处去吧！今天晚上，这里的大山要崩塌，大地要被洪水淹没，不知道要淹死多少人呢！”</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>8</span>海力布听到这个消息，大吃一惊。他急忙跑回家对大家说：“咱们赶快搬到别处去吧！这个地方不能住了！”大家听了感到很奇怪，住得好好的，为什么要搬家呢？尽管海力布焦急地催促大家，可是谁也不相信他。海力布急得掉下了眼泪，说：“我可以发誓，我说的话千真万确。相信我的话吧，赶快搬走！再晚就来不及了！”有个老人对海力布说：“海力布，你是我们的好邻居，我们知道你从来不说谎话。可是今天你让我们搬家，你总得说清楚哇。咱们在这山下住了好几代啦，老老小小这么多人，搬家可不容易呀！”</p>"+
+  "<button class='srcbtn' onclick='showCard(\"hailibu2\")'>📚 查资料 · 乡亲们为什么不肯搬</button>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>9</span>海力布知道着急也没有用，不把为什么要搬家说清楚，大家是不会相信的。再一迟延，灾难就要夺去乡亲们的生命。要救乡亲们，只有牺牲自己。他想到这里，就镇定地对大家说：“今天晚上，这里的大山要崩塌，洪水要淹没大地。你们看，鸟都飞走了。”接着，他就把怎么得到宝石，怎么听见一群鸟议论避难，以及为什么不能把听来的消息告诉别人，都原原本本照实说了。海力布刚说完，就变成了一块僵硬的石头。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>10</span>大家看见海力布变成了石头，都非常后悔，非常悲痛。他们含着眼泪，念着海力布的名字，扶着老人，领着孩子，赶着牛羊，往很远的地方走去。他们走在路上，忽然乌云密布，狂风怒号，接着就是倾盆大雨。半夜里，听见一声震天动地的巨响，大山崩塌了，地下涌出洪水，把他们住的村子淹没了。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>11</span>人们世世代代纪念海力布。据说现在还能找到那块叫“海力布”的石头呢。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"hailibu3\")'>📚 查资料 · “海力布”石头</button>"+
+  "<p style='margin:10px 0 0;font-size:12.5px;color:var(--muted)'>——依据统编教材，共 11 个自然段。民间故事，由甘珠尔扎布整理，选作课文时有改动。段落序号为便于对照所加，以课本为准。</p>"+
   "</div></div>"+
-  "</div>"+
   "<div class='card'><h3>📖 逐情节精讲·复述要点</h3>"+
   "<p style='font-size:14px;color:var(--muted)'>民间故事按情节走。每一站都标出了“复述不能丢的细节”和“可以加想象的地方”。</p>"+
   "<div class='timeline'>"+
@@ -2289,6 +2300,42 @@ var PANE_JIANGJIE = {
   "<div class='tl'><b>⭐ ⑤ 劝乡亲 · 最揪心的拉锯（第8段）</b><br>他急忙催大家搬家，乡亲们不信：“这么好的天，能有什么灾？”他急得掉泪。<b>可想象：</b>乡亲们的动作、表情，海力布的心理。</div>"+
   "<div class='tl'><b>⭐ ⑥ 说实话 · 牺牲的抉择（第9段）</b><br>他把灾难的原委<b>原原本本</b>说了一遍，刚说完就变成石头。<b>复述要点：</b>“原原本本”四个字，说明他毫无保留。</div>"+
   "<div class='tl'><b>⑦ 结尾 · 永远的纪念（第10-11段）</b><br>乡亲们含泪搬家得救，世代纪念海力布。<b>创造性示范：</b>换成乡亲的口吻讲——“直到今天，我们还记得那块石头……”</div>"+
+  "</div></div>"+
+  "<div class='card'><h3>🔍 精读深挖：抓住情节，讲好故事</h3>"+
+  "<div class='timeline'>"+
+  "<div class='tl' id='hailibu-tl-1'><b>⭐ 救蛇得宝石 · 善良的回报（第3-6段）</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>他急忙搭箭开弓，对准老鹰射去。老鹰受了伤，丢下小白蛇逃了。……只要嘴里含着那颗宝石，就能听懂各种动物说的话。但是动物说什么话，您只能自己知道。如果对别人说了，您就会变成一块石头。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：救蛇是偶然，报恩为什么这么“慷慨”？宝石为什么要附带条件？</div>"+
+  "<ul class='jl-ju'>"+
+  "<li><b>出手就快</b>——“急忙搭箭开弓”，救的是一只素不相识的小白蛇。</li>"+
+  "<li><b>善有善报</b>——民间故事的经典母题：小白蛇是龙王的女儿，龙王要重谢他。</li>"+
+  "<li><b>要宝不要财</b>——珍宝随便挑，他只要宝石，因为“能听懂动物的话，实在是太好了”。</li>"+
+  "<li><b>条件随礼一起来</b>——禁忌：动物的话只能自己知道，对别人说了就变成石头。</li>"+
+  "</ul>"+
+  "<div class='jl-take'>💡 一句话：善良是“因”，宝石是“果”，禁忌是“扣”——三者缺一，后面所有情节都转不动。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>情节排序与条件复述</b>——常考“宝石的来历”“海力布为什么能听懂动物说话”。🎤 复述指导：讲到“得宝”，必须讲清“能听懂动物说话”和“说出来就变石头”两个条件——这是整个故事的开关。</div></div>"+
+  "<div class='tl' id='hailibu-tl-2'><b>⭐ 听到洪水消息后的抉择 · 灾难预告与乡亲信任（第7-8段）</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>海力布，你是我们的好邻居，我们知道你从来不说谎话。可是今天你让我们搬家，你总得说清楚哇。咱们在这山下住了好几代啦，老老小小这么多人，搬家可不容易呀！</div>"+
+  "<div class='jl-ask'>❓ 先想一想：乡亲们“谁也不相信”，是刁难海力布吗？</div>"+
+  "<ul class='jl-ju'>"+
+  "<li><b>消息太离奇</b>——打猎听见鸟议论大山崩塌、洪水淹没，谁听了都难以置信。</li>"+
+  "<li><b>搬家不是小事</b>——老老小小、牛羊家当，说搬就搬谈何容易。</li>"+
+  "<li><b>海力布的两难</b>——说出实情自己变石头；不说实情，乡亲不走。</li>"+
+  "<li><b>三层递进写“急”</b>——焦急催促→急得掉泪→“我可以发誓”，一步比一步紧。</li>"+
+  "</ul>"+
+  "<div class='jl-take'>💡 一句话：乡亲们不是刁难，是普通人面对“讲不清的理由”的正常反应——两难拉得越紧，牺牲就越动人。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>人物心理与内容理解</b>——常考“海力布为什么着急”“乡亲们为什么不肯搬”。🎤 复述指导：这一段要有拉锯感——海力布越急，乡亲们越疑，为下一段“说实话”蓄满力量。</div></div>"+
+  "<div class='tl' id='hailibu-tl-3'><b>⭐ 变成石头的牺牲 · 复述训练（第9段）</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>海力布知道着急也没有用，不把为什么要搬家说清楚，大家是不会相信的。再一迟延，灾难就要夺去乡亲们的生命。要救乡亲们，只有牺牲自己。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：从“急得掉泪”到“镇定地说”，海力布心里发生了什么变化？</div>"+
+  "<ul class='jl-ju'>"+
+  "<li><b>想明白了才镇定</b>——“要救乡亲们，只有牺牲自己”，决心下定，语气反而平静。</li>"+
+  "<li><b>原原本本</b>——怎么得到宝石、怎么听见鸟议论、为什么不能告诉别人，毫无保留地说了。</li>"+
+  "<li><b>一说完就变石</b>——灾难预告兑现，牺牲定格成石头。</li>"+
+  "<li><b>世代纪念</b>——乡亲含泪搬家得救，“海力布”石头留到今天。</li>"+
+  "</ul>"+
+  "<div class='jl-take'>💡 一句话：从“急”到“镇定”，是下定了决心；“原原本本”四个字，是他留给人间最后的诚实。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>人物品质题</b>（热心助人＋舍己为人，要结合具体情节）＋<b>复述训练</b>——按“救蛇—得宝—闻讯—劝迁—变石”的顺序抓关键情节：次要对话可以简说，“禁忌”和“原原本本照实说了”必须讲清。🎤 朗读指导：第9段心理句要读得沉着坚定。</div></div>"+
   "</div></div>"+
   "<div class='card'><h3>✍️ 写法借鉴：课文怎么写，作文怎么用</h3>"+
   "<table class='ovtable'><thead><tr><th style='width:110px'>写法</th><th>课文里怎么用</th><th style='width:190px'>你的作文怎么用</th></tr></thead>"+
@@ -2304,8 +2351,20 @@ var PANE_JIANGJIE = {
   "<div class='kv'><div><b>📚 课文来历</b><br>《猎人海力布》是流传在蒙古族人民中的民间故事，由甘珠尔扎布整理，选作课文时有改动。民间故事没有固定的作者——它的“作者”，是一代又一代讲故事的老百姓。</div>"+
   "<div><b>🖋️ 民间故事的特点</b><br>①口耳相传，人人会讲；②情节神奇（能听懂动物说话）；③善恶分明，寄托愿望（赞颂舍己为人的英雄）。</div></div>"+
   "<div class='tipbox fun'>🤔 草原上的传说：在今天的内蒙古，还留有一块“海力布石”，当地人一直记着这位舍己救人的英雄。故事为什么要编得这么“神奇”？因为“能听懂动物说话”这个想象，把“消息从哪来”讲通了，还让故事百听不厌。</div></div>"+
+  "<div class='card'><h3>✍️ 小练笔：海力布着急地催促乡亲们快走，他会怎么喊？写两三句他的话</h3>"+
+  "<p style='font-size:13.5px;color:var(--muted)'>回到第 8 段那个拉锯的场面：乡亲们觉得“住得好好的，为什么要搬家呢”，海力布急得掉眼泪。替他喊出两三句话——要带着“急”，又不能把宝石的秘密提前说破。写完读一读：听得出他的着急吗？</p>"+
+  "<textarea id='xilianbi-hailibu' class='xltextarea' rows='4' placeholder='写在这里，点保存会自动记住…'></textarea>"+
+  "<div style='margin-top:8px;display:flex;gap:10px;align-items:center'><button class='tflow' style='max-width:180px' onclick='saveXilianbi(\"hailibu\")'>💾 保存</button><span id='xlsave-hailibu' style='font-size:12.5px;color:#3C9E5C;font-weight:700'></span></div></div>"+
   "<div class='tipbox tip'>⚡ <b>本单元方法：</b>创造性复述——试着用<b>乡亲</b>的口吻讲这个故事：“我们怎么也不相信灾难要来了，直到海力布说出那个秘密……”</div></div>";}
  ,niulang1:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
+  "<div class='card' style='background:linear-gradient(135deg,#EAF6EC,#FFFFFF)'><h3>🚩 本课学习任务流（把故事讲得有条理）</h3>"+
+  "<div class='taskflow'>"+
+  "<div class='tflow' onclick='showPack(\"niulang1\")'>📖<br>读前资料包<small>先看 3 张背景卡再读课文</small></div>"+
+  "<div class='tflow' onclick='document.getElementById(\"niulang1-src\").scrollIntoView({behavior:\"smooth\"})'>📚<br>读中查资料<small>读原文时点黄色标签</small></div>"+
+  "<div class='tflow' onclick='openXilianbi(\"niulang1\")'>✍️<br>小练笔<small>把一个细节讲给同伴听</small></div>"+
+  "<div class='tflow' onclick='switchTab(\"guoguan\")'>🎯<br>过关自测<small>5 道题检验</small></div>"+
+  "</div>"+
+  "<div style='margin-top:10px;text-align:right'><button class='srcbtn' id='jjModeBtn' onclick='toggleJjMode()'>🔄 切换为：复习模式</button></div></div>"+
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🧾 本课必背内容（考试就考这些，先逐项过关）</h3>"+
   "<p style='font-size:13px;color:var(--muted)'>这篇课文必须背诵的内容都在这一页——一项一项过关，考试填空题就不丢分。</p>"+
   "<table class='ovtable'>"+
@@ -2316,12 +2375,13 @@ var PANE_JIANGJIE = {
   ""+
   ""+
   "</table></div>"+
-  "<div class='card'><h3>🎯 精读段落速查（先抓这几段！）</h3>"+
-  "<table class='ovtable'><thead><tr><th style='width:150px'>精读段落</th><th>重点是什么</th><th style='width:150px'>常考怎么考</th></tr></thead>"+
-  "<tr><td><b>⭐ 第2-5段 · 老牛相伴</b></td><td>牛郎的善良都写在细节里：吃嫩草、喝净水、夏天树林休息、冬天山坡晒太阳、刷得干干净净——人设靠细节立起来，也是创造性复述“加想象”的好地方。</td><td>人物形象、结构分析</td></tr>"+
-  "<tr><td><b>⭐ 第10-11段 · 老牛开口</b></td><td>民间故事的“神奇设定”就此展开：老牛竟会说话，指点他明天黄昏翻过山去湖边。复述时语气要讲得神秘。</td><td>民间故事的特点</td></tr>"+
-  "<tr><td><b>⭐ 第16-17段 · 湖边结缘</b></td><td>织女是谁（王母娘娘的外孙女、织得一手好彩锦）、为什么想留在人间（天上没自由）——人物身份和动机都在这段。</td><td>内容理解、人物分析</td></tr></table>"+
-  "</div>"+
+  "<div class='card'><h3>🎯 考点导航 · 先看考什么，再去深入</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>这张表不再重复讲解——只回答两件事：考试考什么题型？想深入时点右侧按钮直达对应精讲。</p>"+
+  "<table class='ovtable'><thead><tr><th style='width:132px'>重点段落</th><th>常考怎么考</th><th style='width:86px'>直达</th></tr></thead>"+
+  "<tr><td><b>⭐ 第2-5段 · 老牛相伴</b></td><td><b>人物形象＋细节描写</b>：善良都写在照顾老牛的细节里——吃嫩草、喝净水、夏天树林冬天山坡、刷得干干净净；也是复述“加想象”的好地方</td><td><button class='srcbtn' onclick='jumpJj(\"niulang1-tl-1\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 第10-11段 · 老牛开口</b></td><td><b>民间故事的特点</b>：神奇设定推动故事——老牛竟会说话，指点他明天黄昏去湖边；复述时语气要讲得神秘</td><td><button class='srcbtn' onclick='jumpJj(\"niulang1-tl-2\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 第16-17段 · 湖边结缘</b></td><td><b>内容理解＋人物分析</b>：织女的身份（王母外孙女、织彩锦）和“天上没自由”的动机都在这段</td><td><button class='srcbtn' onclick='jumpJj(\"niulang1-tl-3\")'>看精讲</button></td></tr>"+
+  "</table></div>"+
   "<div id='jichuAnchor'></div>"+
   "<div class='card'><h3>🐂 读懂课文：苦孩子的好日子</h3>"+
   "<div class='tipbox exam'>📝 <b>一课一背（考试标准答案）</b><br>主要内容：牛郎从小受哥嫂虐待，与老牛相依为命；长大后哥嫂分家只给他老牛破车，他在山中安家；老牛开口指点，他在湖边结识了织女，结为夫妻。<br>中心思想：赞颂牛郎勤劳善良，织女心灵手巧、追求自由幸福的生活。</div>"+
@@ -2329,32 +2389,34 @@ var PANE_JIANGJIE = {
   "<div class='kv'><div><b>👦 牛郎</b><br>勤劳善良，连一头老牛都照顾得无微不至——善良是他获得幸福的根源。</div>"+
   "<div><b>👧 织女</b><br>心灵手巧、向往自由。天上再好，也没有人间的自由和真情可贵。</div>"+
   "<div><b>🐂 老牛</b><br>知恩图报的神牛，是推动故事发展的关键角色。</div></div></div>"+
-  "<div class='card'><h3>📄 课文原文（对照精讲用）</h3>"+
-  "<p style='font-size:13px;color:var(--muted)'>依据统编教材，共 21 个自然段。民间故事，由叶圣陶整理，选作课文时有改动。点击展开。</p>"+
-  "<div class='acc' onclick='this.classList.toggle(\"open\")'><button class='head'><span class='idx'>原</span>展开课文全文（约1400字）<span class='arrow'>▸</span></button><div class='body'>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>1</span>古时候有个孩子，爹妈都死了，跟着哥哥嫂子过日子。哥哥嫂子待他很不好，叫他吃剩饭，穿破衣裳，夜里在牛棚里睡。牛棚里没床铺，他就睡在干草上。他每天放牛。那头牛跟他很亲密，用温和的眼睛看着他，有时候还伸出舌头舔舔他的手，怪有意思的。哥哥嫂子见他总是爱理不理的，仿佛他一在眼前，就满身不舒服。两下一比较，他也乐得跟牛一块儿出去，一块儿睡。他没名字，人家见他放牛，就叫他牛郎。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>2</span>牛郎照看那头牛挺周到。一来是牛跟他亲密；二来呢，他想，牛那样勤勤恳恳地干活，不好好照看它，怎么对得起它呢？他老是挑很好的草地，让牛吃又肥又嫩的青草；家里吃的干草，筛得一点儿土也没有。牛渴了，他就牵着它到小溪的上游，让它喝干净的水。夏天天气热，就在树林里休息；冬天天气冷，就在山坡上晒太阳。他把牛身上刷得干干净净，不让有一点儿草叶土粒。到夏天，一把蒲扇不离手，把成群乱转的牛虻都赶跑了。牛棚也打扫得干干净净。在干干净净的地方住，牛舒服，自己也舒服。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>3</span>牛郎随口哼几支小曲儿，没人听他的，可是牛摇摇耳朵闭闭眼，好像听得挺有味儿。牛郎心里想什么，嘴里就说出来，没人听他的，可是牛咧开嘴，笑嘻嘻的，好像明白他的意思。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>4</span>他常常把看见的听见的事告诉牛，有时候跟它商量一些事。牛好像全了解，虽然没说话，可是眉开眼笑的，他也就满意了。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>5</span>自然，有时候他还觉得美中不足，要是牛能说话，把了解的和想说的都一五一十地说出来，那该多好呢。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>6</span>一年一年过去，牛郎渐渐长大了。哥哥嫂子想独占父亲留下来的家产，把他看成眼中钉。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>7</span>一天，哥哥把牛郎叫到跟前，装作很亲热的样子说：“你如今长大了，也该成家立业了。老人家留下一点儿家产，咱们分了吧。一头牛，一辆车，都归你；别的归我。”嫂子在旁边，三分像笑七分像发狠，说：“我们挑顶有用的东西给你，你知道吗？你要知道好歹，赶紧离开这儿！”</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>8</span>牛郎听哥哥嫂子这么说，就牵着老牛，拉着破车，头也不回，一直往前走，走出村子，走过树林，走到山里。从那以后，他白天上山打柴，柴装满一车，就让老牛拉着，到集市上去换粮食；夜晚就让老牛在车旁边休息，自己睡在车上。过了些日子，他在山前边盖了一间草房，又在草房旁边开辟了一块地，种些庄稼，这就算安了家。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>9</span>一天晚上，他走进草房，忽然听见一声“牛郎”，他从没听见过这个声音。是谁叫他呢？回头一看，微弱的星光下，老牛嘴一张一合的，正在说话。老牛真会说话了！牛郎并不觉得奇怪，像是习惯了它说话似的，就转过身子去听。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>10</span>老牛说：“明天黄昏时候，你翻过右边那座山，山那边是一片树林，树林前边是个湖，那时候会有些仙女在湖里洗澡。她们的衣裳放在草地上，你要捡起那件粉红色的纱衣，跑到树林里等着，跟你要衣裳的那个仙女就是你的妻子。这个好机会你可别错过了。”</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>11</span>“知道了。”牛郎高兴地回答。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>12</span>第二天黄昏时候，牛郎翻过右边的那座山，穿过树林，走到湖边。湖面映着晚霞的余光，蓝紫色的波纹晃晃荡荡。他听见有女子的笑声，顺着声音看，果然有好些个女子在湖里洗澡。他沿着湖边走，没几步，就看见草地上放着好些衣裳，花花绿绿的，件件都那么漂亮。里头果然有一件粉红色的纱衣，他就拿起来，转身走进树林。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>13</span>他静静地听着，一会儿，传来女子们上岸的声音，听见一个说：“不早了，咱们赶紧回去吧！”过了一会儿，又听见另一个说：“怎么，你们都走啦？难得来一趟，自由自在地洗个澡，也不多玩一会儿——哎呀！我的衣裳哪儿去了？谁瞧见我的衣裳啦？”</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>14</span>牛郎听到这儿，从树林里走出来，双手托着纱衣，说：“姑娘，别着急，你的衣裳在这儿。”</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>15</span>姑娘穿上衣裳，一边梳她长长的黑头发，一边跟牛郎谈话。牛郎把自己的情形一五一十地说了。姑娘听得出了神，又同情他，又爱惜他，就把自己的情形也告诉了他。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>16</span>原来姑娘是天上王母娘娘的外孙女，织得一手好彩锦，名字叫织女。天天早晨和傍晚，王母娘娘拿她织的彩锦装饰天空，那就是灿烂的云霞，什么东西也没它美丽。王母娘娘需要的彩锦多，就叫织女成天成夜地织，一会儿也不许休息。织女身子老在机房里，手老在梭子上，劳累不用说，自由也没有了，等于关在监狱里，实在难受。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>17</span>她常常想，人人说天上好，天上好，天上有什么好呢？没有自由，又看不见什么。她总想离开天上，到人间去，哪怕是一天半天呢，也可以见识见识人间的景物。她把这个想法跟别的仙女说了。别的仙女也都说早有这种想法。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>18</span>那天下午，王母娘娘喝千年酿的葡萄酒，多喝了点儿，靠在宝座上直打瞌睡，看样子不见得马上就醒。仙女们见机会难得，就你拉我、我拉你地溜出来，一齐飞到人间。她们飞到湖边，看见湖水清得可爱，就跳下去洗澡。织女关在机房里太久了，现在能够在湖水里无拘无束地游泳，心里真痛快，想多玩一会儿，没想到就落在了后边。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>19</span>牛郎听完织女的话，就说：“姑娘，既然天上没什么好，你就不用回去了。你能干活，我也能干活，咱们两个结了婚，一块儿在人间过一辈子吧。”</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>20</span>织女想了想，说：“你说得很对，咱们结婚，一块儿过日子吧。”</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>21</span>他们俩手拉着手，穿过树林，翻过山头，回到草房。牛郎把老牛指给织女看，说它就是从小到大相依为命的伴儿。织女拍拍老牛的脖子，用腮帮挨挨它的耳朵，算是跟它行见面礼。老牛眉开眼笑地朝她看，仿佛说：“正是这个新娘子。”</div>"+
+  "<div class='card' id='niulang1-src'><h3>📄 课文原文 · 全文（直读版）</h3>"+
+  "<div class='readtext'>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>1</span>古时候有个孩子，爹妈都死了，跟着哥哥嫂子过日子。哥哥嫂子待他很不好，叫他吃剩饭，穿破衣裳，夜里在牛棚里睡。牛棚里没床铺，他就睡在干草上。他每天放牛。那头牛跟他很亲密，用温和的眼睛看着他，有时候还伸出舌头舔舔他的手，怪有意思的。哥哥嫂子见他总是爱理不理的，仿佛他一在眼前，就满身不舒服。两下一比较，他也乐得跟牛一块儿出去，一块儿睡。他没名字，人家见他放牛，就叫他牛郎。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>2</span>牛郎照看那头牛挺周到。一来是牛跟他亲密；二来呢，他想，牛那样勤勤恳恳地干活，不好好照看它，怎么对得起它呢？他老是挑很好的草地，让牛吃又肥又嫩的青草；家里吃的干草，筛得一点儿土也没有。牛渴了，他就牵着它到小溪的上游，让它喝干净的水。夏天天气热，就在树林里休息；冬天天气冷，就在山坡上晒太阳。他把牛身上刷得干干净净，不让有一点儿草叶土粒。到夏天，一把蒲扇不离手，把成群乱转的牛虻都赶跑了。牛棚也打扫得干干净净。在干干净净的地方住，牛舒服，自己也舒服。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>3</span>牛郎随口哼几支小曲儿，没人听他的，可是牛摇摇耳朵闭闭眼，好像听得挺有味儿。牛郎心里想什么，嘴里就说出来，没人听他的，可是牛咧开嘴，笑嘻嘻的，好像明白他的意思。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>4</span>他常常把看见的听见的事告诉牛，有时候跟它商量一些事。牛好像全了解，虽然没说话，可是眉开眼笑的，他也就满意了。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>5</span>自然，有时候他还觉得美中不足，要是牛能说话，把了解的和想说的都一五一十地说出来，那该多好呢。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"niulang11\")'>📚 查资料 · 相依为命的细节</button>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>6</span>一年一年过去，牛郎渐渐长大了。哥哥嫂子想独占父亲留下来的家产，把他看成眼中钉。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>7</span>一天，哥哥把牛郎叫到跟前，装作很亲热的样子说：“你如今长大了，也该成家立业了。老人家留下一点儿家产，咱们分了吧。一头牛，一辆车，都归你；别的归我。”嫂子在旁边，三分像笑七分像发狠，说：“我们挑顶有用的东西给你，你知道吗？你要知道好歹，赶紧离开这儿！”</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>8</span>牛郎听哥哥嫂子这么说，就牵着老牛，拉着破车，头也不回，一直往前走，走出村子，走过树林，走到山里。从那以后，他白天上山打柴，柴装满一车，就让老牛拉着，到集市上去换粮食；夜晚就让老牛在车旁边休息，自己睡在车上。过了些日子，他在山前边盖了一间草房，又在草房旁边开辟了一块地，种些庄稼，这就算安了家。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>9</span>一天晚上，他走进草房，忽然听见一声“牛郎”，他从没听见过这个声音。是谁叫他呢？回头一看，微弱的星光下，老牛嘴一张一合的，正在说话。老牛真会说话了！牛郎并不觉得奇怪，像是习惯了它说话似的，就转过身子去听。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>10</span>老牛说：“明天黄昏时候，你翻过右边那座山，山那边是一片树林，树林前边是个湖，那时候会有些仙女在湖里洗澡。她们的衣裳放在草地上，你要捡起那件粉红色的纱衣，跑到树林里等着，跟你要衣裳的那个仙女就是你的妻子。这个好机会你可别错过了。”</p>"+
+  "<button class='srcbtn' onclick='showCard(\"niulang12\")'>📚 查资料 · 老牛会说话</button>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>11</span>“知道了。”牛郎高兴地回答。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>12</span>第二天黄昏时候，牛郎翻过右边的那座山，穿过树林，走到湖边。湖面映着晚霞的余光，蓝紫色的波纹晃晃荡荡。他听见有女子的笑声，顺着声音看，果然有好些个女子在湖里洗澡。他沿着湖边走，没几步，就看见草地上放着好些衣裳，花花绿绿的，件件都那么漂亮。里头果然有一件粉红色的纱衣，他就拿起来，转身走进树林。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>13</span>他静静地听着，一会儿，传来女子们上岸的声音，听见一个说：“不早了，咱们赶紧回去吧！”过了一会儿，又听见另一个说：“怎么，你们都走啦？难得来一趟，自由自在地洗个澡，也不多玩一会儿——哎呀！我的衣裳哪儿去了？谁瞧见我的衣裳啦？”</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>14</span>牛郎听到这儿，从树林里走出来，双手托着纱衣，说：“姑娘，别着急，你的衣裳在这儿。”</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>15</span>姑娘穿上衣裳，一边梳她长长的黑头发，一边跟牛郎谈话。牛郎把自己的情形一五一十地说了。姑娘听得出了神，又同情他，又爱惜他，就把自己的情形也告诉了他。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>16</span>原来姑娘是天上王母娘娘的外孙女，织得一手好彩锦，名字叫织女。天天早晨和傍晚，王母娘娘拿她织的彩锦装饰天空，那就是灿烂的云霞，什么东西也没它美丽。王母娘娘需要的彩锦多，就叫织女成天成夜地织，一会儿也不许休息。织女身子老在机房里，手老在梭子上，劳累不用说，自由也没有了，等于关在监狱里，实在难受。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"niulang13\")'>📚 查资料 · 织女是谁，为何留下</button>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>17</span>她常常想，人人说天上好，天上好，天上有什么好呢？没有自由，又看不见什么。她总想离开天上，到人间去，哪怕是一天半天呢，也可以见识见识人间的景物。她把这个想法跟别的仙女说了。别的仙女也都说早有这种想法。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>18</span>那天下午，王母娘娘喝千年酿的葡萄酒，多喝了点儿，靠在宝座上直打瞌睡，看样子不见得马上就醒。仙女们见机会难得，就你拉我、我拉你地溜出来，一齐飞到人间。她们飞到湖边，看见湖水清得可爱，就跳下去洗澡。织女关在机房里太久了，现在能够在湖水里无拘无束地游泳，心里真痛快，想多玩一会儿，没想到就落在了后边。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>19</span>牛郎听完织女的话，就说：“姑娘，既然天上没什么好，你就不用回去了。你能干活，我也能干活，咱们两个结了婚，一块儿在人间过一辈子吧。”</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>20</span>织女想了想，说：“你说得很对，咱们结婚，一块儿过日子吧。”</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>21</span>他们俩手拉着手，穿过树林，翻过山头，回到草房。牛郎把老牛指给织女看，说它就是从小到大相依为命的伴儿。织女拍拍老牛的脖子，用腮帮挨挨它的耳朵，算是跟它行见面礼。老牛眉开眼笑地朝她看，仿佛说：“正是这个新娘子。”</p>"+
+  "<p style='margin:10px 0 0;font-size:12.5px;color:var(--muted)'>——依据统编教材，共 21 个自然段。民间故事，由叶圣陶整理，选作课文时有改动。段落序号为便于对照所加，以课本为准。</p>"+
   "</div></div>"+
-  "</div>"+
   "<div class='card'><h3>📖 逐情节精讲·复述要点</h3>"+
   "<div class='timeline'>"+
   "<div class='tl'><b>① 身世凄苦 · 对比铺垫（第1段）</b><br>爹娘去世，哥嫂让他吃剩饭、穿破衣、睡牛棚；分家只分得老牛。<b>复述要点：</b>哥嫂的“狠”衬托牛郎的“忍”，为后文善良性格埋线。</div>"+
@@ -2363,6 +2425,42 @@ var PANE_JIANGJIE = {
   "<div class='tl'><b>⭐ ④ 老牛开口 · 神奇转折（第10-12段）</b><br>老牛竟说话了！指点他明天黄昏去湖边。<b>复述要点：</b>“老牛会说话”是民间故事的神奇设定，语气要讲得神秘些。</div>"+
   "<div class='tl'><b>⭐ ⑤ 湖边相遇 · 织女下凡（第13-19段）</b><br>织女是王母的外孙女，织得一手好彩锦，却总被关在天上没自由；她羡慕人间。<b>可想象：</b>两人的对话——牛郎的憨厚、织女的惊喜。</div>"+
   "<div class='tl'><b>⑥ 结为夫妻 · 男耕女织（第20-21段）</b><br>两人互相同情、结为夫妻。<b>复述要点：</b>“老牛眉开眼笑”收束，温馨又神奇。</div>"+
+  "</div></div>"+
+  "<div class='card'><h3>🔍 精读深挖：把故事讲得有条理</h3>"+
+  "<div class='timeline'>"+
+  "<div class='tl' id='niulang1-tl-1'><b>⭐ 牛郎与老牛 · 照应细节写出相依为命（第2-5段）</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>他老是挑很好的草地，让牛吃又肥又嫩的青草；家里吃的干草，筛得一点儿土也没有。牛渴了，他就牵着它到小溪的上游，让它喝干净的水。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：写“照看那头牛挺周到”，为什么要一口气列这么多细节？</div>"+
+  "<ul class='jl-ju'>"+
+  "<li><b>吃</b>——挑好草地让牛吃嫩草，干草筛得一点儿土也没有。</li>"+
+  "<li><b>喝</b>——牵着它到小溪的上游，喝干净的水。</li>"+
+  "<li><b>住</b>——夏天树林里休息，冬天山坡上晒太阳，牛棚打扫得干干净净。</li>"+
+  "<li><b>情</b>——哼小曲给牛听，把心里话说给牛，“牛好像全了解”。</li>"+
+  "</ul>"+
+  "<div class='jl-take'>💡 一句话：善良不用说出口，全在吃、喝、住、情四个细节里——这叫“细节立人设”。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>人物形象题</b>——答“善良、勤劳”必须配上文中细节，不能空喊。🎤 复述指导：这一段按“吃—喝—住—情”的顺序讲，条理立刻清楚；还可以加想象——牛郎会对老牛说什么悄悄话？</div></div>"+
+  "<div class='tl' id='niulang1-tl-2'><b>⭐ 相识与结缘 · 想象合理的依据（第10-19段）</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>原来姑娘是天上王母娘娘的外孙女，织得一手好彩锦，名字叫织女。……王母娘娘需要的彩锦多，就叫织女成天成夜地织，一会儿也不许休息。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：织女贵为仙女，凭什么愿意留在人间嫁给牛郎？</div>"+
+  "<ul class='jl-ju'>"+
+  "<li><b>身份有来头</b>——王母娘娘的外孙女，织的彩锦变成天边灿烂的云霞。</li>"+
+  "<li><b>苦处说得通</b>——成天成夜织彩锦，“等于关在监狱里”，没有自由。</li>"+
+  "<li><b>人品看得见</b>——牛郎把自己的情形一五一十说了，织女“又同情他，又爱惜他”。</li>"+
+  "<li><b>想象要合理</b>——织女留下的理由不是“一见钟情”，而是“天上没自由，人间有真情”。</li>"+
+  "</ul>"+
+  "<div class='jl-take'>💡 一句话：神奇的想象也要讲道理——织女留下的每个理由，课文都提前铺好了。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>内容理解题</b>——常考“织女为什么留在人间”，要点是“天上没有自由＋牛郎善良勤劳”。🎤 复述指导：讲“相识”按“老牛指点→湖边拿纱衣→还衣交谈→结为夫妻”四步走，时间地点人物说清楚。</div></div>"+
+  "<div class='tl' id='niulang1-tl-3'><b>⭐ 男耕女织与分离伏笔 · 复述讲清六要素（第20-21段）</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>他们俩手拉着手，穿过树林，翻过山头，回到草房。牛郎把老牛指给织女看，说它就是从小到大相依为命的伴儿。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：故事到这里就是“从此幸福地生活”了吗？为下一课埋了什么伏笔？</div>"+
+  "<ul class='jl-ju'>"+
+  "<li><b>幸福起步</b>——结为夫妻，“男耕女织”，老牛眉开眼笑“正是这个新娘子”。</li>"+
+  "<li><b>伏笔一</b>——老牛是“相依为命的伴儿”，它在下一课还有大事要办。</li>"+
+  "<li><b>伏笔二</b>——织女是王母娘娘的外孙女，天上的追查迟早会来。</li>"+
+  "<li><b>复述六要素</b>——时间（古时候）、地点（山里、湖边）、人物（牛郎、老牛、织女）、起因、经过、结果。</li>"+
+  "</ul>"+
+  "<div class='jl-take'>💡 一句话：读民间故事要像讲故事的人一样心里有“全局”——幸福的开头，正为后面的波折蓄势。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>复述要素题</b>——讲清时间、地点、人物、起因、经过、结果六要素，缺一样就讲不完整。🎤 复述指导：讲到“结为夫妻”正好留个悬念——“他们的好日子能一直过下去吗？”</div></div>"+
   "</div></div>"+
   "<div class='card'><h3>✍️ 写法借鉴：课文怎么写，作文怎么用</h3>"+
   "<table class='ovtable'><thead><tr><th style='width:110px'>写法</th><th>课文里怎么用</th><th style='width:190px'>你的作文怎么用</th></tr></thead>"+
@@ -2386,8 +2484,20 @@ var PANE_JIANGJIE = {
   "<div class='tl'><b>1932年</b><br>编写《开明国语课本》，影响深远；新中国成立后主持教材编写（与课文相关）。</div>"+
   "<div class='tl'><b>1988年</b><br>逝世。他整理改编的《牛郎织女》被选入统编教材。</div>"+
   "</div></div></div>"+
+  "<div class='card'><h3>✍️ 小练笔：把牛郎与老牛相处的一个细节讲给同伴听（口语化）</h3>"+
+  "<p style='font-size:13.5px;color:var(--muted)'>挑最打动你的一个细节——比如干草“筛得一点儿土也没有”、夏天树林休息冬天山坡晒太阳。用平时说话的口气讲：怎么开头、怎么把细节讲活。写完小声读一读，像不像“讲”出来的？</p>"+
+  "<textarea id='xilianbi-niulang1' class='xltextarea' rows='4' placeholder='写在这里，点保存会自动记住…'></textarea>"+
+  "<div style='margin-top:8px;display:flex;gap:10px;align-items:center'><button class='tflow' style='max-width:180px' onclick='saveXilianbi(\"niulang1\")'>💾 保存</button><span id='xlsave-niulang1' style='font-size:12.5px;color:#3C9E5C;font-weight:700'></span></div></div>"+
   "<div class='tipbox tip'>⚡ <b>本单元方法：</b>创造性复述——试着把“牛郎与织女初次见面”讲具体：他们会说什么？发挥想象，但要符合人物身份。</div></div></div>";}
  ,niulang2:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
+  "<div class='card' style='background:linear-gradient(135deg,#EAF6EC,#FFFFFF)'><h3>🚩 本课学习任务流（展开想象，创造性地复述）</h3>"+
+  "<div class='taskflow'>"+
+  "<div class='tflow' onclick='showPack(\"niulang2\")'>📖<br>读前资料包<small>先看 3 张背景卡再读课文</small></div>"+
+  "<div class='tflow' onclick='document.getElementById(\"niulang2-src\").scrollIntoView({behavior:\"smooth\"})'>📚<br>读中查资料<small>读原文时点黄色标签</small></div>"+
+  "<div class='tflow' onclick='openXilianbi(\"niulang2\")'>✍️<br>小练笔<small>写鹊桥上的悄悄话</small></div>"+
+  "<div class='tflow' onclick='switchTab(\"guoguan\")'>🎯<br>过关自测<small>5 道题检验</small></div>"+
+  "</div>"+
+  "<div style='margin-top:10px;text-align:right'><button class='srcbtn' id='jjModeBtn' onclick='toggleJjMode()'>🔄 切换为：复习模式</button></div></div>"+
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🧾 本课必背内容（考试就考这些，先逐项过关）</h3>"+
   "<p style='font-size:13px;color:var(--muted)'>这篇课文必须背诵的内容都在这一页——一项一项过关，考试填空题就不丢分。</p>"+
   "<table class='ovtable'>"+
@@ -2399,12 +2509,13 @@ var PANE_JIANGJIE = {
   ""+
   ""+
   "</table></div>"+
-  "<div class='card'><h3>🎯 精读段落速查（先抓这几段！）</h3>"+
-  "<table class='ovtable'><thead><tr><th style='width:150px'>精读段落</th><th>重点是什么</th><th style='width:150px'>常考怎么考</th></tr></thead>"+
-  "<tr><td><b>⭐ 第2段 · 老牛留牛皮</b></td><td>临终嘱咐“碰见什么紧急事，你就披上我的皮”——民间故事“神奇设定，关键时刻必有用”。没有这段，牛郎追不上天。</td><td>情节作用、伏笔理解</td></tr>"+
-  "<tr><td><b>⭐ 第4-5段 · 抓走·追赶·天河</b></td><td>全文最戏剧的一段：怒气冲冲抓走织女→披牛皮挑儿女飞上天→“我来了”“妈妈”→玉簪一划、天河相隔。必考的情节排序题就在这里；织女“心里恨极了”的情感也藏在这里。</td><td>情节排序、情感体会</td></tr>"+
-  "<tr><td><b>⭐ 第7-8段 · 七夕相会</b></td><td>主旨落点：鹊桥相会寄托着对<b>自由幸福生活和团圆</b>的向往；“葡萄架下听悄悄话”是民间故事的浪漫想象。</td><td>主旨理解、文学常识</td></tr></table>"+
-  "</div>"+
+  "<div class='card'><h3>🎯 考点导航 · 先看考什么，再去深入</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>这张表不再重复讲解——只回答两件事：考试考什么题型？想深入时点右侧按钮直达对应精讲。</p>"+
+  "<table class='ovtable'><thead><tr><th style='width:132px'>重点段落</th><th>常考怎么考</th><th style='width:86px'>直达</th></tr></thead>"+
+  "<tr><td><b>⭐ 第2段 · 老牛留牛皮</b></td><td><b>伏笔理解</b>：临终嘱咐“碰见什么紧急事，你就披上我的皮”——神奇设定关键时刻必有用，没有这段牛郎追不上天</td><td><button class='srcbtn' onclick='jumpJj(\"niulang2-tl-1\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 第4-5段 · 抓走·追赶·天河</b></td><td><b>情节排序＋人物形象</b>：怒气冲冲抓走织女→披牛皮挑儿女追赶→玉簪一划、天河相隔；织女“心里恨极了”的情感也藏在这里</td><td><button class='srcbtn' onclick='jumpJj(\"niulang2-tl-2\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 第7-8段 · 七夕相会</b></td><td><b>主旨理解＋文学常识</b>：鹊桥相会寄托对<b>自由幸福生活和团圆</b>的向往；“葡萄架下听悄悄话”是民间故事的浪漫想象</td><td><button class='srcbtn' onclick='jumpJj(\"niulang2-tl-3\")'>看精讲</button></td></tr>"+
+  "</table></div>"+
   "<div id='jichuAnchor'></div>"+
   "<div class='card'><h3>🌌 读懂课文：从幸福到天河相隔</h3>"+
   "<div class='tipbox exam'>📝 <b>一课一背（考试标准答案）</b><br>主要内容：牛郎织女男耕女织、生活美满；王母娘娘抓走织女，牛郎披上牛皮带儿女追赶，被天河隔开；一家人坚持抗争，终于每年七夕鹊桥相会。<br>中心思想：寄托着劳动人民<b>对自由幸福生活的向往</b>和对美好爱情的祝愿。</div>"+
@@ -2412,19 +2523,21 @@ var PANE_JIANGJIE = {
   "<div class='tipbox exam'>📌 必考主旨：民间故事寄托着劳动人民<b>对自由幸福生活的向往</b>和对美好爱情的祝愿。王母娘娘代表阻挠幸福的旧势力，鹊桥相会代表人们对团圆的期盼。</div>"+
   "<div class='kv'><div><b>⭐ 四大民间故事</b><br>《牛郎织女》《孟姜女》《梁山伯与祝英台》《白蛇传》——常考填空，记住口诀：“牛孟梁白”。</div>"+
   "<div><b>🕊️ 喜鹊的角色</b><br>喜鹊在传说中是报喜的吉祥鸟。万鹊搭桥，象征善意的力量最终成全了亲情与爱情。</div></div></div>"+
-  "<div class='card'><h3>📄 课文原文（对照精讲用）</h3>"+
-  "<p style='font-size:13px;color:var(--muted)'>依据统编教材，共 8 个自然段。民间故事，由叶圣陶整理，选作课文时有改动。点击展开。</p>"+
-  "<div class='acc' onclick='this.classList.toggle(\"open\")'><button class='head'><span class='idx'>原</span>展开课文全文（约1100字）<span class='arrow'>▸</span></button><div class='body'>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>1</span>从此牛郎在地里耕种，织女在家里纺织。有时候，织女也帮助牛郎干些地里的活。两个人勤劳节俭，日子过得挺美满。转眼间两三个年头过去了，他们生了一个男孩，一个女孩。到孩子能说话的时候，晚上得空，织女就指着星星，给孩子们讲些天上的故事。天上虽然富丽堂皇，可是没有自由，她不喜欢。她喜欢人间的生活：跟牛郎一块儿干活，她喜欢；逗着兄妹俩玩，她喜欢；看门前小溪的水活泼地流过去，她喜欢；听晓风晚风轻轻地吹过树林，她喜欢。两个孩子听她这么说，就偎在她怀里，叫一声“妈妈”，回过头来又叫一声“爸爸”。她乐极了，可是有时候也发愁。愁什么呢？她没告诉牛郎。她是怕外祖母知道她在这儿会来找她。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>2</span>一天，牛郎去喂牛，那头衰老的牛又说话了，眼眶里满是眼泪，说：“我快不行了，不能帮你们下地干活……我死以后，你把我的皮留着。碰见什么紧急事，你就披上我的……”老牛没说完就死了。夫妻两个痛哭了一场，留下老牛的皮，把老牛的尸骨埋在草房后边的山坡上。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>3</span>再说天上，仙女们溜到人间洗澡的事到底让王母娘娘知道了。王母娘娘罚她们，把她们关在黑屋子里。她尤其恨织女，竟敢留在人间不回来，简直是有意败坏她的门风，损害她的尊严。她发誓要把织女捉回来，哪怕织女藏在泰山底下的石缝里，大海中心的珊瑚礁上，也一定要抓回来，给她顶厉害的惩罚。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>4</span>王母娘娘派了好些天兵天将到人间察访，察访了好久，才知道织女在牛郎家里，跟牛郎做了夫妻。一天，她亲自到牛郎家里，可巧牛郎在地里干活，她就一把抓住织女往外走。织女的男孩见那老太婆怒气冲冲地拉着妈妈走，就跑过来拉住妈妈的衣裳。王母娘娘狠狠一推，孩子倒在地上，她就带着织女一齐飞起来。织女心里恨极了，望着两个可爱的儿女，一时说不出话来，只喊了一句：“快去找爸爸！”</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>5</span>牛郎跟着男孩赶回家，只见梭子放在织了半截的布匹上，灶上的饭正冒着热气，女孩坐在门前哭。他决定上天去追，把织女救回来。可是怎么能上天呢？他忽然想起老牛临死前说的话，这不正是紧急事吗？他赶紧披上牛皮，找出两个筐，一个筐里放一个孩子，挑起来就往外跑。一出屋门，他就飞起来了，耳边的风呼呼直响。飞了一会儿，望见妻子和老太婆了，他就喊“我来了”，两个孩子也连声叫“妈妈”。越飞越近，眼看要赶上了，王母娘娘拔下头上的玉簪往背后一划，糟了，牛郎的前边忽然出现一条天河。天河很宽，波浪很大，牛郎飞不过去了。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>6</span>从此以后，牛郎在天河的这边，织女在天河的那边，只能远远地望着，不能住在一块儿了。他们就成了天河两边的牵牛星和织女星。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>7</span>织女受了很厉害的惩罚，可是不肯死心，一定要跟牛郎一块儿过日子。日久天长，王母娘娘也拗不过她，就允许她每年农历七月七日跟牛郎会一次面。</div>"+
-  "<div style='margin:7px 0'><span style='display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;background:#F1EAE0;color:#8A7F6E;border-radius:6px;font-weight:700;font-size:12.5px;margin-right:7px'>8</span>每年的这一天，成群的喜鹊在天河上边搭起一座桥，让牛郎、织女在桥上会面。就因为这件事，每逢那一天，人们很少看见喜鹊，它们都往天河那儿搭桥去了。还有人说，那一天夜里，要是在葡萄架下边静静地听着，还可以听见牛郎、织女在桥上亲亲密密地说话呢。</div>"+
+  "<div class='card' id='niulang2-src'><h3>📄 课文原文 · 全文（直读版）</h3>"+
+  "<div class='readtext'>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>1</span>从此牛郎在地里耕种，织女在家里纺织。有时候，织女也帮助牛郎干些地里的活。两个人勤劳节俭，日子过得挺美满。转眼间两三个年头过去了，他们生了一个男孩，一个女孩。到孩子能说话的时候，晚上得空，织女就指着星星，给孩子们讲些天上的故事。天上虽然富丽堂皇，可是没有自由，她不喜欢。她喜欢人间的生活：跟牛郎一块儿干活，她喜欢；逗着兄妹俩玩，她喜欢；看门前小溪的水活泼地流过去，她喜欢；听晓风晚风轻轻地吹过树林，她喜欢。两个孩子听她这么说，就偎在她怀里，叫一声“妈妈”，回过头来又叫一声“爸爸”。她乐极了，可是有时候也发愁。愁什么呢？她没告诉牛郎。她是怕外祖母知道她在这儿会来找她。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>2</span>一天，牛郎去喂牛，那头衰老的牛又说话了，眼眶里满是眼泪，说：“我快不行了，不能帮你们下地干活……我死以后，你把我的皮留着。碰见什么紧急事，你就披上我的……”老牛没说完就死了。夫妻两个痛哭了一场，留下老牛的皮，把老牛的尸骨埋在草房后边的山坡上。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"niulang21\")'>📚 查资料 · 老牛为什么流着泪</button>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>3</span>再说天上，仙女们溜到人间洗澡的事到底让王母娘娘知道了。王母娘娘罚她们，把她们关在黑屋子里。她尤其恨织女，竟敢留在人间不回来，简直是有意败坏她的门风，损害她的尊严。她发誓要把织女捉回来，哪怕织女藏在泰山底下的石缝里，大海中心的珊瑚礁上，也一定要抓回来，给她顶厉害的惩罚。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>4</span>王母娘娘派了好些天兵天将到人间察访，察访了好久，才知道织女在牛郎家里，跟牛郎做了夫妻。一天，她亲自到牛郎家里，可巧牛郎在地里干活，她就一把抓住织女往外走。织女的男孩见那老太婆怒气冲冲地拉着妈妈走，就跑过来拉住妈妈的衣裳。王母娘娘狠狠一推，孩子倒在地上，她就带着织女一齐飞起来。织女心里恨极了，望着两个可爱的儿女，一时说不出话来，只喊了一句：“快去找爸爸！”</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>5</span>牛郎跟着男孩赶回家，只见梭子放在织了半截的布匹上，灶上的饭正冒着热气，女孩坐在门前哭。他决定上天去追，把织女救回来。可是怎么能上天呢？他忽然想起老牛临死前说的话，这不正是紧急事吗？他赶紧披上牛皮，找出两个筐，一个筐里放一个孩子，挑起来就往外跑。一出屋门，他就飞起来了，耳边的风呼呼直响。飞了一会儿，望见妻子和老太婆了，他就喊“我来了”，两个孩子也连声叫“妈妈”。越飞越近，眼看要赶上了，王母娘娘拔下头上的玉簪往背后一划，糟了，牛郎的前边忽然出现一条天河。天河很宽，波浪很大，牛郎飞不过去了。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"niulang22\")'>📚 查资料 · 牵牛星和织女星</button>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>6</span>从此以后，牛郎在天河的这边，织女在天河的那边，只能远远地望着，不能住在一块儿了。他们就成了天河两边的牵牛星和织女星。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>7</span>织女受了很厉害的惩罚，可是不肯死心，一定要跟牛郎一块儿过日子。日久天长，王母娘娘也拗不过她，就允许她每年农历七月七日跟牛郎会一次面。</p>"+
+  "<p style='margin:6px 0'><span style='display:inline-block;background:#F1EBDD;border-radius:6px;padding:0 6px;font-size:12px;color:#7A6F5C;margin-right:6px'>8</span>每年的这一天，成群的喜鹊在天河上边搭起一座桥，让牛郎、织女在桥上会面。就因为这件事，每逢那一天，人们很少看见喜鹊，它们都往天河那儿搭桥去了。还有人说，那一天夜里，要是在葡萄架下边静静地听着，还可以听见牛郎、织女在桥上亲亲密密地说话呢。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"niulang23\")'>📚 查资料 · 七夕与鹊桥</button>"+
+  "<p style='margin:10px 0 0;font-size:12.5px;color:var(--muted)'>——依据统编教材，共 8 个自然段。民间故事，由叶圣陶整理，选作课文时有改动。段落序号为便于对照所加，以课本为准。</p>"+
   "</div></div>"+
-  "</div>"+
   "<div class='card'><h3>📖 逐情节精讲·复述要点</h3>"+
   "<div class='timeline'>"+
   "<div class='tl'><b>① 幸福生活 · 男耕女织（第1段）</b><br>牛郎织女生儿育女，日子美满。<b>复述要点：</b>先讲足“幸福”，后面的破碎才更让人心疼。排比句“……她喜欢”要读出织女的满足。</div>"+
@@ -2433,6 +2546,42 @@ var PANE_JIANGJIE = {
   "<div class='tl'><b>⭐ ④ 牛郎追赶 · 最戏剧的一幕（第5段）</b><br>披牛皮、挑儿女、飞上天；眼看要追上——王母玉簪一划，波涛滚滚的天河出现。<b>复述要点：</b>“一划”动作要有画面感，可加慢镜头描写。</div>"+
   "<div class='tl'><b>⑤ 隔河相望 · 化作星星（第6段）</b><br>一家人只能远远相望，化作牵牛星和织女星——夜空里的星星，就是故事的见证。</div>"+
   "<div class='tl'><b>⭐ ⑥ 七夕鹊桥 · 圆满收束（第7-8段）</b><br>织女不肯死心，王母拗不过她，允许每年七夕相会；喜鹊搭桥，一年一度全家团聚——寄托人们对团圆的期盼。</div>"+
+  "</div></div>"+
+  "<div class='card'><h3>🔍 精读深挖：展开想象，创造性地复述</h3>"+
+  "<div class='timeline'>"+
+  "<div class='tl' id='niulang2-tl-1'><b>⭐ 老牛留言与牛皮飞升 · 创造性复述：给老牛“加戏”（第2段）</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>我快不行了，不能帮你们下地干活……我死以后，你把我的皮留着。碰见什么紧急事，你就披上我的……老牛没说完就死了。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：老牛的话为什么用省略号结尾？</div>"+
+  "<ul class='jl-ju'>"+
+  "<li><b>临终嘱托</b>——留下牛皮，“紧急事”没说完就咽气，省略号里全是不舍和悬念。</li>"+
+  "<li><b>神奇设定</b>——“披上牛皮就能飞上天”，民间故事的规矩：神奇道具关键时刻必有奇用。</li>"+
+  "<li><b>知恩图报</b>——老牛受牛郎照顾一辈子，死后还要留皮帮这一家人。</li>"+
+  "<li><b>创造想象</b>——老牛没说完的话是什么？复述时可以大胆给老牛“加戏”。</li>"+
+  "</ul>"+
+  "<div class='jl-take'>💡 一句话：一张牛皮是全文最重要的“伏笔道具”——第2段埋下，第5段引爆。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>情节作用题</b>——“老牛留皮”能不能删？不能：没有牛皮，牛郎追不上天。🎤 创造性复述指导：给老牛“加戏”——它流着泪说话的语气、对这一家子的放心不下，都可以展开讲。</div></div>"+
+  "<div class='tl' id='niulang2-tl-2'><b>⭐ 王母阻挠与天河相隔 · 人物形象：狠与情（第3-5段）</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>王母娘娘狠狠一推，孩子倒在地上，她就带着织女一齐飞起来。织女心里恨极了，望着两个可爱的儿女，一时说不出话来，只喊了一句：“快去找爸爸！”</div>"+
+  "<div class='jl-ask'>❓ 先想一想：同一段故事里，“狠”的是谁？“情”的又是谁？</div>"+
+  "<ul class='jl-ju'>"+
+  "<li><b>王母的狠</b>——发誓抓人、“怒气冲冲”“狠狠一推”，冷酷无情，代表阻挠幸福的旧势力。</li>"+
+  "<li><b>织女的情</b>——“心里恨极了”却只喊“快去找爸爸”，心里装的全是孩子。</li>"+
+  "<li><b>牛郎的勇</b>——披牛皮、挑儿女、飞上天追赶，“我来了”“妈妈”喊得人心颤。</li>"+
+  "<li><b>天河之隔</b>——玉簪一划，波涛滚滚的天河出现，硬生生拆散一家人。</li>"+
+  "</ul>"+
+  "<div class='jl-take'>💡 一句话：一“狠”两“情”对照着读——反差越大，越让人心疼。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>情节排序＋人物形象</b>——抓走→追赶→划天河的顺序常考；王母的“狠”反衬牛郎织女的“情”。🎤 复述指导：要有画面感——披皮、挑筐、飞天、追赶、一划，动作一个接一个，讲出紧张感。</div></div>"+
+  "<div class='tl' id='niulang2-tl-3'><b>⭐ 鹊桥与七夕 · 民间故事寄托的情感愿望（第6-8段）</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>织女受了很厉害的惩罚，可是不肯死心，一定要跟牛郎一块儿过日子。日久天长，王母娘娘也拗不过她，就允许她每年农历七月七日跟牛郎会一次面。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：为什么偏偏是喜鹊来搭桥？为什么结局是“一年一会”而不是大团圆？</div>"+
+  "<ul class='jl-ju'>"+
+  "<li><b>织女不屈服</b>——受了厉害的惩罚“可是不肯死心”，一直坚持抗争。</li>"+
+  "<li><b>王母拗不过</b>——连旧势力也被真情磨得让了步，允许一年一会。</li>"+
+  "<li><b>喜鹊搭桥</b>——喜鹊是报喜的吉祥鸟，万鹊成桥，象征善意的力量成全团圆。</li>"+
+  "<li><b>七夕的由来</b>——农历七月初七“七夕”（乞巧节），2006年列入首批国家级非物质文化遗产名录。</li>"+
+  "</ul>"+
+  "<div class='jl-take'>💡 一句话：故事的结局不是“赢”，而是“盼”——民间故事把劳动人民对自由幸福的向往，寄托在一年一度的鹊桥上。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>主旨题</b>——民间故事寄托着劳动人民对自由幸福生活的向往和对美好爱情的祝愿；文学常识——四大民间故事“牛孟梁白”。🎤 复述指导：结尾讲慢一点，“每年农历七月七日”这个约定要讲清——留一点怅然，故事才余味悠长。</div></div>"+
   "</div></div>"+
   "<div class='card'><h3>✍️ 写法借鉴：课文怎么写，作文怎么用</h3>"+
   "<table class='ovtable'><thead><tr><th style='width:110px'>写法</th><th>课文里怎么用</th><th style='width:190px'>你的作文怎么用</th></tr></thead>"+
@@ -2448,8 +2597,20 @@ var PANE_JIANGJIE = {
   "<div class='kv'><div><b>📚 课文来历</b><br>《牛郎织女（二）》同样是民间故事，由叶圣陶整理，选作课文时有改动。故事在各地流传的版本不太一样，但“鹊桥相会”这个寄托团圆的结局，谁也不肯改。</div>"+
   "<div><b>🖋️ 关于整理者</b><br>叶圣陶（1894—1988），现代著名作家、教育家，中国现代童话的开山之作《稻草人》就出自他手。生平年表详见《牛郎织女（一）》。</div></div>"+
   "<div class='tipbox fun'>🤔 你知道吗？夜空中真有“牛郎星”和“织女星”！它们隔着一条银河遥遥相对——古人抬头看星星，把星星编成了故事，这是中国人的浪漫。</div></div>"+
+  "<div class='card'><h3>✍️ 小练笔：大胆想象——鹊桥上织女和孩子见面会说什么</h3>"+
+  "<p style='font-size:13.5px;color:var(--muted)'>一年才见一次面，孩子长高了吗？织女会先说什么、做什么？写两三句对话，要符合人物身份：妈妈的语气、孩子的语气。写完读一读，能不能让人眼眶发热。</p>"+
+  "<textarea id='xilianbi-niulang2' class='xltextarea' rows='4' placeholder='写在这里，点保存会自动记住…'></textarea>"+
+  "<div style='margin-top:8px;display:flex;gap:10px;align-items:center'><button class='tflow' style='max-width:180px' onclick='saveXilianbi(\"niulang2\")'>💾 保存</button><span id='xlsave-niulang2' style='font-size:12.5px;color:#3C9E5C;font-weight:700'></span></div></div>"+
   "<div class='tipbox fun'>🤔 复述小妙招：讲到“天河相隔”时停一停，问听众“他们还能见面吗？”——设悬念，故事立刻吸引人。</div></div>";}
  ,yuan3Di:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
+  "<div class='card' style='background:linear-gradient(135deg,#EAF6EC,#FFFFFF)'><h3>🚩 本课任务流（摘录和删减，缩写不缩意）</h3>"+
+  "<div class='taskflow'>"+
+  "<div class='tflow' onclick='showPack(\"yuan3Di\")'>📖<br>读前资料包<small>先看 3 张卡再动笔</small></div>"+
+  "<div class='tflow' onclick='document.getElementById(\"yuan3Di-src\").scrollIntoView({behavior:\"smooth\"})'>📚<br>读中查资料<small>《猎人海力布》怎么缩</small></div>"+
+  "<div class='tflow' onclick='openXilianbi(\"yuan3Di\")'>✍️<br>小练笔<small>一句话交代故事起点</small></div>"+
+  "<div class='tflow' onclick='switchTab(\"guoguan\")'>🎯<br>过关自测<small>5 道题检验</small></div>"+
+  "</div>"+
+  "<div style='margin-top:10px;text-align:right'><button class='srcbtn' id='jjModeBtn' onclick='toggleJjMode()'>🔄 切换为：复习模式</button></div></div>"+
   "<div class='card'><h3>📋 教材写作要求·逐句拆解</h3>"+
   "<p>本次习作是<b>故事新编</b>：选一个大家熟悉的故事，<b>重新编一编</b>——主人公不变，结局可以变、情节可以变，编出一个新故事来。教材以《龟兔赛跑》为例：先设想结局，再由果探因编情节，编完配上插图，贴在墙报上和同学分享。</p>"+
   "<div class='kv'><div><b>📖 选熟悉的故事</b><br>《龟兔赛跑》《狐假虎威》《坐井观天》《狐狸和乌鸦》……越熟悉越好编——情节记得牢，人物性格摸得清。</div>"+
@@ -2468,6 +2629,19 @@ var PANE_JIANGJIE = {
   "<tr><td><b>人物一致</b></td><td>主人公没变，性格底色保留（骄傲的先骄傲，狡猾的还耍滑）</td></tr>"+
   "<tr><td><b>描写生动</b></td><td>有动作、语言、神态、心理描写，不是干巴巴的流水账</td></tr>"+
   "<tr><td><b>完整有趣</b></td><td>按起因、经过、结果写完整，读起来有意思</td></tr></table>"+
+  "<div class='card' id='yuan3Di-src'><h3>📚 范文技法卡：照着《猎人海力布》学缩写</h3>"+
+  "<div class='readtext'>"+
+  "<div style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:1.9'><b>第一招 · 摘录删减：留主干，删枝叶</b><br>课文约 1100 字，缩到三四百字。留下主线：救蛇→得宝石（记住禁忌）→听鸟语→劝乡亲→变石头；删去细长的对话和次要描写——龙宫选宝的场面，一句带过就行。</div>"+
+  "<button class='srcbtn' onclick='showCard(\"yuan3Di1\")'>📖 拆范例 · 摘录删减怎么下手</button>"+
+  "<div style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:1.9'><b>第二招 · 概括改写：长话短说，对话变转述</b><br>小白蛇的长段叮嘱，改成转述：“小白蛇叮嘱他，动物说的话只能自己知道，对别人说了就会变成石头。”——一句话讲清，原意不变。</div>"+
+  "<button class='srcbtn' onclick='showCard(\"yuan3Di2\")'>📖 拆范例 · 长对话怎么改成转述</button>"+
+  "<div style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:1.9'><b>第三招 · 检查：故事完整，原意不变</b><br>缩完通读一遍查三件事：①情节链一环没断；②“禁忌”等关键信息没丢；③没有添加自己的想象——缩写不是改编。</div>"+
+  "<button class='srcbtn' onclick='showCard(\"yuan3Di3\")'>📖 拆范例 · 缩完怎么自查</button>"+
+  "</div></div>"+
+  "<div class='card'><h3>✍️ 写个开头：用一句话交代《猎人海力布》的故事起点</h3>"+
+  "<p style='font-size:13.5px;color:var(--muted)'>缩写的开头要快：一句话把“从前有个猎人，名叫海力布，他热心帮助别人”交代清楚就往下走——不描写、不铺垫，看谁用最少的字进入故事。</p>"+
+  "<textarea id='xilianbi-yuan3Di' class='xltextarea' rows='4' placeholder='写在这里，点保存会自动记住…'></textarea>"+
+  "<div style='margin-top:8px;display:flex;gap:10px;align-items:center'><button class='tflow' style='max-width:180px' onclick='saveXilianbi(\"yuan3Di\")'>💾 保存</button><span id='xlsave-yuan3Di' style='font-size:12.5px;color:#3C9E5C;font-weight:700'></span></div></div>"+
   "<div class='tipbox tip'>📌 本页要点：故事新编 = 熟悉的故事 + 新结局 + 由果探因的新情节。点“🖋️ 写作支架”，看四步法手把手教你编。</div></div></div>";}
 
  ,nuoman:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
@@ -3657,6 +3831,22 @@ var PANE_GUOGUAN={
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · “诺曼底号”遇难记</h3>"+
   "<p style='font-size:13px;color:var(--muted)'>5 道题检验本课掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
   "<div id='quizBox'></div></div></div>"}
+ ,hailibu:function(L){return "<div class='tabpane' data-tab='guoguan'>"+
+  "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 猎人海力布</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>5 道题检验本课掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
+  "<div id='quizBox'></div></div></div>"}
+ ,niulang1:function(L){return "<div class='tabpane' data-tab='guoguan'>"+
+  "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 牛郎织女（一）</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>5 道题检验本课掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
+  "<div id='quizBox'></div></div></div>"}
+ ,niulang2:function(L){return "<div class='tabpane' data-tab='guoguan'>"+
+  "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 牛郎织女（二）</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>5 道题检验本课掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
+  "<div id='quizBox'></div></div></div>"}
+ ,yuan3Di:function(L){return "<div class='tabpane' data-tab='guoguan'>"+
+  "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 缩写故事与语文园地</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>5 道题检验本次习作与园地要求掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
+  "<div id='quizBox'></div></div></div>"}
 };
 
 var SRC={
@@ -3751,6 +3941,34 @@ var SRC={
   ["🧑‍✈️ 卡片三 · 哈尔威船长其人","“诺曼底”号才七岁，海员们都说它很“年轻”；船长哈尔威照例走着这条航线。灾难来临，他站在指挥台上大声吼喝：“全体安静，注意听命令！”读前先带着这个问题：他是怎样组织救援的？答案集中在第 11—24 段。"]]
  ,nuoman1:["🧮 船上一共多少人","课文第 8 段报了账：二十八名船员、一名女服务员、三十一名乘客，一共六十人。可船长下令“必须把六十人救出去”之后，第 12 段悄悄补了一句：实际上船上一共有六十一人，但是他把自己给忘了。先把这笔账算清，再读那个“忘”字——舍己救人全在里面。"]
  ,nuoman2:["🎬 为什么用对话写救援","救援部分几乎全是短句对话：“炉子怎么样了？”“海水淹了。”“我们还有多少分钟？”“二十分钟。”一句一回合，像越来越急的鼓点——既写出险情步步逼近，也写出船长问得干脆、答得利落：混乱中他最冷静。比起长篇叙述，对话让读者仿佛站在甲板上亲耳听着救援进行。"]
+ ,hailibu_before:[
+  ["🏮 卡片一 · 什么是民间故事","民间故事没有固定的作者，是一代代老百姓口耳相传讲下来的：情节神奇（能听懂动物说话）、善恶分明、寄托着大家的愿望。《牛郎织女》《孟姜女》《梁山伯与祝英台》《白蛇传》并称中国四大民间故事。"],
+  ["💎 卡片二 · 读前先知道：一颗神奇的宝石","龙王嘴里含着一颗宝石，含着它就能听懂飞禽走兽说的话——但有个可怕的禁忌：动物说的话只能自己知道，对别人说了，就会变成一块石头。带着这个“开关”去读课文，看它怎么推动整个故事。"],
+  ["🪨 卡片三 · 读前先知道：石头与传说","这个故事流传在蒙古族人民中，由甘珠尔扎布整理。据说在今天内蒙古的一些地区，还能找到一块叫“海力布”的石头——读之前先问自己：一个活生生的人，为什么会变成石头？"]]
+ ,hailibu1:["🐍 救蛇为什么能得到报答","民间故事讲“善有善报”：海力布平时把猎物分给大家，打猎时又救下老鹰爪下的小白蛇——而小白蛇正是龙王的女儿。所以龙王重谢他、宝库随便挑。善良是“因”，宝石是“果”，故事从第一段就埋好了因果。"]
+ ,hailibu2:["😤 乡亲们为什么不肯搬","搬家不是小事：老老小小这么多人，牛羊家当都要带走，谁也不能光听一句“这个地方不能住了”就动身。而海力布偏偏不能说破原因——说了自己就会变成石头。一个说不清，一个不敢全信，两难拉锯正是故事最揪心的地方。"]
+ ,hailibu3:["🪨 “海力布”石头的由来","海力布把怎么得到宝石、怎么听见鸟议论避难、为什么不能告诉别人，都原原本本照实说了——刚说完就变成一块僵硬的石头。乡亲们得救了，世世代代纪念他。据说今天内蒙古还能找到那块叫“海力布”的石头，这就是“牺牲换来纪念”。"]
+ ,niulang1_before:[
+  ["🐂 卡片一 · 牛郎的身世：吃剩饭的苦孩子","牛郎爹妈都死了，跟着哥哥嫂子过日子：吃剩饭、穿破衣裳、夜里睡在牛棚的干草上。他没名字，人家见他放牛，就叫他牛郎。唯一对他亲密的，是那头老牛——带着“这样一个孩子后来怎么样了”的问题去读。"],
+  ["✨ 卡片二 · 织女下凡：想象也要讲道理","织女是王母娘娘的外孙女，织得一手好彩锦，天边灿烂的云霞就是她的作品。可天上“富丽堂皇”却没有自由——她总想离开，哪怕一天半天。仙女们溜到人间洗澡的情节，正好给织女下凡搭好了台阶：民间故事的想象，都有它的逻辑。"],
+  ["🌾 卡片三 · 男耕女织的幸福图景","牛郎在地里耕种，织女在家里纺织——这是中国古代农耕生活最理想的模样。老祖宗把对幸福的向往编进故事里，又让王母娘娘划出一条天河：先讲足幸福，后面的波折才更让人心疼。"]]
+ ,niulang11:["🐂 相依为命：细节里的深情","吃又肥又嫩的青草、干草筛得一点儿土也没有、喝小溪上游的干净水、夏天树林休息冬天山坡晒太阳、把牛身上刷得干干净净——牛郎的善良全写在这些动作里。他还哼小曲给牛听、把心里话告诉牛，只是觉得美中不足：要是牛能说话该多好。"]
+ ,niulang12:["🗣️ 老牛会说话：神奇设定的妙用","民间故事总有“神奇帮手”。老牛不但通人性，还知道明天黄昏湖边会有仙女洗澡。为什么偏偏是老牛开口？因为它陪牛郎最久、感情最深——神奇的设定，也讲感情逻辑。复述这一段，语气要讲得神秘些。"]
+ ,niulang13:["👧 织女是谁？为什么想留在人间","她是王母娘娘的外孙女，织得一手好彩锦，名字叫织女。可王母要的彩锦多，她成天成夜地织，一会儿也不许休息，“等于关在监狱里”。她总想离开天上，哪怕一天半天——这解释了她为什么答应留下来：天上没自由，人间有真情。"]
+ ,niulang2_before:[
+  ["🌌 卡片一 · 天河与两颗星星","夜空中银河两岸，真有牵牛星和织女星遥遥相对——古人抬头看星星，把星星编成了故事。课文里王母娘娘玉簪一划出的“天河”，就是那条银河：故事和星空，互为投影。"],
+  ["🕊️ 卡片二 · 鹊桥相会：团圆的想象","喜鹊是报喜的吉祥鸟。被硬生生拆开的一家人，让成群的喜鹊搭桥、一年一会——各地流传的版本不太一样，但“鹊桥相会”这个寄托团圆的结局，谁也不肯改。"],
+  ["🏮 卡片三 · 从故事到节日：七夕","农历七月初七是七夕节（乞巧节），姑娘们对月穿针乞巧，盼心灵手巧；2006年七夕节列入首批国家级非物质文化遗产名录。古诗《迢迢牵牛星》里“盈盈一水间，脉脉不得语”，写的正是隔河相望的牵牛织女。"]]
+ ,niulang21:["🐂 老牛为什么流着泪说话","“眼眶里满是眼泪”——老牛陪了牛郎一辈子，临死还要留下牛皮帮这一家人。课文写它“话没说完就死了”：省略号里是不舍，也留下全文最重要的“神奇道具”。复述时这里要讲得动情。"]
+ ,niulang22:["⭐ 夜空里的牵牛星和织女星","“他们就成了天河两边的牵牛星和织女星”——银河两岸最亮的两颗星。有人说牛郎星旁边还有两颗小星，像他挑着的一对儿女；织女星在天河对岸遥遥相望。故事讲完抬头看天，星星把故事写在了天上。"]
+ ,niulang23:["🏮 七夕：从传说到节日","织女不肯死心，王母娘娘拗不过她，允许每年农历七月七日会一次面——这就是七夕（乞巧节）的由来，2006年列入首批国家级非物质文化遗产名录。“葡萄架下听悄悄话”，是民间故事留给孩子的最浪漫的尾巴。"]
+ ,yuan3Di_before:[
+  ["🔍 卡片一 · 缩写是什么","缩写＝把长故事压缩成短故事：主要内容保留，篇幅大大缩短，<b>不改变原意</b>。就像把一棵大树修剪成盆景——枝叶剪掉，主干不能动。本次习作就要用上本单元的《猎人海力布》来练手。"],
+  ["🛠️ 卡片二 · 缩写三法","①<b>摘录</b>：照抄课文里最重要的句子；②<b>删减</b>：删去细节描写和次要情节；③<b>概括</b>：长话短说，对话改成转述。三招配合着用，缩出来才又短又全。"],
+  ["⚠️ 卡片三 · 常见失误警示","①把主要情节也删了，故事不完整；②照抄原文太多，缩不下来；③为了凑字数改变原意，甚至添加自己的想象——记住八个字：<b>缩写不缩意，缩写非改编</b>。"]]
+ ,yuan3Di1:["✂️ 拆范例 · 主干先立起来","《猎人海力布》的主干是情节链：救白蛇→得宝石→听鸟语→劝乡亲→变石头。动手缩写先把这条链抄下来当“骨架”，再往里填：链上每一环至少保留一句；龙宫选宝的场面、乡亲们的议论这些枝叶，大胆删去。"]
+ ,yuan3Di2:["🗣️ 拆范例 · 对话变转述","课文第4段小白蛇的叮嘱有上百字，缩写时改成转述：“小白蛇叮嘱他，动物说的话只能自己知道，对别人说了就会变成石头。”转述三要点：人称改对、意思不丢、字数减半——长对话全用这招处理。"]
+ ,yuan3Di3:["✅ 拆范例 · 缩完自查三问","一问：情节链断了吗？——救、得、听、劝、变，一环不能少；二问：原意变了吗？——宝石的禁忌、牺牲的经过必须原样保留；三问：加了自己的想象吗？——想象只属于“创造性复述”，缩写里不许有。"]
  ,nuoman3:["🗿 “给灾难下达命令”是什么意思","灾难本是无法指挥的，可哈尔威“巍然屹立在他的船长岗位上，指挥着，主宰着，领导着大家”，把每件事和每个人都考虑到了——镇定自若到仿佛连灾难都得听他的。这句话是把人的意志写到最高处；下一句“犹如铁铸，纹丝不动”，就是他用生命完成的最后一个命令。"]
 };
 
@@ -3984,7 +4202,35 @@ var QUIZ_NUOMAN=[
  {q:"4. 课文用一连串简短有力的对话写救援，作用是？",opts:["凑字数，让文章变长","写出险情步步逼近，也写出船长的威严果断、临危不乱","说明船员们听不清船长说话"],a:1},
  {q:"5. “仿佛他不是给人而是给灾难下达命令”，理解正确的一项是？",opts:["船长的命令下错了对象","灾难真的听从了船长的话","写船长镇定自若、指挥有序到极致——把每件事和每个人都考虑到了，仿佛连灾难都得听他的"],a:2}
 ];
-var QUIZ_MAP={ymbyh:QUIZ_YMBYH,gushisan:QUIZ_GUSHISAN,snzgs:QUIZ_SNZGS,mlf:QUIZ_MLF,guihuayu:QUIZ_GUIHUAYU,luohuasheng:QUIZ_LUOHUASHENG,zhenzhuniao:QUIZ_ZHENZHNIAO,yuan1Di:QUIZ_YUAN1DI,yuanDi:QUIZ_YUANDI,didaozhan:QUIZ_DIDAOZHAN,jiangxianghe:QUIZ_JIANGXIANGHE,speed:QUIZ_SPEED,nuoman:QUIZ_NUOMAN};
+var QUIZ_HAILIBU=[
+ {q:"1. 海力布能得到那颗神奇的宝石，是因为？",opts:["他救了老鹰爪下的龙王女儿小白蛇","他花钱向龙王买的","他打猎打到了一条蛇"],a:0},
+ {q:"2. 海力布最后决定把实情告诉乡亲们，是因为？",opts:["想让乡亲们夸奖他","不说清楚大家不会相信，再迟延灾难就会夺去乡亲们的生命","他忘了说出来会变成石头"],a:1},
+ {q:"3. “海力布刚说完，就变成了一块僵硬的石头。”这表现了他怎样的品质？",opts:["胆子大，什么都敢说","热心助人、舍己为人","做事鲁莽，不假思索"],a:1},
+ {q:"4. 按“救蛇—得宝—闻讯—劝迁—变石”的顺序复述故事，下面哪个细节不能丢？",opts:["石头的颜色","宝石“说出来就会变成石头”的禁忌","山里飞过几只鸟"],a:1},
+ {q:"5. 《猎人海力布》是一篇民间故事，下面哪个不是民间故事的特点？",opts:["口耳相传，人人会讲","情节神奇，想象奇特","都有固定的作者署名"],a:2}
+];
+var QUIZ_NIULANG1=[
+ {q:"1. 牛郎小时候的身世是？",opts:["爹妈都死了，跟着哥哥嫂子过日子，吃剩饭、穿破衣裳、睡牛棚","从小在龙宫长大","爷爷奶奶把他养大"],a:0},
+ {q:"2. 老牛在故事中的作用是？",opts:["只会干活，没什么用","既是相依为命的伴儿，又开口指点姻缘，推动故事发展","最后把牛郎驮回老家"],a:1},
+ {q:"3. 织女愿意留在人间的原因是？",opts:["天上没有自由，牛郎又善良勤劳","人间的东西比天上便宜","她被罚下凡间"],a:0},
+ {q:"4. 结尾“老牛眉开眼笑地朝她看，仿佛说：‘正是这个新娘子。’”写出什么？",opts:["老牛很不高兴","老牛通人性，为牛郎高兴——温馨又神奇","老牛也想成家"],a:1},
+ {q:"5. 复述《牛郎织女（一）》时，要讲清哪些要素？",opts:["只要讲结局就行","时间、地点、人物、起因、经过、结果","越长越好，原样背下来"],a:1}
+];
+var QUIZ_NIULANG2=[
+ {q:"1. 老牛临终留言说的是？",opts:["“把我埋在山坡上”","“我死以后，你把我的皮留着，碰见什么紧急事，你就披上它”","“再买一头新牛吧”"],a:1},
+ {q:"2. 王母娘娘“怒气冲冲”“狠狠一推”，这个人物代表什么？",opts:["治家有方","阻挠幸福的旧势力，冷酷无情","教育孩子要严厉"],a:1},
+ {q:"3. 天河是怎么来的？",opts:["下雨积成的","王母娘娘拔下头上的玉簪往背后一划","织女织出来的彩锦"],a:1},
+ {q:"4. 鹊桥相会的结局寄托着什么？",opts:["劳动人民对自由幸福生活的向往和对团圆的期盼","天上真的有很多喜鹊","王母娘娘心肠很好"],a:0},
+ {q:"5. 创造性复述这个故事，下面哪种做法对？",opts:["一字不差地背课文","换角色讲、变顺序讲、加想象讲，给老牛“加戏”","自己重新编一个结局"],a:1}
+];
+var QUIZ_YUAN3DI=[
+ {q:"1. “缩写故事”的要求是？",opts:["把故事背下来","在不改变原意的前提下，把长故事缩短","重新编一个新故事"],a:1},
+ {q:"2. 缩写常用的三个方法是？",opts:["抄写、背诵、默写","摘录、删减、概括","描写、抒情、议论"],a:1},
+ {q:"3. 缩写时，下面哪种内容不能删？",opts:["细长的对话描写","主要情节和故事原意","次要人物的交代"],a:1},
+ {q:"4. 下面哪种内容可以大胆删减或简化？",opts:["故事的主线情节","细节描写、次要情节和可以改成转述的长对话","故事的结局"],a:1},
+ {q:"5. 缩写最常见的丢分失误是？",opts:["字数太少","改变了原意，或者添加了自己的想象","用了标点符号"],a:1}
+];
+var QUIZ_MAP={ymbyh:QUIZ_YMBYH,gushisan:QUIZ_GUSHISAN,snzgs:QUIZ_SNZGS,mlf:QUIZ_MLF,guihuayu:QUIZ_GUIHUAYU,luohuasheng:QUIZ_LUOHUASHENG,zhenzhuniao:QUIZ_ZHENZHNIAO,yuan1Di:QUIZ_YUAN1DI,yuanDi:QUIZ_YUANDI,didaozhan:QUIZ_DIDAOZHAN,jiangxianghe:QUIZ_JIANGXIANGHE,speed:QUIZ_SPEED,nuoman:QUIZ_NUOMAN,hailibu:QUIZ_HAILIBU,niulang1:QUIZ_NIULANG1,niulang2:QUIZ_NIULANG2,yuan3Di:QUIZ_YUAN3DI};
 var quizState={};
 function quizBank(){
   var key=currentLesson&&currentLesson.key;
