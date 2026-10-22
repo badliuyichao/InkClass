@@ -5,6 +5,28 @@
    习作：我最喜爱的季节 / 语文园地：渔歌子
    ============================================================ */
 window.UNIT58 = window.UNIT58 || {};
+/* —— 第七单元过关自测题库（每课 5 题，a 为正确选项索引）—— */
+var QUIZ_GSC3=[
+ {q:"1. 《山居秋暝》的作者是？",opts:["张继","王维","韩愈"],a:1},
+ {q:"2. “竹喧归浣女，莲动下渔舟”用了什么写法？",opts:["夸张","比喻","侧面描写"],a:2},
+ {q:"3. 《枫桥夜泊》中“夜半钟声”来自哪座寺？",opts:["寒山寺","灵隐寺","净慈寺"],a:0},
+ {q:"4. “江枫渔火对愁眠”的“愁”写出诗人怎样的心情？",opts:["丰收的喜悦","旅途的孤独与思乡之愁","隐居的闲适"],a:1},
+ {q:"5. “草色遥看近却无”写出了早春怎样的特点？",opts:["小草刚刚发芽、似有似无","春草长得茂盛","柳绿花红的盛春景象"],a:0}
+];
+var QUIZ_XUE=[
+ {q:"1. 《第一场雪》的作者是？",opts:["峻青","老舍","郭沫若"],a:0},
+ {q:"2. 课文按什么顺序写第一场雪？",opts:["地点转换的顺序","时间顺序：雪前—雪中—雪后","由人及景的顺序"],a:1},
+ {q:"3. “毛茸茸、亮晶晶的银条儿”写的是什么？",opts:["树枝上挂着的积雪","地里的麦苗","天上的白云"],a:0},
+ {q:"4. “冬天麦盖三层被，来年枕着馒头睡”是？",opts:["一句古诗","一句农谚，预示来年丰收","一个谜语"],a:1},
+ {q:"5. 作者写“瑞雪兆丰年”表达了什么？",opts:["对冬天的寒冷感到害怕","对城市生活的怀念","对瑞雪的喜悦和对来年丰收的期盼"],a:2}
+];
+var QUIZ_BAILU=[
+ {q:"1. 《白鹭》的作者是？",opts:["许地山","冯骥才","郭沫若"],a:2},
+ {q:"2. 课文开头说“白鹭是一首”？",opts:["悠扬的歌","精巧的诗","淡雅的画"],a:1},
+ {q:"3. 下面哪一项不是课文写白鹭的画面？",opts:["黄昏空中低飞","清水田里站着钓鱼","夜里在树上筑巢"],a:2},
+ {q:"4. “增之一分则嫌长，减之一分则嫌短”强调什么？",opts:["白鹭飞得很高","白鹭叫声动听","白鹭色素、身段的适宜"],a:2},
+ {q:"5. 结尾与开头“精巧的诗”是什么关系？",opts:["首尾呼应，从“精巧的诗”深化为“韵在骨子里的散文诗”","意思完全相反","前后没有关系"],a:0}
+];
 UNIT58.u7 = {
 unit:{
  key:"unit7", num:"第七单元", title:"四时景物皆成趣", emoji:"🍂",
@@ -45,6 +67,14 @@ unit:{
 
 jiangjie:{
  gushici3:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
+  "<div class='card' style='background:linear-gradient(135deg,#FDF3E3,#FFFDF8)'><h3>🚩 本课学习任务流（诗中有画，读出动静与情感）</h3>"+
+  "<div class='taskflow'>"+
+  "<div class='tflow' onclick='showPack(\"gushici3\")'>📖<br>读前资料包<small>先看 3 张诗人卡再读诗</small></div>"+
+  "<div class='tflow' onclick='document.getElementById(\"gushici3-src\").scrollIntoView({behavior:\"smooth\"})'>📚<br>读中查资料<small>读诗时点黄色标签</small></div>"+
+  "<div class='tflow' onclick='openXilianbi(\"gushici3\")'>✍️<br>小练笔<small>把一句诗改写成一段画面</small></div>"+
+  "<div class='tflow' onclick='switchTab(\"guoguan\")'>🎯<br>过关自测<small>5 道题检验</small></div>"+
+  "</div>"+
+  "<div style='margin-top:10px;text-align:right'><button class='srcbtn' id='jjModeBtn' onclick='toggleJjMode()'>🔄 切换为：复习模式</button></div></div>"+
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🧾 三首诗必背（默写一个字都不能错）</h3>"+
   "<p style='font-size:16px;line-height:2.1;text-align:center;font-family:\"KaiTi\",serif;margin:10px 0'>"+
   "<b>山居秋暝</b>　［唐］王维<br>空山新雨后，天气晚来秋。<br>明月松间照，清泉石上流。<br>竹喧归浣女，莲动下渔舟。<br>随意春芳歇，王孙自可留。</p>"+
@@ -81,9 +111,65 @@ jiangjie:{
   "<div><b>张继</b><br>唐代诗人，一生留下的诗不多，却凭一首《枫桥夜泊》名垂千古。寒山寺也因此诗闻名中外。</div>"+
   "<div><b>韩愈</b><br>唐代文学家，“唐宋八大家”之首。这首诗写给他好友张籍（排行十八，任水部员外郎），所以叫“水部张十八员外”。</div></div>"+
   "<div class='tipbox fun'>🤔 你知道吗？《枫桥夜泊》让寒山寺成了“网红打卡地”。每年除夕，都有成千上万人去寒山寺听钟声——一首诗，火了一座寺，火了一千多年。</div></div>"+
+  "<div class='card'><h3>🎯 考点导航 · 先看考什么，再去深入</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>这张表不再重复讲解——只回答两件事：考试考什么题型？想深入时点右侧按钮直达对应精讲。</p>"+
+  "<table class='ovtable'><thead><tr><th style='width:132px'>重点内容</th><th>常考怎么考</th><th style='width:86px'>直达</th></tr></thead>"+
+  "<tr><td><b>⭐《山居秋暝》</b></td><td><b>动静结合</b>：“明月松间照”是静、“清泉石上流”是动；也考“竹喧归浣女”的侧面描写</td><td><button class='srcbtn' onclick='jumpJj(\"gushici3-tl-1\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐《枫桥夜泊》</b></td><td><b>以声写静＋情感题</b>：“夜半钟声到客船”的“到”字妙处；借景抒情表达旅途愁思</td><td><button class='srcbtn' onclick='jumpJj(\"gushici3-tl-2\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐《早春》</b></td><td><b>名句赏析＋默写</b>：“草色遥看近却无”为什么传神；“润如酥”写小雨的细润</td><td><button class='srcbtn' onclick='jumpJj(\"gushici3-tl-3\")'>看精讲</button></td></tr>"+
+  "</table></div>"+
+  "<div class='card' id='gushici3-src'><h3>📄 课文原文 · 三首诗全文（直读版）</h3>"+
+  "<div class='readtext'>"+
+  "<div style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:2'><b>山居秋暝</b> <span style='font-size:13px;color:var(--muted)'>［唐］王维</span><br>空山新雨后，天气晚来秋。<br>明月松间照，清泉石上流。<br>竹喧归浣女，莲动下渔舟。<br>随意春芳歇，王孙自可留。</div>"+
+  "<button class='srcbtn' onclick='showCard(\"gsc1\")'>📚 查资料 · “空山”不空</button>"+
+  "<div style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:2'><b>枫桥夜泊</b> <span style='font-size:13px;color:var(--muted)'>［唐］张继</span><br>月落乌啼霜满天，江枫渔火对愁眠。<br>姑苏城外寒山寺，夜半钟声到客船。</div>"+
+  "<button class='srcbtn' onclick='showCard(\"gsc2\")'>📚 查资料 · 夜半的钟声</button>"+
+  "<div style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:2'><b>早春呈水部张十八员外</b> <span style='font-size:13px;color:var(--muted)'>［唐］韩愈</span><br>天街小雨润如酥，草色遥看近却无。<br>最是一年春好处，绝胜烟柳满皇都。</div>"+
+  "<button class='srcbtn' onclick='showCard(\"gsc3\")'>📚 查资料 · 这首诗写给谁</button>"+
+  "<p style='font-size:12.5px;color:var(--muted)'>默写易错字：暝（日字旁）、浣（三点水）、歇（右边是“欠”）、酥（酉字旁）、皇都（不要写成“黄都”）。</p>"+
+  "</div></div>"+
+  "<div class='card'><h3>🔍 精读深挖：一字一句读出画与声</h3>"+
+  "<div class='timeline'>"+
+  "<div class='tl' id='gushici3-tl-1'><b>⭐《山居秋暝》· 一静一动，诗中有画</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>明月松间照，清泉石上流。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：这两句写的都是雨后的山，为什么一“照”一“流”就让人难忘？</div>"+
+  "<ul class='jl-ju'><li><b>上句是静</b>——月光洒在松林间，画面安宁清冷。</li>"+
+  "<li><b>下句是动</b>——清泉流过石头，山里有了声音。</li>"+
+  "<li><b>以动衬静</b>——泉声越清亮，越显出山的幽静；一静一动，画面就活了。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：写景先分清“哪些在动、哪些没动”——动静相衬，画面才立体。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>动静结合</b>——指出哪句静、哪句动，再答“画面既有宁静又有生气”。</div></div>"+
+  "<div class='tl' id='gushici3-tl-2'><b>⭐《枫桥夜泊》· 一声钟响，以声写静</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>月落乌啼霜满天，江枫渔火对愁眠。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：“对愁眠”的“对”字，是不是“陪”的意思？</div>"+
+  "<ul class='jl-ju'><li><b>三个意象叠加</b>——月落、乌啼、霜满天，把夜的清冷一层层压下来。</li>"+
+  "<li><b>“对”字最妙</b>——不是睡不着，是“愁”陪着“我”睡；江枫暗、渔火明，一对照就孤独。</li>"+
+  "<li><b>以声写静</b>——结尾一声钟响，反而把静夜和客愁全衬托出来了。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：不直说“我很愁”，让月、霜、钟声替诗人说。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>借景抒情</b>——先答“通过写月落、霜天、钟声等景物”，再答“表达旅途的孤独愁绪与思乡之情”。</div></div>"+
+  "<div class='tl' id='gushici3-tl-3'><b>⭐《早春》· 远看有近看无的观察之妙</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>天街小雨润如酥，草色遥看近却无。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：为什么草色“遥看”有、“近看”却无？你见过这种景象吗？</div>"+
+  "<ul class='jl-ju'><li><b>“润如酥”</b>——把细雨比作酥油，写出雨的细、滑、润。</li>"+
+  "<li><b>似有似无</b>——远看是一片淡淡的绿，走近却找不到，因为草芽刚冒头。</li>"+
+  "<li><b>只有早春才有</b>——这是春天“刚刚开始”的瞬间，所以才说“最是一年春好处”。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：写“刚刚开始”的东西，比写“繁盛”的东西更需要眼睛。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>名句赏析</b>——答“写出早春小草稀疏、细小、似有似无的特点，表现春意萌动和诗人观察之细”。</div></div>"+
+  "</div></div>"+
+  "<div class='card'><h3>✍️ 小练笔：把一句诗改写成一段画面</h3>"+
+  "<p style='font-size:13.5px;color:var(--muted)'>选一句你最喜欢的诗（如“明月松间照，清泉石上流”），用现代文把画面写出来：有什么颜色？有什么声音？哪些是静的、哪些是动的？写 50~100 字。</p>"+
+  "<textarea id='xilianbi-gushici3' class='xltextarea' rows='4' placeholder='写在这里，点保存会自动记住…'></textarea>"+
+  "<div style='margin-top:8px;display:flex;gap:10px;align-items:center'><button class='tflow' style='max-width:180px' onclick='saveXilianbi(\"gushici3\")'>💾 保存</button><span id='xlsave-gushici3' style='font-size:12.5px;color:#3C9E5C;font-weight:700'></span></div></div>"+
   "</div>";},
 
  xue:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
+  "<div class='card' style='background:linear-gradient(135deg,#FDF3E3,#FFFDF8)'><h3>🚩 本课学习任务流（读出雪景的动态、静态与联想）</h3>"+
+  "<div class='taskflow'>"+
+  "<div class='tflow' onclick='showPack(\"xue\")'>📖<br>读前资料包<small>先看 3 张背景卡再读课文</small></div>"+
+  "<div class='tflow' onclick='document.getElementById(\"xue-src\").scrollIntoView({behavior:\"smooth\"})'>📚<br>读中查资料<small>读原文时点黄色标签</small></div>"+
+  "<div class='tflow' onclick='openXilianbi(\"xue\")'>✍️<br>小练笔<small>写你眼中某个季节的一个瞬间</small></div>"+
+  "<div class='tflow' onclick='switchTab(\"guoguan\")'>🎯<br>过关自测<small>5 道题检验</small></div>"+
+  "</div>"+
+  "<div style='margin-top:10px;text-align:right'><button class='srcbtn' id='jjModeBtn' onclick='toggleJjMode()'>🔄 切换为：复习模式</button></div></div>"+
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🧾 本课必背内容（考试就考这些，先逐项过关）</h3>"+
   "<table class='ovtable'>"+
   "<tr><td><b>✅ 结构</b></td><td><b>雪前</b>（寒流南下、铅色阴云、凛冽寒风）→ <b>雪中</b>（纷纷扬扬、彤云密布、簌簌下落、枯枝压断）→ <b>雪后</b>（粉妆玉砌、银条、雪球、彩虹、孩子玩雪）→ <b>联想</b>（瑞雪兆丰年）→ <b>点题</b>。</td></tr>"+
@@ -126,9 +212,65 @@ jiangjie:{
   "<div><b>🖋️ 背景</b><br>这篇散文写于1962年冬，地点是胶东半岛农村。当时我国连续几年遭受自然灾害，粮棉歉收，人们格外盼望丰收——所以一场大雪，才让人那样喜悦。</div></div>"+
   "<div class='tipbox story'>📖 峻青写景，最爱写“光”和“色”。雪后的彩虹、玉屑似的雪末、映着阳光的银条——他像摄影师一样，抓的是光线下最美的那一秒。</div>"+
   "<div class='tipbox tip'>⚡ <b>本课阅读提醒：</b>读“雪后”那一段，试着闭眼想象颜色：白、银、五光十色——把颜色按顺序数出来，你就读懂了一半。</div></div>"+
+  "<div class='card'><h3>🎯 考点导航 · 先看考什么，再去深入</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>这张表不再重复讲解——只回答两件事：考试考什么题型？想深入时点右侧按钮直达对应精讲。</p>"+
+  "<table class='ovtable'><thead><tr><th style='width:132px'>重点内容</th><th>常考怎么考</th><th style='width:86px'>直达</th></tr></thead>"+
+  "<tr><td><b>⭐ 雪后静态</b></td><td><b>静态描写＋色彩</b>：“粉妆玉砌”的意思；“银条儿”“雪球儿”写出雪后世界的洁白与宁静</td><td><button class='srcbtn' onclick='jumpJj(\"xue-tl-1\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 雪中动态</b></td><td><b>动态描写＋叠词</b>：风吹银条落下、玉屑似的雪末儿——叠词让雪有了质感、光泽和声音</td><td><button class='srcbtn' onclick='jumpJj(\"xue-tl-2\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 瑞雪兆丰年</b></td><td><b>联想的作用</b>：由景及理，科学根据三条；引用农谚表达对丰收的期盼</td><td><button class='srcbtn' onclick='jumpJj(\"xue-tl-3\")'>看精讲</button></td></tr>"+
+  "</table></div>"+
+  "<div class='card' id='xue-src'><h3>📄 课文原文 · 精彩片段（直读版）</h3>"+
+  "<div class='readtext'>"+
+  "<p style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:2'>大雪整整下了一夜。早晨，天放晴了，太阳出来了。推开门一看，嗬！好大的雪啊！山川、树木、房屋，全部罩上了一层厚厚的雪，万里江山变成了粉妆玉砌的世界。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"xu1\")'>📚 查资料 · “粉妆玉砌”与雪后的安静</button>"+
+  "<p style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:2'>落光叶子的柳树上，挂满了毛茸茸、亮晶晶的银条儿；冬夏常青的松树和柏树，堆满了蓬松松、沉甸甸的雪球。一阵风吹来，树枝轻轻地摇晃，银条儿和雪球儿簌簌地落下来，玉屑似的雪末儿随风飘扬，映着清晨的阳光，显出一道道五光十色的彩虹。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"xu2\")'>📚 查资料 · 叠词：把雪写“活”的秘诀</button>"+
+  "<p style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:2'>俗话说，“瑞雪兆丰年。”这并不是迷信，有着充分的科学根据。寒冬大雪可以冻死一部分越冬的害虫；雪水渗进土层深处，又能供应庄稼生长的需要。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"xu3\")'>📚 查资料 · “瑞雪兆丰年”的科学根据</button>"+
+  "<p style='margin:10px 0 0;font-size:12.5px;color:var(--muted)'>——课文精彩片段节选，段落顺序与课文一致；完整原文请对照课本朗读。</p>"+
+  "</div></div>"+
+  "<div class='card'><h3>🔍 精读深挖：一场雪，静与动各半</h3>"+
+  "<div class='timeline'>"+
+  "<div class='tl' id='xue-tl-1'><b>⭐ 静态＋色彩 · 粉妆玉砌的世界</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>落光叶子的柳树上，挂满了毛茸茸、亮晶晶的银条儿；冬夏常青的松树和柏树，堆满了蓬松松、沉甸甸的雪球。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：这一句里，树枝在动吗？作者为什么先写“挂满”“堆满”？</div>"+
+  "<ul class='jl-ju'><li><b>先立住静态</b>——柳树“挂满”银条、松柏“堆满”雪球，一幅不动的雪后画。</li>"+
+  "<li><b>色彩分层</b>——白（雪）、银（条）、绿（松柏），颜色一层层加上去。</li>"+
+  "<li><b>叠词给质感</b>——毛茸茸、亮晶晶、蓬松松、沉甸甸：看得见光泽，摸得出分量。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：写雪后先写“静”和“色”——底色铺好了，动态才有地方落。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>静态描写赏析</b>——点出叠词与色彩，答“写出雪后世界洁白、宁静、美丽，透出作者的惊喜与喜爱”。</div></div>"+
+  "<div class='tl' id='xue-tl-2'><b>⭐ 动态描写 · 风一吹，雪就“活”了</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>一阵风吹来，树枝轻轻地摇晃，银条儿和雪球儿簌簌地落下来，玉屑似的雪末儿随风飘扬，映着清晨的阳光，显出一道道五光十色的彩虹。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：刚才还静着的雪，被哪几个词“吹动”了？</div>"+
+  "<ul class='jl-ju'><li><b>动作链</b>——摇晃、落下、飘扬：雪从树枝到空中，动起来有先有后。</li>"+
+  "<li><b>以声衬静</b>——“簌簌”是雪落的声音，声音越轻，雪后世界越静。</li>"+
+  "<li><b>光让动变美</b>——“玉屑”“五光十色的彩虹”：阳光一照，落雪就有了颜色。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：静景是画，动景是戏——风吹落雪的那一秒，就是课文最亮的镜头。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>动态描写赏析</b>——找出动词和叠词，答“动静结合，画面既有宁静又有生气”。</div></div>"+
+  "<div class='tl' id='xue-tl-3'><b>⭐ 联想 · 由景及理“瑞雪兆丰年”</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>俗话说，“瑞雪兆丰年。”这并不是迷信，有着充分的科学根据。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：雪景已经写完了，为什么还要写“丰收”？</div>"+
+  "<ul class='jl-ju'><li><b>科学根据三条</b>——大雪冻死越冬害虫；雪水渗进土层供庄稼生长；积雪像棉被保护麦苗。</li>"+
+  "<li><b>由景及理</b>——从“看到的雪”想到“来年的丰收”，文章一下子有了厚度。</li>"+
+  "<li><b>情感落点</b>——喜悦的不只是雪景，更是对来年丰收的期盼——这和 1962 年的背景有关。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：只写“景”，文章是薄的；加上“联想”，文章就厚了。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>结尾作用</b>——答“由写景转入联想，深化主题，表达对瑞雪的喜悦和对来年丰收的期盼”。</div></div>"+
+  "</div></div>"+
+  "<div class='card'><h3>✍️ 小练笔：写你眼中某个季节的一个瞬间</h3>"+
+  "<p style='font-size:13.5px;color:var(--muted)'>像峻青那样，抓住一个瞬间：雪落下来、叶打着旋儿、雨点敲窗……用上两三个叠词，写出它的动态，再加一点颜色或声音。写 50~100 字。</p>"+
+  "<textarea id='xilianbi-xue' class='xltextarea' rows='4' placeholder='写在这里，点保存会自动记住…'></textarea>"+
+  "<div style='margin-top:8px;display:flex;gap:10px;align-items:center'><button class='tflow' style='max-width:180px' onclick='saveXilianbi(\"xue\")'>💾 保存</button><span id='xlsave-xue' style='font-size:12.5px;color:#3C9E5C;font-weight:700'></span></div></div>"+
   "</div>";},
 
  bailu7:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
+  "<div class='card' style='background:linear-gradient(135deg,#FDF3E3,#FFFDF8)'><h3>🚩 本课学习任务流（读出散文诗的精巧与韵味）</h3>"+
+  "<div class='taskflow'>"+
+  "<div class='tflow' onclick='showPack(\"bailu7\")'>📖<br>读前资料包<small>先看 3 张背景卡再读课文</small></div>"+
+  "<div class='tflow' onclick='document.getElementById(\"bailu7-src\").scrollIntoView({behavior:\"smooth\"})'>📚<br>读中查资料<small>读原文时点黄色标签</small></div>"+
+  "<div class='tflow' onclick='openXilianbi(\"bailu7\")'>✍️<br>小练笔<small>用动态描写写一种鸟或晨昏景色</small></div>"+
+  "<div class='tflow' onclick='switchTab(\"guoguan\")'>🎯<br>过关自测<small>5 道题检验</small></div>"+
+  "</div>"+
+  "<div style='margin-top:10px;text-align:right'><button class='srcbtn' id='jjModeBtn' onclick='toggleJjMode()'>🔄 切换为：复习模式</button></div></div>"+
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🧾 本课必背内容（考试就考这些，先逐项过关）</h3>"+
   "<table class='ovtable'>"+
   "<tr><td><b>✅ 必背首尾句</b></td><td>开头：“白鹭是一首<b>精巧的诗</b>。”结尾：“白鹭实在是一首诗，一首<b>韵在骨子里的散文诗</b>。”——首尾呼应，定下全文基调。</td></tr>"+
@@ -169,6 +311,54 @@ jiangjie:{
   "<div><b>🖋️ 背景</b><br>《白鹭》写于1942年，当时正值抗战，作者在重庆。文章写得安静、克制，在对白鹭的赞美里，藏着对平静美好生活的向往。</div></div>"+
   "<div class='tipbox fun'>🤔 你知道吗？白鹭在古人诗里经常出现：“两个黄鹂鸣翠柳，一行白鹭上青天”“西塞山前白鹭飞”。白鹭几乎是中国田园诗的“标配”。</div>"+
   "<div class='tipbox tip'>⚡ <b>本课阅读提醒：</b>读的时候注意句子的“长短”——长句舒缓，短句轻快，这正是“散文诗”的节奏。</div></div>"+
+  "<div class='card'><h3>🎯 考点导航 · 先看考什么，再去深入</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>这张表不再重复讲解——只回答两件事：考试考什么题型？想深入时点右侧按钮直达对应精讲。</p>"+
+  "<table class='ovtable'><thead><tr><th style='width:132px'>重点内容</th><th>常考怎么考</th><th style='width:86px'>直达</th></tr></thead>"+
+  "<tr><td><b>⭐ 首尾呼应</b></td><td><b>“一句定调”＋结尾升华</b>：开头“精巧的诗”，结尾“韵在骨子里的散文诗”——常考“开头结尾的关系”</td><td><button class='srcbtn' onclick='jumpJj(\"bailu7-tl-1\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 对比衬托</b></td><td><b>白鹤、朱鹭、苍鹭</b>：用别人的“太大、太生硬”，衬出白鹭的“适宜”；也考“增之一分”的排比夸张</td><td><button class='srcbtn' onclick='jumpJj(\"bailu7-tl-2\")'>看精讲</button></td></tr>"+
+  "<tr><td><b>⭐ 三幅画面</b></td><td><b>概括画面＋好处</b>：水田钓鱼、枝头闲立、空中低飞——由静到动，“恩惠”一词的含义</td><td><button class='srcbtn' onclick='jumpJj(\"bailu7-tl-3\")'>看精讲</button></td></tr>"+
+  "</table></div>"+
+  "<div class='card' id='bailu7-src'><h3>📄 课文原文 · 精彩片段（直读版）</h3>"+
+  "<div class='readtext'>"+
+  "<p style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:2'>色素的配合，身段的大小，一切都很适宜。白鹤太大而嫌生硬，即使如粉红的朱鹭或灰色的苍鹭，也觉得大了一些，而且太不寻常了。然而白鹭却因为它的常见，而被人忘却了它的美。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"bl1\")'>📚 查资料 · 对比衬托：白鹤、朱鹭、苍鹭</button>"+
+  "<p style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:2'>那雪白的蓑毛，那全身的流线型结构，那铁色的长喙，那青色的脚，增之一分则嫌长，减之一分则嫌短，素之一忽则嫌白，黛之一忽则嫌黑。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"bl2\")'>📚 查资料 · “增之一分”从哪里来</button>"+
+  "<p style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:2'>或许有人会感到美中不足，白鹭不会唱歌。但是白鹭本身不就是一首很优美的歌吗？——不，歌未免太铿锵了。</p>"+
+  "<button class='srcbtn' onclick='showCard(\"bl3\")'>📚 查资料 · 白鹭会唱歌吗</button>"+
+  "<p style='margin:10px 0 0;font-size:12.5px;color:var(--muted)'>——课文精彩片段节选，段落顺序与课文一致；完整原文请对照课本朗读。</p>"+
+  "</div></div>"+
+  "<div class='card'><h3>🔍 精读深挖：一首“散文诗”是怎么写的</h3>"+
+  "<div class='timeline'>"+
+  "<div class='tl' id='bailu7-tl-1'><b>⭐ 一句定调 · 首尾呼应</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>白鹭是一首精巧的诗。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：不说“白鹭很美”，偏说它是“一首诗”，妙在哪里？</div>"+
+  "<ul class='jl-ju'><li><b>比喻定调</b>——一个比喻把全文的“调子”定在“诗”上，后面所有描写都在证明这句话。</li>"+
+  "<li><b>首尾呼应</b>——结尾“白鹭实在是一首诗，一首韵在骨子里的散文诗”，从“精巧”升到“韵在骨子里”。</li>"+
+  "<li><b>结构完整</b>——开头是“谜面”，结尾是“谜底”，情感一层比一层深。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：开头一句话定调，结尾一句话升调——这就是散文诗的骨架。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>开头结尾的关系</b>——答“首尾呼应，结尾深化开头，从‘精巧的诗’升到‘韵在骨子里的散文诗’”。</div></div>"+
+  "<div class='tl' id='bailu7-tl-2'><b>⭐ 对比衬托 · 美在“刚刚好”</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>白鹤太大而嫌生硬，即使如粉红的朱鹭或灰色的苍鹭，也觉得大了一些，而且太不寻常了。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：写白鹭，为什么先写三种别的鸟？</div>"+
+  "<ul class='jl-ju'><li><b>用“过”衬“刚好”</b>——白鹤太大、朱鹭苍鹭太大太不寻常，反衬白鹭不大不小、不浓不淡。</li>"+
+  "<li><b>为“忘却”作铺垫</b>——白鹭因为常见而被人忘却它的美，对比之后这句才站得住。</li>"+
+  "<li><b>“增之一分”再补一刀</b>——排比加夸张，把“适宜”写到极致：多一分少一分都不行。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：不直接夸，先摆出“别人都不行”——白鹭的“刚刚好”就立起来了。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>对比衬托的作用</b>——答“反衬白鹭身段、色素的适宜”；“增之一分”句另考排比、夸张手法（化用宋玉《登徒子好色赋》）。</div></div>"+
+  "<div class='tl' id='bailu7-tl-3'><b>⭐ 空中低飞 · 乡居生活的“恩惠”</b>"+
+  "<div class='jl-yuan'><span class='jl-lab'>原句</span>黄昏的空中偶见白鹭的低飞，更是乡居生活中的一种恩惠。</div>"+
+  "<div class='jl-ask'>❓ 先想一想：看见一只鸟低飞，为什么用得上“恩惠”这么重的词？</div>"+
+  "<ul class='jl-ju'><li><b>三幅画面的最后一幅</b>——水田钓鱼（静）、枝头闲立（孤）、空中低飞（动），由静到动收束。</li>"+
+  "<li><b>“恩惠”的含义</b>——白鹭把黄昏的天空当作画布，是它让平凡的乡居生活变得美、值得。</li>"+
+  "<li><b>美是常见却被忽略的</b>——呼应前文“因为常见，而被人忘却了它的美”。</li></ul>"+
+  "<div class='jl-take'>💡 一句话：最美的东西往往常见——“恩惠”是说：它一直在把美送给你。</div>"+
+  "<div class='jl-kao'>📝 考法：<b>概括三幅画面＋词语理解</b>——水田钓鱼、枝头闲立、空中低飞；“恩惠”答“白鹭的低飞给乡居生活增添了美，让平凡日子有了诗意”。</div></div>"+
+  "</div></div>"+
+  "<div class='card'><h3>✍️ 小练笔：用动态描写写一种鸟（或晨昏景色）</h3>"+
+  "<p style='font-size:13.5px;color:var(--muted)'>像郭沫若那样：先用一句话定调（如“麻雀是小区里最小的吵闹家”），再写一个动态瞬间——它落枝、起飞、掠过水面的那一秒。写 50~100 字。</p>"+
+  "<textarea id='xilianbi-bailu7' class='xltextarea' rows='4' placeholder='写在这里，点保存会自动记住…'></textarea>"+
+  "<div style='margin-top:8px;display:flex;gap:10px;align-items:center'><button class='tflow' style='max-width:180px' onclick='saveXilianbi(\"bailu7\")'>💾 保存</button><span id='xlsave-bailu7' style='font-size:12.5px;color:#3C9E5C;font-weight:700'></span></div></div>"+
   "</div>";},
 
  yuan7Di:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
@@ -381,5 +571,46 @@ ciyu:{
  xue:[["骤然","突然，忽然。"],["凛冽","寒冷刺骨。"],["彤云","下雪前密布的暗红色云层。"],["簌簌","形容雪花落下的声音。"],["粉妆玉砌","用白粉装饰、白玉砌成，形容雪后洁白。"],["瑞雪","及时的好雪，预示丰收。"],["兆","预兆，事先显出的迹象。"]],
  bailu7:[["精巧","精致巧妙。"],["适宜","合适，相宜。"],["悠然","悠闲自在的样子。"],["嗜好","特殊的爱好。"],["恩惠","给予的好处。"],["铿锵","形容声音响亮有力。"],["散文诗","兼有散文自由形式和诗歌意境的一种文体。"]],
  yuan7Di:[["季节","一年中按气候划分的时段。"],["摇曳","摇荡。"],["斑驳","一种颜色中夹杂别的颜色。"],["朦胧","看不分明。"],["陶醉","很满意地沉浸在某种境界中。"]]
-}
+},
+
+src:{
+ gushici3_before:[
+  ["🖋️ 卡片一 · 三位诗人","王维，唐代诗人、画家，被称为“诗佛”，苏轼说他“诗中有画，画中有诗”，晚年隐居辋川写山水田园诗。张继，唐代诗人，一生留下的诗不多，却凭一首《枫桥夜泊》名垂千古。韩愈，唐代文学家，“唐宋八大家”之首——这首《早春》是他写给好友张籍（排行十八，任水部员外郎）的。"],
+  ["🍃 卡片二 · 三种打开季节的方式","《山居秋暝》写初秋傍晚雨后的山林：明月、松林、清泉；《枫桥夜泊》写深秋半夜的江上：月落、乌啼、霜天、钟声；《早春》写早春小雨中的长安街道：远看有、近看无的草色。三首诗，三种心境，三种风景。"],
+  ["🎭 卡片三 · 借景抒情","三首诗的共同点：都写景，都抒情；都不是直说“我很喜欢/我很难过”，而是把情感藏进景物里——这叫借景抒情。考试问“表达了什么感情”，一定要先答“通过写……的景物”，再答“表达了……的感情”。"]],
+ gsc1:["⛰️ “空山”不空","“空山”不是没有东西，而是没有人声的喧闹：山里有月、有松、有泉、有竹、有莲、有渔舟——空的是心，不是景。颈联“竹喧归浣女，莲动下渔舟”是侧面描写：先听见竹林喧响、看见莲叶摇动，才知道浣女归来、渔舟下行——未见其人，先闻其声。"],
+ gsc2:["🔔 夜半的钟声","唐代寺院有“半夜敲钟”的习惯，叫“无常钟”，张继听到的正是这种钟声。寒山寺始建于南朝，因唐代诗僧寒山曾住于此而得名——《枫桥夜泊》让它名扬天下，每年除夕还有成千上万人去听“新年钟声”。一声钟响，以声写静，把夜的静和人的愁都衬托出来了。"],
+ gsc3:["✉️ 这首诗写给谁","《早春呈水部张十八员外》是韩愈写给好友张籍的：张籍排行十八，任水部员外郎，所以题目这么长。“润如酥”写小雨的细、滑、润；“草色遥看近却无”是全诗最绝的一句——远看有一片淡淡的绿，走近了却看不见。这是早春独有的景象，也只有真正蹲下来看过草的人写得出来。"],
+ xue_before:[
+  ["🖋️ 卡片一 · 作者峻青","峻青（1922—2019），原名孙俊卿，山东海阳人，当代作家，参加过抗日战争、解放战争，代表作《黎明的河边》《秋色赋》。他写景最爱写“光”和“色”——雪后的彩虹、玉屑似的雪末、映着阳光的银条，都像摄影师抓拍的画面。"],
+  ["❄️ 卡片二 · 1962 年的那场雪","《第一场雪》写于 1962 年冬，地点是胶东半岛农村——峻青的故乡。当时我国连续几年遭受自然灾害，粮棉歉收，人们格外盼望丰收。所以这场雪在作者眼里不只是景，更是“希望”。"],
+  ["🌾 卡片三 · 农谚里的智慧","“冬天麦盖三层被，来年枕着馒头睡”——“三层被”指几场大雪，“枕着馒头睡”是夸张说法，形容粮食多得吃不完。农谚是农民长期观察天气与庄稼关系的经验总结。课文引用它，把自然景象和丰收连了起来。"]],
+ xu1:["🤫 “粉妆玉砌”与雪后的安静","“粉妆玉砌”是用白粉装饰、白玉砌成，形容雪后天地一片洁白。雪后为什么格外安静？新雪内部有很多空隙，能吸收声音——所以世界像被按了静音键，只剩踩雪的“咯吱”声。雪花本身是六角形的，因为水分子结冰时按六方晶格排列。"],
+ xu2:["✨ 叠词：把雪写“活”的秘诀","毛茸茸、亮晶晶、蓬松松、沉甸甸、簌簌——课文一口气用了这么多叠词：摸得出质感、看得出光泽、听得到声音。你写雨、写风时也可以用：淅淅沥沥、滴滴答答、呼呼、嗖嗖。再配一点色彩（铅色、白、银、五光十色），雪就“活”了。"],
+ xu3:["🌾 “瑞雪兆丰年”的科学根据","这不是迷信，有三条科学根据：①寒冬大雪能冻死一部分越冬的害虫；②雪水渗进土层深处，能供应庄稼生长的需要；③积雪像棉被盖住麦苗，保温防冻。所以及时的大雪预示来年丰收——课文由景及理，文章因此有了“厚度”。"],
+ bailu7_before:[
+  ["🖋️ 卡片一 · 作者郭沫若","郭沫若（1892—1978），四川乐山人，作家、诗人、历史学家，代表作《女神》《屈原》。早年写《女神》，诗句奔放如火山；1942 年写《白鹭》，却安静得像一幅水墨——同一位作家，两种风格。"],
+  ["🕊️ 卡片二 · 一篇“散文诗”","《白鹭》写于 1942 年抗战时期，作者在重庆。文章写得安静、克制，在对白鹭的赞美里，藏着对平静美好生活的向往。它也是“散文诗”这种文体的代表作：有散文的自由句式，不分行、不押韵，却句句有诗的意境和节奏。"],
+  ["🏞️ 卡片三 · 古诗里的白鹭","白鹭是中国古诗里的“常客”：“两个黄鹂鸣翠柳，一行白鹭上青天”（杜甫）、“西塞山前白鹭飞，桃花流水鳜鱼肥”（张志和）、“漠漠水田飞白鹭，阴阴夏木啭黄鹂”（王维）——白鹭几乎是中国田园诗的“标配”。"]],
+ bl1:["⚖️ 对比衬托：白鹤、朱鹭、苍鹭","先拿白鹤、朱鹭、苍鹭来比：它们“太大”“太生硬”“太不寻常”。白鹭不大不小、不浓不淡，美在“刚刚好”——用别人的“过”，衬出白鹭的“适宜”。这叫对比衬托。白鹭属鹭科，比丹顶鹤小得多；它捕鱼时一动不动站很久，靠的是“等”，不是“追”。"],
+ bl2:["📐 “增之一分”从哪里来","“增之一分则嫌长，减之一分则嫌短……”化用宋玉《登徒子好色赋》的句式，用排比加夸张把“适宜”写到极致：多一分少一分都不行。四个短语——雪白的蓑毛、流线型结构、铁色的长喙、青色的脚——像四笔速写，白鹭的精巧就这样“量”了出来。"],
+ bl3:["🎵 白鹭会唱歌吗","“或许有人会感到美中不足，白鹭不会唱歌。但是白鹭本身不就是一首很优美的歌吗？——不，歌未免太铿锵了。”先承认“不足”，再翻上来赞美，再否定“歌”，最后落到“韵在骨子里的散文诗”——层层转折，把白鹭的美推向含蓄：不张扬、不喧闹，美在骨子里。"]
+},
+
+guoguan:{
+ gushici3:function(L){return "<div class='tabpane' data-tab='guoguan'>"+
+  "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 古诗词三首</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>5 道题检验本课掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
+  "<div id='quizBox'></div></div></div>"}
+ ,xue:function(L){return "<div class='tabpane' data-tab='guoguan'>"+
+  "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 第一场雪</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>5 道题检验本课掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
+  "<div id='quizBox'></div></div></div>"}
+ ,bailu7:function(L){return "<div class='tabpane' data-tab='guoguan'>"+
+  "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 白鹭</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>5 道题检验本课掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
+  "<div id='quizBox'></div></div></div>"}
+},
+
+quizzes:{gushici3:QUIZ_GSC3,xue:QUIZ_XUE,bailu7:QUIZ_BAILU}
 };
