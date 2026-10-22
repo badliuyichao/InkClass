@@ -1,0 +1,7 @@
+# WorkBuddy local data
+.workbuddy/
+.wbapp_*.genie
+
+# OS files
+Thumbs.db
+.DS_Store
