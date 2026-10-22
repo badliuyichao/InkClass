@@ -1003,6 +1003,13 @@ function buildPanes(L){
   buildSpeedChart();
   initAnchors();
   initTableLabels();
+  /* 学习/复习双模式排序（第四单元样板） */
+  var jmode="learn"; try{ jmode=localStorage.getItem("inkclass_jjmode")||"learn"; }catch(e){}
+  if(L.key==="ymbyh" && jmode==="learn"){
+    reorderJj(box.querySelector(".tabpane[data-tab='jiangjie']"));
+  }
+  var mb=document.getElementById("jjModeBtn");
+  if(mb) mb.textContent = jmode==="learn" ? "🔄 切换为：复习模式（备考顺序）" : "🔄 切换为：学习模式（先读课文）";
 }
 
 /* 考点手风琴 */
@@ -2337,7 +2344,8 @@ var PANE_JIANGJIE = {
   "<div class='tflow' onclick='document.getElementById(\"ym-src\").scrollIntoView({behavior:\"smooth\"})'>📚<br>读中查资料<small>读原文时点黄色标签</small></div>"+
   "<div class='tflow' onclick='openXilianbi(\"ymbyh\")'>✍️<br>小练笔<small>对 1860 年说一句话</small></div>"+
   "<div class='tflow' onclick='switchTab(\"guoguan\")'>🎯<br>过关自测<small>5 道题检验</small></div>"+
-  "</div></div>"+
+  "</div>"+
+  "<div style='margin-top:10px;text-align:right'><button class='srcbtn' id='jjModeBtn' onclick='toggleJjMode()'>🔄 切换为：复习模式</button></div></div>"+
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🧾 本课必背内容（考试就考这些，先逐项过关）</h3>"+
   "<p style='font-size:13px;color:var(--muted)'>这篇课文必须背诵的内容都在这一页——一项一项过关，考试填空题就不丢分。</p>"+
   "<table class='ovtable'>"+
@@ -3061,6 +3069,35 @@ var PANE_TUOZHAN = {
   "<div class='acc' onclick='this.classList.toggle(\"open\")'><button class='head'><span class='idx'>范3</span>《外婆家的新炊烟》（约420字）<span class='arrow'>▸</span></button><div class='body'>二十年后回外婆家，村口那条石子路变成了会发光的步行道，我却在寻找一样东西——炊烟。<br>小时候，每次回外婆家，远远看见屋顶那缕白白的炊烟，脚步就不由自主地加快：那是外婆在烧饭。后来村里通了天然气，炊烟渐渐少了，我总觉得少了点什么。<br>推开院门，外婆正戴着 AR 眼镜跟城里的大夫“面对面”问诊，智能药箱按处方把药分好。厨房里，做饭机器人颠着小锅，外婆在一旁指挥：“盐少放点儿，你外孙口味淡。”——她学得可真快！<br>饭桌上，我故意问：“外婆，现在什么都是机器人干，您不无聊吗？”外婆把一筷子青菜放进我碗里：“机器人会做饭，可它不知道你爱吃锅巴。那口老灶我留着呢，过年蒸馒头，还得靠它。”我顺着她的手指看去，老灶台擦得锃亮，烟囱口正冒着细细的一缕烟。<br>原来科技不是把过去统统换掉，而是把辛苦的部分接过去，把珍贵的部分留下来。新农村的医疗、互联网让外婆的晚年既省心又自在，而那缕炊烟，还在替她守着一家人的团圆。<br>离村时我又回头看了一眼——新炊烟，旧味道，都是家的方向。<br>✏️ <b>点评：</b>以“炊烟”为线索串起今昔✓；科技与温情双线并行✓（AR 问诊+老灶台）；人物有神✓（外婆的台词鲜活）；立意高一筹✓（科技留下珍贵的东西）。全文约420字。</div></div>"+
   "</div></div>";}
 };
+
+/* ===================== 讲解页 学习/复习 双模式排序（第四单元样板） ===================== */
+/* 学习模式按认知顺序重排卡片：先读原文感知 → 再理解分析 → 最后积累练习 */
+var JJ_LEARN_ORDER=[
+ [/任务流|资料包/,0],[/课文原文/,1],[/读懂课文/,2],[/jichuAnchor|生字词/,3],
+ [/速查/,7],[/精讲|精读/,4],[/写法/,5],[/必背/,6],[/课后习题/,8],
+ [/小练笔/,9],[/作者|背景/,10],[/视频/,11]
+];
+function reorderJj(pane){
+  if(!pane) return;
+  var kids=Array.prototype.slice.call(pane.children);
+  kids.forEach(function(el){
+    var h3=el.querySelector?el.querySelector("h3"):null;
+    var txt=(h3?h3.textContent:"")+" "+(el.id||"");
+    var ord=99;
+    for(var i=0;i<JJ_LEARN_ORDER.length;i++){
+      if(JJ_LEARN_ORDER[i][0].test(txt)){ ord=JJ_LEARN_ORDER[i][1]; break; }
+    }
+    el.dataset.ord=ord;
+  });
+  kids.sort(function(a,b){return (a.dataset.ord||99)-(b.dataset.ord||99);});
+  kids.forEach(function(el){ pane.appendChild(el); });
+}
+function toggleJjMode(){
+  var cur="learn"; try{ cur=localStorage.getItem("inkclass_jjmode")||"learn"; }catch(e){}
+  var next=(cur==="learn")?"review":"learn";
+  try{ localStorage.setItem("inkclass_jjmode",next); }catch(e){}
+  if(currentLesson) buildPanes(currentLesson);
+}
 
 /* ===================== 过关任务 & 资料卡（第四单元样板） ===================== */
 var PANE_GUOGUAN={
