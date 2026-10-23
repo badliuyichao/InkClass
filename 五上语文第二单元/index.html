@@ -3805,6 +3805,7 @@ var JJ_LEARN_ORDER=[
 function reorderJj(pane){
   if(!pane) return;
   var kids=Array.prototype.slice.call(pane.children);
+  var bar=pane.querySelector(":scope > .anchorbar");
   kids.forEach(function(el){
     var h3=el.querySelector?el.querySelector("h3"):null;
     var txt=(h3?h3.textContent:"")+" "+(el.id||"");
@@ -3816,6 +3817,8 @@ function reorderJj(pane){
   });
   kids.sort(function(a,b){return (a.dataset.ord||99)-(b.dataset.ord||99);});
   kids.forEach(function(el){ pane.appendChild(el); });
+  /* 锚点导航条永远吸顶（它无 h3 关键词，不参与链式排序） */
+  if(bar) pane.insertBefore(bar, pane.firstChild);
 }
 function toggleJjMode(){
   var cur="learn"; try{ cur=localStorage.getItem("inkclass_jjmode")||"learn"; }catch(e){}
