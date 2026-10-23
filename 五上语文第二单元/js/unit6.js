@@ -26,6 +26,13 @@ var QUIZ_HTY=[
  {q:"4. “临危忘身，受命忘家”表现了什么？",opts:["军人的职责与担当","妈妈不爱自己的孩子","太空生活很危险"],a:0},
  {q:"5. 结尾“等着妈妈拥抱完星辰大海再来拥抱你们”表达了什么？",opts:["完成任务就回家的深情与期待","妈妈再也不回来了","星辰大海非常美丽"],a:0}
 ];
+var QUIZ_YUAN6DI=[
+ {q:"1. “我想对您说”可以写给谁？",opts:["爸爸、妈妈、老师等你最想说话的那个人","只能写给妈妈","只能写给同学"],a:0},
+ {q:"2. 信的正文主要写什么？",opts:["介绍对方的外貌和职业","具体的事和你想说的心里话","抄一段课文交差"],a:1},
+ {q:"3. 对爸爸妈妈、老师说话，语气应该？",opts:["真诚恳切，像面对面谈心","生硬命令，必须听我的","冷嘲热讽，满腹牢骚"],a:0},
+ {q:"4. 这篇习作最常见的失误是？",opts:["空喊口号“我爱您”，却没有具体事例","用了书信格式","写了具体的事"],a:0},
+ {q:"5. 这篇习作得高分的关键是？",opts:["字数越多越好","具体事例＋真情实感","辞藻越华丽越好"],a:1}
+];
 UNIT58.u6 = {
 unit:{
  key:"unit6", num:"第六单元", title:"舐犊情深，纸短情长", emoji:"💌",
@@ -382,6 +389,14 @@ jiangjie:{
   "</div>";},
 
  yuan6Di:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
+  "<div class='card' style='background:linear-gradient(135deg,#FDF3E3,#FFFDF8)'><h3>🚩 本课任务流（把心里的话写出真情实感）</h3>"+
+  "<div class='taskflow'>"+
+  "<div class='tflow' onclick='showPack(\"yuan6Di\")'>📋<br>审题资料包<small>先看 3 张卡再动笔</small></div>"+
+  "<div class='tflow' onclick='document.getElementById(\"yuan6Di-src\").scrollIntoView({behavior:\"smooth\"})'>📚<br>范文技法卡<small>两篇范文怎么写出真情</small></div>"+
+  "<div class='tflow' onclick='openXilianbi(\"yuan6Di\")'>✍️<br>小练笔<small>写下最难开口的那句话</small></div>"+
+  "<div class='tflow' onclick='switchTab(\"guoguan\")'>🎯<br>过关自测<small>5 道题检验</small></div>"+
+  "</div>"+
+  "<div style='margin-top:10px;text-align:right'><button class='srcbtn' id='jjModeBtn' onclick='toggleJjMode()'>🔄 切换为：复习模式</button></div></div>"+
   "<div class='card'><h3>✍️ 审题：这是一封“书信”，不是一篇“作文”</h3>"+
   "<table class='ovtable'><thead><tr><th style='width:130px'>审题要点</th><th>怎么做</th></tr></thead>"+
   "<tr><td><b>写给谁</b></td><td>爸爸、妈妈、爷爷、奶奶、老师……选一个你最想说话的人</td></tr>"+
@@ -412,6 +427,19 @@ jiangjie:{
   "<tr><td>人称</td><td>全篇用“您/你”，不混用“他/她”</td></tr>"+
   "<tr><td>事例</td><td>至少一件具体的事，有动作、有对话</td></tr>"+
   "<tr><td>真情</td><td>不喊口号，写自己真实的感受</td></tr></table></div>"+
+  "<div class='card' id='yuan6Di-src'><h3>📚 范文技法卡：三招写出真情实感</h3>"+
+  "<div class='readtext'>"+
+  "<div style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:1.9'><b>第一招 · 一件事＋一个细节，胜过十句“我爱您”</b><br>像范文那样：先写一件具体的事（一次顶嘴、一句唠叨、一晚发烧），再抓一个细节（揉眼睛、掖被角、热饭）——感情自然流露，不用喊口号。</div>"+
+  "<button class='srcbtn' onclick='showCard(\"yuan6Di1\")'>📖 拆范文 · 道歉＋感恩怎么写</button>"+
+  "<div style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:1.9'><b>第二招 · 建议要“有理有据不伤人”</b><br>先摆事实（烟头、咳嗽），再说理由（健康、二手烟），体谅对方（工作压力大），最后给可执行的替代方案（散步、下棋）——对方才听得进去。</div>"+
+  "<button class='srcbtn' onclick='showCard(\"yuan6Di2\")'>📖 拆范文 · 建议型怎么写</button>"+
+  "<div style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:1.9'><b>第三招 · 格式规范＋真情自查</b><br>称呼、问候、正文、祝语、署名、日期六项齐全；全篇用“您/你”不混“他/她”；一封信只写“一件事＋一份情”，结尾用祝愿呼应开头。</div>"+
+  "<button class='srcbtn' onclick='showCard(\"yuan6Di3\")'>📖 技法 · 格式口诀与真情自查</button>"+
+  "</div></div>"+
+  "<div class='card'><h3>✍️ 小练笔：写下最难开口的那句话</h3>"+
+  "<p style='font-size:13.5px;color:var(--muted)'>想一想：你最想把信写给谁？先用两三句把最难开口的那句话写下来——对谁＋发生了什么事＋你想说的真心话。写完读一遍，如果连你自己都动容了，这封信就有了灵魂。</p>"+
+  "<textarea id='xilianbi-yuan6Di' class='xltextarea' rows='4' placeholder='写在这里，点保存会自动记住…'></textarea>"+
+  "<div style='margin-top:8px;display:flex;gap:10px;align-items:center'><button class='tflow' style='max-width:180px' onclick='saveXilianbi(\"yuan6Di\")'>💾 保存</button><span id='xlsave-yuan6Di' style='font-size:12.5px;color:#3C9E5C;font-weight:700'></span></div></div>"+
   "</div>";}
 },
 
@@ -619,7 +647,15 @@ src:{
   ["⭐ 卡片三 · 183颗纸星星","神舟十四号任务期间，刘洋每天叠一颗纸星星、写一句祝福，放进玻璃瓶——183天，183颗星星。她说，这些祝福不只是给自己的孩子，也是给祖国所有的孩子。2026年秋季，这封儿童节的家书被编入统编版五年级上册第六单元。"]],
  hty1:["🍬 比喻里的想念","“阳光融化巧克力般甜蜜温暖”——用孩子熟悉的甜，写母亲的想念：一想起你们，心里就又暖又软。全篇用第二人称“你们”，像面对面说话，这是书信最亲切的地方。"],
  hty2:["🛡️ 铠甲与软肋","“铠甲”是保护：孩子给了妈妈勇气和力量，让她敢于出征；“软肋”是牵挂：孩子是妈妈最放不下的惦念。一句话写出母爱的两面——既让人坚强，也让人柔软。"],
- hty3:["⭐ 183颗纸星星","在太空的183天里，刘洋每天叠一颗纸星星、写下一句祝福，放进玻璃瓶。183天，183颗星星——她说，这些祝福不只是给自己的孩子，也是给祖国所有的孩子。"]
+ hty3:["⭐ 183颗纸星星","在太空的183天里，刘洋每天叠一颗纸星星、写下一句祝福，放进玻璃瓶。183天，183颗星星——她说，这些祝福不只是给自己的孩子，也是给祖国所有的孩子。"],
+ yuan6Di_before:[
+  ["🔍 卡片一 · 审题拆解","这是一封<b>书信</b>，不是一篇作文。写给谁：爸爸、妈妈、爷爷、奶奶、老师……选一个你最想说话的人；写什么：感谢、道歉、建议、心里话——选一个“一直想说却没说出口”的；怎么写：书信格式＋第二人称＋具体事例＋真情实感。特别提醒：重点不是“介绍他”，而是“我想对他说”，别写成“我的妈妈”介绍文。"],
+  ["🧲 卡片二 · 选材方向","三种类型任选：💗 感恩型——一件具体的事→当时的感受→现在的理解→感谢与承诺；🙇 道歉型——冲突经过→自己的心理→对方的反应→道歉与改正；💡 建议型——事实（现象）→危害/理由→具体建议→祝愿。选材秘诀：一封信只写“一件事＋一份情”，事太多，情就散了。"],
+  ["⚠️ 卡片三 · 常见失误","①空喊口号——只说“我好爱好爱您”，没有任何事例；②写成“我的妈妈”介绍文——介绍外貌、职业，忘了“对您说”；③格式不全——称呼、问候、正文、祝语、署名、日期，六项缺一不可；④人称混用——全篇要用“您/你”，不能混进“他/她”。写完对照自查表逐项检查。"]
+ ],
+ yuan6Di1:["💌 拆范文 · 《妈妈，我想对您说》：道歉＋感恩怎么写","先说事实：顶嘴那晚，“您愣了一下，什么也没说，转身进了厨房”；再抓细节：“您一边热饭一边揉眼睛”，那一刻“我心里像被针扎了一下”；接着写对方的付出：六点起床做早饭、发烧时整夜守护；最后落到行动承诺：“下次一定好好说话”。道歉＋感谢＋承诺，情感真实，格式完整，约430字。"],
+ yuan6Di2:["💌 拆范文 · 《爸爸，我想对您说》：建议型怎么写","先摆事实：烟灰缸里已经堆了七八个烟头，“我”被烟味呛得直咳嗽；再说理由：长期吸烟伤肺，家人跟着吸二手烟，爷爷住院时医生也叮嘱戒烟；然后体谅对方：“我知道您工作压力大，抽烟是您放松的方式”；最后给替代方案：“您想抽烟的时候，我陪您下楼走一圈，或者您教我下盘棋”。有理有据，不伤感情，约420字。"],
+ yuan6Di3:["✉️ 技法 · 格式口诀与真情自查","格式口诀：称呼顶格加冒号，问候另起空两格；正文分段说清楚，祝语另起写整齐；署名日期靠右下，先名后日别写错。真情自查四问：全篇都用“您/你”了吗？至少写了一件具体的事（有动作、有对话）吗？有没有不喊口号、写真实感受？结尾用祝愿呼应开头了吗？"]
 },
 
 guoguan:{
@@ -635,7 +671,11 @@ guoguan:{
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 航天员写给孩子的信</h3>"+
   "<p style='font-size:13px;color:var(--muted)'>5 道题检验本课掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
   "<div id='quizBox'></div></div></div>"}
+ ,yuan6Di:function(L){return "<div class='tabpane' data-tab='guoguan'>"+
+  "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 我想对您说</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>5 道题检验本次习作要求掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
+  "<div id='quizBox'></div></div></div>"}
 },
 
-quizzes:{cimu:QUIZ_CIMU,fuai:QUIZ_FUAI,hty:QUIZ_HTY}
+quizzes:{cimu:QUIZ_CIMU,fuai:QUIZ_FUAI,hty:QUIZ_HTY,yuan6Di:QUIZ_YUAN6DI}
 };

@@ -17,6 +17,13 @@ var QUIZ_JINZITA=[
  {q:"4. 读非连续性文本，下面哪种方法最有效？",opts:["从头到尾逐字背诵","先看标题，再读图表数据，接着看批注，最后图文对照","只看图片不读文字"],a:1},
  {q:"5. “塔身由约230万块石头砌成，每块石头平均重2.5吨”中，数字的作用是？",opts:["把话说长","让说明准确、有说服力，突出工程浩大","让文章更有感情"],a:1}
 ];
+var QUIZ_YUAN5DI=[
+ {q:"1. 本次习作《介绍一种事物》，可以写什么？",opts:["一种事物，如动物、植物、物品、美食等","一件难忘的事","一个想象中的故事"],a:0},
+ {q:"2. 介绍一种事物，动笔前先要抓住什么？",opts:["它的价格","它最突出的特点","它的主人是谁"],a:1},
+ {q:"3. “书包长约40厘米，装满书约重5千克”用了什么说明方法？",opts:["打比方","列数字","心理描写"],a:1},
+ {q:"4. 说明文最常见的失误是？",opts:["记流水账，东拉西扯没有中心","数字用得太多","说明方法用得太准"],a:0},
+ {q:"5. 说明文得高分的关键是？",opts:["形容词越华丽越好","语言准确、条理分明","故事越曲折越好"],a:1}
+];
 window.UNIT58 = window.UNIT58 || {};
 UNIT58.u5 = {
 unit:{
@@ -264,6 +271,14 @@ jiangjie:{
   "</div>";},
 
  yuan5Di:function(L){return "<div class='tabpane show' data-tab='jiangjie'>"+
+  "<div class='card' style='background:linear-gradient(135deg,#FDF3E3,#FFFDF8)'><h3>🚩 本课任务流（用说明方法把事物介绍明白）</h3>"+
+  "<div class='taskflow'>"+
+  "<div class='tflow' onclick='showPack(\"yuan5Di\")'>📋<br>审题资料包<small>先看 3 张卡再动笔</small></div>"+
+  "<div class='tflow' onclick='document.getElementById(\"yuan5Di-src\").scrollIntoView({behavior:\"smooth\"})'>📚<br>范文技法卡<small>三招把事物说明白</small></div>"+
+  "<div class='tflow' onclick='openXilianbi(\"yuan5Di\")'>✍️<br>小练笔<small>用说明方法写个开头</small></div>"+
+  "<div class='tflow' onclick='switchTab(\"guoguan\")'>🎯<br>过关自测<small>5 道题检验</small></div>"+
+  "</div>"+
+  "<div style='margin-top:10px;text-align:right'><button class='srcbtn' id='jjModeBtn' onclick='toggleJjMode()'>🔄 切换为：复习模式</button></div></div>"+
   "<div class='card'><h3>✍️ 审题：这次要写“说明文”，不是“记事作文”</h3>"+
   "<table class='ovtable'><thead><tr><th style='width:130px'>审题要点</th><th>怎么做</th></tr></thead>"+
   "<tr><td><b>写什么</b></td><td>一种动物、一种植物、一种物品、一道美食，或者一个制作过程（如“怎样做水果沙拉”）</td></tr>"+
@@ -303,6 +318,19 @@ jiangjie:{
   "<tr><td>有没有方法</td><td>至少用上三种说明方法，且用得准确</td></tr>"+
   "<tr><td>有没有顺序</td><td>外形→构造→功能，或材料→步骤→用法</td></tr>"+
   "<tr><td>语言准不准</td><td>数字有“约”，不夸大；少用“超级”“特别”</td></tr></table></div>"+
+  "<div class='card' id='yuan5Di-src'><h3>📚 范文技法卡：三招把一种事物说明白</h3>"+
+  "<div class='readtext'>"+
+  "<div style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:1.9'><b>第一招 · 选对对象，开头亮特点</b><br>选你真正熟悉、能说出细节的事物（动物、植物、物品、美食、制作、地方都行）；开头点明介绍对象，再用一句话概括它最突出的特点——设问、比较、直陈三种开头任选其一。</div>"+
+  "<button class='srcbtn' onclick='showCard(\"yuan5Di1\")'>📖 技法 · 开头三式与选题诀窍</button>"+
+  "<div style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:1.9'><b>第二招 · 四步搭骨架，一段一中心</b><br>选对象→列提纲（外形—习性/构造—用途/吃法—注意事项）→配方法→查语言。一段只讲一个方面，绝不东拉西扯——学《鲸》的层次，学《风向袋的制作》的步骤词。</div>"+
+  "<button class='srcbtn' onclick='showCard(\"yuan5Di2\")'>📖 技法 · 四步搭好一篇说明文</button>"+
+  "<div style='margin:8px 0;padding:10px 14px;background:rgba(255,248,239,.6);border-radius:12px;line-height:1.9'><b>第三招 · 说明方法用起来，数字会说话</b><br>每段至少一种说明方法：列数字、作比较、举例子、打比方；把陌生数字换成熟悉的事物（“约50层楼高”），语言准确（数字前加“约”），少用“超级”“特别”。</div>"+
+  "<button class='srcbtn' onclick='showCard(\"yuan5Di3\")'>📖 技法 · 四种说明方法＋数字换算</button>"+
+  "</div></div>"+
+  "<div class='card'><h3>✍️ 小练笔：用说明方法写个开头（写两三句）</h3>"+
+  "<p style='font-size:13.5px;color:var(--muted)'>挑一样你熟悉的东西——书包、文具盒、小狗、阳台上的绿萝，用上“约……”“相当于……”这样的句式写两三句：先一句话点明它是什么，再用一个数字或比较亮出它最突出的特点。写完读给家人听，让他猜猜你写的是哪一样。</p>"+
+  "<textarea id='xilianbi-yuan5Di' class='xltextarea' rows='4' placeholder='写在这里，点保存会自动记住…'></textarea>"+
+  "<div style='margin-top:8px;display:flex;gap:10px;align-items:center'><button class='tflow' style='max-width:180px' onclick='saveXilianbi(\"yuan5Di\")'>💾 保存</button><span id='xlsave-yuan5Di' style='font-size:12.5px;color:#3C9E5C;font-weight:700'></span></div></div>"+
   "</div>";}
 },
 
@@ -488,7 +516,15 @@ src:{
  ],
  jinzita1:["✨ 五个“金色”的作用","夕阳、田野、沙漠、尼罗河、金字塔——穆青连用五个“金色”，把整个开罗染成一片金。这不是重复，而是用同一个主色调<b>把画面统一起来</b>，让人一眼看见金字塔在夕阳下的辉煌。散文写景的秘密：抓住主色调，反复渲染。"],
  jinzita2:["📐 数据说明的作用","146米、230米、230万块、2.5吨——四个数字一摆，金字塔的“大”立刻有了尺度。一层楼约3米，146米相当于近50层楼高。把陌生数字<b>换算</b>成熟悉的事物，读者才有“感觉”——这正是说明文中数字的妙用。"],
- jinzita3:["📝 数据要“约”，批注来帮忙","“约146米”“据估计……大约用了10万人”——数字前加“约”“据估计”，表示这是测量和推算值，体现说明文语言的<b>准确性</b>。旁边的批注如“尼罗河是埃及的母亲河”，帮读者<b>补充背景、降低难度</b>——数据给结论，批注给拐杖。"]
+ jinzita3:["📝 数据要“约”，批注来帮忙","“约146米”“据估计……大约用了10万人”——数字前加“约”“据估计”，表示这是测量和推算值，体现说明文语言的<b>准确性</b>。旁边的批注如“尼罗河是埃及的母亲河”，帮读者<b>补充背景、降低难度</b>——数据给结论，批注给拐杖。"],
+ yuan5Di_before:[
+  ["🔍 卡片一 · 审题拆解","这次要写的是<b>说明文</b>，不是记事作文。写什么：一种动物、植物、物品、美食，或一个制作过程（如“怎样做水果沙拉”）；写给谁：写给“不了解它的人”，把对方不知道的说清楚；核心要求：特点清楚、条理分明、说明方法恰当、语言准确。一句话记住：记叙文讲“发生了什么”，说明文讲“它是什么样的”。"],
+  ["🧲 卡片二 · 选材方向","六个方向挑一个你最熟悉的：🐾 动物（我家的小乌龟、蚂蚁的分工）、🌿 植物（多肉为什么不怕旱、含羞草的秘密）、🎒 物品（我的书包、保温杯的构造）、🍜 美食（一碗牛肉面、饺子的包法）、🔧 制作（手工皂、自制净水器）、🏙️ 地方（海河上的桥、校园里的一棵树）。秘诀：越熟悉越有话说，越具体越不会写成“百科抄写”。"],
+  ["⚠️ 卡片三 · 常见失误","①写成“我和小狗的故事”——那是记叙文，说明文要写“小狗的品种、外形、习性、喂养方法”；②记流水账——一段没有中心，东拉西扯；③没用说明方法——只说“特别特别大”，没有数字、没有比较；④顺序混乱——外形、功能、来历混在一起。写完对照自查表逐项过关。"]
+ ],
+ yuan5Di1:["🎯 技法一 · 开头三式与选题诀窍","开头三式任选其一：①设问式——“你见过会‘走路’的种子吗？”；②比较式——“它只有鸡蛋那么大，却能把一头牛绊倒”；③直陈式——“今天我要介绍的，是我家那台用了八年的电饭煲”。选题诀窍：从六类选题库里挑最熟悉的，写完读给家人听，他能复述出三个特点，才算写清楚了。"],
+ yuan5Di2:["🏗️ 技法二 · 四步搭好一篇说明文","①选对象：选真正熟悉、能说出细节的；②列提纲：按“外形—习性/构造—用途/吃法—注意事项”分四段，一段一个中心——学《鲸》一段说一个方面，学《风向袋的制作》用“先、接着、然后、最后”写步骤；③配方法：每段至少用一种说明方法；④查语言：把“特别特别大”改成“长约40厘米”，把“我觉得”删掉——少抒情、多事实。"],
+ yuan5Di3:["📏 技法三 · 四种说明方法＋数字换算","列数字：“长约40厘米，宽28厘米，装满书约5千克”；作比较：“一头成年蓝鲸的体重，相当于三十多头大象”；举例子：“比如尺子上的刻度，就是用来量长度的”；打比方：“地球像一颗蓝色的水晶球”。换算小技巧：把陌生数字换成熟悉事物——“146米”说成“约50层楼高”，“2.5吨”说成“约一头小象的重量”，读者立刻有画面。"]
 },
 guoguan:{
  taiyang:function(L){return "<div class='tabpane' data-tab='guoguan'>"+
@@ -499,6 +535,10 @@ guoguan:{
   "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 金字塔</h3>"+
   "<p style='font-size:13px;color:var(--muted)'>5 道题检验本课掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
   "<div id='quizBox'></div></div></div>";}
+ ,yuan5Di:function(L){return "<div class='tabpane' data-tab='guoguan'>"+
+  "<div class='card' style='border:2px solid #D9C9A8'><h3>🎯 过关自测 · 介绍一种事物</h3>"+
+  "<p style='font-size:13px;color:var(--muted)'>5 道题检验本次习作要求掌握情况，单选每题 1 分，交卷后自动保存成绩。</p>"+
+  "<div id='quizBox'></div></div></div>";}
 },
-quizzes:{ taiyang:QUIZ_TAIYANG, jinzita:QUIZ_JINZITA }
+quizzes:{ taiyang:QUIZ_TAIYANG, jinzita:QUIZ_JINZITA, yuan5Di:QUIZ_YUAN5DI }
 };
